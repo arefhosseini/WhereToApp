@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="custom_tab_layout_height_top">38dp</dimen>
+    <dimen name="custom_tab_layout_height_bottom">48dp</dimen>
+
+    <integer name="duration_bar">800</integer>
+    <integer name="duration_search">800</integer>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+</resources>
