@@ -52,5 +52,14 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewPlaceSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layoutDirection="rtl"
+            android:layout_margin="8dp"
+            android:orientation="horizontal"
+            tools:ignore="RtlHardcoded" />
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
