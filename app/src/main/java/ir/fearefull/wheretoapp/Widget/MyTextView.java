@@ -23,7 +23,7 @@ public class MyTextView extends android.support.v7.widget.AppCompatTextView {
 
     private void init() {
         if (!isInEditMode()) {
-            Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "font/MyFont.ttf");
+            Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "font/my_font.ttf");
             setTypeface(tf);
         }
     }

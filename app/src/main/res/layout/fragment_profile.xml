@@ -39,9 +39,8 @@
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:text="@string/profile_head_text"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    style="@style/MyTheme.TextAppearance.Medium"
+                    android:textColor="@color/textLightPrimary" />
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>

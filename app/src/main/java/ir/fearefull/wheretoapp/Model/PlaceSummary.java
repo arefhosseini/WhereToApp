@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
+import ir.fearefull.wheretoapp.Enum.PlaceTypeEnum;
+
 public class PlaceSummary {
 
     @SerializedName("id")
@@ -12,11 +14,19 @@ public class PlaceSummary {
     @SerializedName("name")
     private String name;
     @SerializedName("place_types")
-    private List<TypePlaceEnum> place_types = new ArrayList<>();
+    private List<PlaceTypeEnum> place_types;
     @SerializedName("place_image")
     private String place_image;
     @SerializedName("overall_score")
     private float overall_score;
+
+    public PlaceSummary(long id, String name, List<PlaceTypeEnum> place_types, String place_image, float overall_score) {
+        this.id = id;
+        this.name = name;
+        this.place_types = place_types;
+        this.place_image = place_image;
+        this.overall_score = overall_score;
+    }
 
     public long getId() {
         return id;
@@ -30,7 +40,7 @@ public class PlaceSummary {
         return place_image;
     }
 
-    public List<TypePlaceEnum> getPlaceTypes() {
+    public List<PlaceTypeEnum> getPlaceTypes() {
         return place_types;
     }
 
@@ -50,7 +60,7 @@ public class PlaceSummary {
         this.place_image = place_image;
     }
 
-    public void setPlaceTypes(List<TypePlaceEnum> place_types) {
+    public void setPlaceTypes(List<PlaceTypeEnum> place_types) {
         this.place_types = place_types;
     }
 

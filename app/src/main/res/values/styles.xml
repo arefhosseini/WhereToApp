@@ -21,4 +21,11 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="MyTheme.TextAppearance.Medium" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="MyTheme.TextAppearance.Small" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

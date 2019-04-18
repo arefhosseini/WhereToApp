@@ -14,6 +14,7 @@ import java.util.List;
 
 import ir.fearefull.wheretoapp.Constants;
 import ir.fearefull.wheretoapp.Model.PlaceSummary;
+import ir.fearefull.wheretoapp.Enum.PlaceTypeEnum;
 import ir.fearefull.wheretoapp.R;
 
 public class PlacesSummaryAdapter extends RecyclerView.Adapter<PlacesSummaryAdapter.MyViewHolder> {
@@ -22,7 +23,7 @@ public class PlacesSummaryAdapter extends RecyclerView.Adapter<PlacesSummaryAdap
     private ViewGroup parent;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView nameTextView, overallScoreTextView;
+        private TextView nameTextView, overallScoreTextView, placeTypesTextView;
         private ImageView imageView;
 
         public MyViewHolder(View view) {
@@ -30,6 +31,7 @@ public class PlacesSummaryAdapter extends RecyclerView.Adapter<PlacesSummaryAdap
             imageView = view.findViewById(R.id.imageView);
             nameTextView = view.findViewById(R.id.nameTextView);
             overallScoreTextView = view.findViewById(R.id.overallScoreTextView);
+            placeTypesTextView = view.findViewById(R.id.placeTypesTextView);
         }
     }
 
@@ -53,7 +55,14 @@ public class PlacesSummaryAdapter extends RecyclerView.Adapter<PlacesSummaryAdap
         holder.nameTextView.setText(placeSummary.getName());
         holder.overallScoreTextView.setText(String.valueOf(placeSummary.getOverallScore()));
         Picasso.get().load(Constants.BASE_URL + placeSummary.getPlaceImage()).into(holder.imageView);
-        holder.nameTextView.setSelected(true);
+        StringBuilder placeTypesString = new StringBuilder();
+        for (PlaceTypeEnum placeTypeEnum : placeSummary.getPlaceTypes()) {
+            if (placeSummary.getPlaceTypes().indexOf(placeTypeEnum) != placeSummary.getPlaceTypes().size() - 1)
+                placeTypesString.append(placeTypeEnum.getText()).append("، ");
+            else
+                placeTypesString.append(placeTypeEnum.getText());
+        }
+        holder.placeTypesTextView.setText(placeTypesString);
     }
 
     @Override

@@ -2,16 +2,10 @@ package ir.fearefull.wheretoapp;
 
 import android.annotation.SuppressLint;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import ir.fearefull.wheretoapp.Adapter.MainPager;
@@ -33,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             R.mipmap.home_unselected,
             R.mipmap.profile_unselected
     };
-    private View viewTabHome, viewTabSearch, viewTabProfile;
+    private View tabHomeView, tabSearchView, tabProfileView;
     private SearchFragment searchFragment;
     private HomeFragment homeFragment;
     private ProfileFragment profileFragment;
@@ -49,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.clearFocus();
-        viewPager.setOffscreenPageLimit(4);
+        viewPager.setOffscreenPageLimit(3);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -87,17 +81,17 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("InflateParams")
     private void setupTabIcons() {
-        viewTabSearch = getLayoutInflater().inflate(R.layout.tab_toolbar_with_icon, null);
-        viewTabSearch.findViewById(R.id.icon).setBackgroundResource(tabIcons[3]);
-        Objects.requireNonNull(tabLayout.getTabAt(0)).setCustomView(viewTabSearch);
+        tabSearchView = getLayoutInflater().inflate(R.layout.tab_toolbar_with_icon, null);
+        tabSearchView.findViewById(R.id.icon).setBackgroundResource(tabIcons[3]);
+        Objects.requireNonNull(tabLayout.getTabAt(0)).setCustomView(tabSearchView);
 
-        viewTabHome = getLayoutInflater().inflate(R.layout.tab_toolbar_with_icon, null);
-        viewTabHome.findViewById(R.id.icon).setBackgroundResource(tabIcons[1]);
-        Objects.requireNonNull(tabLayout.getTabAt(1)).setCustomView(viewTabHome);
+        tabHomeView = getLayoutInflater().inflate(R.layout.tab_toolbar_with_icon, null);
+        tabHomeView.findViewById(R.id.icon).setBackgroundResource(tabIcons[1]);
+        Objects.requireNonNull(tabLayout.getTabAt(1)).setCustomView(tabHomeView);
 
-        viewTabProfile = getLayoutInflater().inflate(R.layout.tab_toolbar_with_icon, null);
-        viewTabProfile.findViewById(R.id.icon).setBackgroundResource(tabIcons[5]);
-        Objects.requireNonNull(tabLayout.getTabAt(2)).setCustomView(viewTabProfile);
+        tabProfileView = getLayoutInflater().inflate(R.layout.tab_toolbar_with_icon, null);
+        tabProfileView.findViewById(R.id.icon).setBackgroundResource(tabIcons[5]);
+        Objects.requireNonNull(tabLayout.getTabAt(2)).setCustomView(tabProfileView);
 
         Objects.requireNonNull(tabLayout.getTabAt(1)).select();
     }
@@ -112,34 +106,5 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(homeFragment, "Home");
         adapter.addFragment(profileFragment, "Profile");
         viewPager.setAdapter(adapter);
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return null;
-        }
     }
 }

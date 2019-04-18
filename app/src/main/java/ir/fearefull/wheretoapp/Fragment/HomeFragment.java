@@ -1,5 +1,6 @@
 package ir.fearefull.wheretoapp.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,7 +22,9 @@ import ir.fearefull.wheretoapp.MainActivity;
 import ir.fearefull.wheretoapp.Model.PlaceSummary;
 import ir.fearefull.wheretoapp.Network.GetDataService;
 import ir.fearefull.wheretoapp.Network.RetrofitClientInstance;
+import ir.fearefull.wheretoapp.PlaceActivity;
 import ir.fearefull.wheretoapp.R;
+import ir.fearefull.wheretoapp.Widget.RecyclerTouchListener;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,6 +34,7 @@ public class HomeFragment extends Fragment {
     private View parentView;
     private PlacesSummaryAdapter placesSummaryAdapter;
     private RecyclerView recyclerViewPlaceSummary;
+    private List<PlaceSummary> placeSummaryList;
 
     public HomeFragment(){
 
@@ -51,6 +55,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         parentView = view;
+        placeSummaryList = new ArrayList<>();
 
         /*Create handle for the RetrofitInstance interface*/
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
@@ -59,6 +64,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<List<PlaceSummary>> call, Response<List<PlaceSummary>> response) {
                 //progressDoalog.dismiss();
+                assert response.body() != null;
                 generateDataList(response.body());
             }
 
@@ -73,12 +79,28 @@ public class HomeFragment extends Fragment {
     }
 
     /*Method to generate List of data using RecyclerView with custom adapter*/
-    private void generateDataList(List<PlaceSummary> placeSummaryList) {
+    private void generateDataList(List<PlaceSummary> placeSumList) {
         Log.d("list", placeSummaryList.toString());
+        this.placeSummaryList = placeSumList;
         recyclerViewPlaceSummary = parentView.findViewById(R.id.recyclerViewPlaceSummary);
         placesSummaryAdapter = new PlacesSummaryAdapter(placeSummaryList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewPlaceSummary.setLayoutManager(layoutManager);
         recyclerViewPlaceSummary.setAdapter(placesSummaryAdapter);
+
+        recyclerViewPlaceSummary.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerViewPlaceSummary, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                PlaceSummary placeSummary = placeSummaryList.get(position);
+
+                Intent myIntent = new Intent(getActivity(), PlaceActivity.class);
+                myIntent.putExtra("id",placeSummary.getId());
+                startActivity(myIntent);
+            }
+
+            @Override
+            public void onLongClick(View view, final int position) {
+            }
+        }));
     }
 }
