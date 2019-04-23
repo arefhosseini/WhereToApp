@@ -38,7 +38,7 @@
                 android:paddingRight="8dp"
                 android:paddingBottom="4dp"
                 android:paddingTop="4dp"
-                android:background="@drawable/background_overall_score__text_view"
+                android:background="@drawable/background_overall_score_text_view"
                 android:gravity="center"
                 android:layout_gravity="bottom|left"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"

@@ -29,4 +29,23 @@ a;wdm;awmd;awdm
 a;wdm;awmd;awd
 
 a;wldm;awmd;awdm"</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="about_restaurant">درباره رستوران</string>
+    <string name="phone">تلفن</string>
+    <string name="price">قیمت</string>
+    <string name="open_hours">ساعت بازبودن</string>
+    <string name="features">ویژگی ها</string>
+    <string name="place_images">عکس ها</string>
+    <string name="more_place_images">مشاهده تمامی عکس ها</string>
+    <string name="ratings_reviews">امتیازات و نظرات</string>
+    <string name="overall">امتیاز کلی</string>
+    <string name="number_1">1</string>
+    <string name="number_2">2</string>
+    <string name="number_3">3</string>
+    <string name="number_4">4</string>
+    <string name="number_5">5</string>
+    <string name="food">غذا</string>
+    <string name="service">سرویس دهی</string>
+    <string name="ambiance">محیط</string>
+    <string name="see_all_reviews">مشاهده تمامی نظرات</string>
 </resources>

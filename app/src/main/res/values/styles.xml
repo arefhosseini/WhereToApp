@@ -28,4 +28,5 @@
     <style name="MyTheme.TextAppearance.Small" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
         <item name="android:textSize">14sp</item>
     </style>
+
 </resources>
