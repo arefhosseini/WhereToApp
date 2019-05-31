@@ -233,7 +233,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             app:cardElevation="0dp">
 
             <LinearLayout
@@ -337,6 +337,7 @@
                     </LinearLayout>
                 </LinearLayout>
                 <ir.fearefull.wheretoapp.Widget.MyTextView
+                    android:id="@+id/showPlaceImagesTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/MyTheme.TextAppearance.Medium"
@@ -350,10 +351,11 @@
                     tools:ignore="RtlHardcoded" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
+
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             app:cardElevation="0dp">
 
             <LinearLayout
@@ -603,7 +605,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    tools:ignore="RtlHardcoded">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -693,6 +696,7 @@
                     </LinearLayout>
                 </LinearLayout>
                 <ir.fearefull.wheretoapp.Widget.MyTextView
+                    android:id="@+id/showReviewTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/MyTheme.TextAppearance.Medium"

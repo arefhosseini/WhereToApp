@@ -31,6 +31,7 @@ import com.squareup.picasso.Picasso;
 import java.util.Objects;
 
 import ir.fearefull.wheretoapp.Constants;
+import ir.fearefull.wheretoapp.GridViewPlaceImageActivity;
 import ir.fearefull.wheretoapp.Model.Place;
 import ir.fearefull.wheretoapp.R;
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
@@ -40,7 +41,8 @@ public class PlaceHomeFragment extends Fragment {
     private Place place;
     private TextView placeAddressTextView, placePriceTextView, placeOpenHoursTextView,
             placeFeaturesTextView, placePhoneTextView, overallScoreTextView,
-            foodScoreTextView, serviceScoreTextView, ambianceScoreTextView;
+            foodScoreTextView, serviceScoreTextView, ambianceScoreTextView,
+            showPlaceImagesTextView, showReviewTextView;
     private LinearLayout placePhonesLayout;
     private ImageView imagePlace1ImageView, imagePlace2ImageView, imagePlace3ImageView, imagePlace4ImageView, imagePlace5ImageView;
     private MaterialRatingBar placeOverallScoreRatingBar;
@@ -136,6 +138,8 @@ public class PlaceHomeFragment extends Fragment {
         foodScoreTextView = view.findViewById(R.id.foodScoreTextView);
         serviceScoreTextView = view.findViewById(R.id.serviceScoreTextView);
         ambianceScoreTextView = view.findViewById(R.id.ambianceScoreTextView);
+        showPlaceImagesTextView = view.findViewById(R.id.showPlaceImagesTextView);
+        showReviewTextView = view.findViewById(R.id.showReviewTextView);
 
         placeAddressTextView.setText(place.getAddress());
         placePriceTextView.setText(place.getPrice());
@@ -149,15 +153,15 @@ public class PlaceHomeFragment extends Fragment {
         }
 
         if (place.getPlaceImages().size() >= 1)
-            Picasso.get().load(Constants.BASE_URL + place.getPlaceImages().get(0).getImage()).into(imagePlace1ImageView);
+            Picasso.get().load(Constants.BASE_URL + place.getPlaceImages().get(0).getImage()).fit().into(imagePlace1ImageView);
         if (place.getPlaceImages().size() >= 2)
-            Picasso.get().load(Constants.BASE_URL + place.getPlaceImages().get(1).getImage()).into(imagePlace2ImageView);
+            Picasso.get().load(Constants.BASE_URL + place.getPlaceImages().get(1).getImage()).fit().into(imagePlace2ImageView);
         if (place.getPlaceImages().size() >= 3)
-            Picasso.get().load(Constants.BASE_URL + place.getPlaceImages().get(2).getImage()).into(imagePlace3ImageView);
+            Picasso.get().load(Constants.BASE_URL + place.getPlaceImages().get(2).getImage()).fit().into(imagePlace3ImageView);
         if (place.getPlaceImages().size() >= 4)
-            Picasso.get().load(Constants.BASE_URL + place.getPlaceImages().get(3).getImage()).into(imagePlace4ImageView);
+            Picasso.get().load(Constants.BASE_URL + place.getPlaceImages().get(3).getImage()).fit().into(imagePlace4ImageView);
         if (place.getPlaceImages().size() >= 5)
-            Picasso.get().load(Constants.BASE_URL + place.getPlaceImages().get(4).getImage()).into(imagePlace5ImageView);
+            Picasso.get().load(Constants.BASE_URL + place.getPlaceImages().get(4).getImage()).fit().into(imagePlace5ImageView);
 
         overallScoreTextView.setText(String.valueOf(place.getOverallScore()));
         placeOverallScoreRatingBar.setRating(place.getOverallScore());
@@ -171,6 +175,22 @@ public class PlaceHomeFragment extends Fragment {
         foodScoreTextView.setText(String.valueOf(place.getFoodScoreAverage()));
         serviceScoreTextView.setText(String.valueOf(place.getServiceScoreAverage()));
         ambianceScoreTextView.setText(String.valueOf(place.getAmbianceScoreAverage()));
+
+        showPlaceImagesTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), GridViewPlaceImageActivity.class);
+                i.putExtra("place", place);
+                startActivity(i);
+            }
+        });
+
+        showReviewTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // go to place reviews fragment
+            }
+        });
     }
 
     private void onGoogleMapClick() {

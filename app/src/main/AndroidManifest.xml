@@ -31,10 +31,6 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
-
-        <activity
             android:name=".PlaceActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -47,6 +43,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".GridViewPlaceImageActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FullScreenPlaceImageViewActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:screenOrientation="portrait" />
     </application>
 
     <uses-feature

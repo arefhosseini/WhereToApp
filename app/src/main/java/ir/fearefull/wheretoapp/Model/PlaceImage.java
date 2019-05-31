@@ -2,7 +2,10 @@ package ir.fearefull.wheretoapp.Model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PlaceImage {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class PlaceImage implements Serializable {
 
     @SerializedName("user")
     private long user;

@@ -2,6 +2,7 @@ package ir.fearefull.wheretoapp.Model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,8 @@ import ir.fearefull.wheretoapp.Enum.CityTypeEnum;
 import ir.fearefull.wheretoapp.Enum.PlaceTypeEnum;
 import ir.fearefull.wheretoapp.Enum.StateTypeEnum;
 
-public class Place {
+@SuppressWarnings("serial")
+public class Place implements Serializable {
 
     @SerializedName("id")
     private long id;

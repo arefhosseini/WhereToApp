@@ -48,4 +48,5 @@ a;wldm;awmd;awdm"</string>
     <string name="service">سرویس دهی</string>
     <string name="ambiance">محیط</string>
     <string name="see_all_reviews">مشاهده تمامی نظرات</string>
+    <string name="summary">خلاصه</string>
 </resources>

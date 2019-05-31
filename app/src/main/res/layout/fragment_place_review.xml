@@ -1,10 +1,12 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:isScrollContainer="false"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="fill_vertical"
     android:clipToPadding="false"
+    android:background="@color/colorBackground"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
@@ -12,6 +14,349 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:orientation="horizontal"
+                            tools:ignore="NestedWeights,RtlHardcoded">
+
+                            <SeekBar
+                                android:id="@+id/oneScoreSeekBar"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:max="100"
+                                android:progress="0"
+                                android:thumb="@null"
+                                android:paddingStart="0dp"
+                                android:paddingEnd="0dp"
+                                android:layoutDirection="rtl"
+                                android:mirrorForRtl="true"
+                                android:progressDrawable="@drawable/seekbar_style"
+                                tools:ignore="NestedWeights" />
+
+                            <ir.fearefull.wheretoapp.Widget.MyTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/MyTheme.TextAppearance.Small"
+                                android:textColor="@color/textDarkSecondary"
+                                android:text="@string/number_1"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="4dp"
+                                tools:ignore="RtlHardcoded" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="4dp"
+                            tools:ignore="NestedWeights,RtlHardcoded">
+
+                            <SeekBar
+                                android:id="@+id/twoScoreSeekBar"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:max="100"
+                                android:progress="0"
+                                android:thumb="@null"
+                                android:paddingStart="0dp"
+                                android:paddingEnd="0dp"
+                                android:layoutDirection="rtl"
+                                android:mirrorForRtl="true"
+                                android:progressDrawable="@drawable/seekbar_style"
+                                tools:ignore="NestedWeights" />
+
+                            <ir.fearefull.wheretoapp.Widget.MyTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/MyTheme.TextAppearance.Small"
+                                android:textColor="@color/textDarkSecondary"
+                                android:text="@string/number_2"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="4dp"
+                                tools:ignore="RtlHardcoded" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="4dp"
+                            tools:ignore="NestedWeights,RtlHardcoded">
+
+                            <SeekBar
+                                android:id="@+id/threeScoreSeekBar"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:max="100"
+                                android:progress="0"
+                                android:thumb="@null"
+                                android:paddingStart="0dp"
+                                android:paddingEnd="0dp"
+                                android:layoutDirection="rtl"
+                                android:mirrorForRtl="true"
+                                android:progressDrawable="@drawable/seekbar_style"
+                                tools:ignore="NestedWeights" />
+
+                            <ir.fearefull.wheretoapp.Widget.MyTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/MyTheme.TextAppearance.Small"
+                                android:textColor="@color/textDarkSecondary"
+                                android:text="@string/number_3"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="4dp"
+                                tools:ignore="RtlHardcoded" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="4dp"
+                            tools:ignore="NestedWeights,RtlHardcoded">
+
+                            <SeekBar
+                                android:id="@+id/fourScoreSeekBar"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:max="100"
+                                android:progress="0"
+                                android:thumb="@null"
+                                android:paddingStart="0dp"
+                                android:paddingEnd="0dp"
+                                android:layoutDirection="rtl"
+                                android:mirrorForRtl="true"
+                                android:progressDrawable="@drawable/seekbar_style"
+                                tools:ignore="NestedWeights" />
+
+                            <ir.fearefull.wheretoapp.Widget.MyTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/MyTheme.TextAppearance.Small"
+                                android:textColor="@color/textDarkSecondary"
+                                android:text="@string/number_4"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="4dp"
+                                tools:ignore="RtlHardcoded" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="4dp"
+                            tools:ignore="NestedWeights,RtlHardcoded">
+
+                            <SeekBar
+                                android:id="@+id/fiveScoreSeekBar"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:max="100"
+                                android:progress="0"
+                                android:thumb="@null"
+                                android:paddingStart="0dp"
+                                android:paddingEnd="0dp"
+                                android:layoutDirection="rtl"
+                                android:mirrorForRtl="true"
+                                android:progressDrawable="@drawable/seekbar_style"
+                                tools:ignore="NestedWeights" />
+
+                            <ir.fearefull.wheretoapp.Widget.MyTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/MyTheme.TextAppearance.Small"
+                                android:textColor="@color/textDarkSecondary"
+                                android:text="@string/number_5"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="4dp"
+                                tools:ignore="RtlHardcoded" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="right"
+                        android:orientation="vertical"
+                        tools:ignore="RtlHardcoded">
+
+                        <ir.fearefull.wheretoapp.Widget.MyTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/MyTheme.TextAppearance.Medium"
+                            android:textColor="@color/textDarkSecondary"
+                            android:layout_gravity="right"
+                            android:paddingTop="8dp"
+                            android:text="@string/overall"
+                            tools:ignore="RtlHardcoded" />
+
+                        <ir.fearefull.wheretoapp.Widget.MyTextView
+                            android:id="@+id/overallScoreTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="42sp"
+                            android:textColor="@color/textDarkPrimary"
+                            android:layout_gravity="right"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp"
+                            tools:ignore="RtlHardcoded" />
+
+                        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                            android:id="@+id/placeOverallScoreRatingBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="24dp"
+                            android:maxHeight="24dp"
+                            android:stepSize="0.01"
+                            android:rotation="180"
+                            android:scaleY="-1"
+                            app:mrb_fillBackgroundStars="@color/ratingBarColor"
+                            app:mrb_secondaryProgressTint="@color/ratingBarColor"
+                            app:mrb_progressTint="@color/ratingBarColor" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:orientation="horizontal"
+                    tools:ignore="RtlHardcoded">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:gravity="right|center_vertical"
+                        android:orientation="vertical"
+                        tools:ignore="RtlHardcoded">
+
+                        <ir.fearefull.wheretoapp.Widget.MyTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/MyTheme.TextAppearance.Medium"
+                            android:textColor="@color/textDarkSecondary"
+                            android:layout_gravity="right"
+                            android:text="@string/ambiance"
+                            tools:ignore="RtlHardcoded" />
+
+                        <ir.fearefull.wheretoapp.Widget.MyTextView
+                            android:id="@+id/ambianceScoreTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/MyTheme.TextAppearance.Medium"
+                            android:textColor="@color/textDarkPrimary"
+                            android:layout_gravity="right"
+                            tools:ignore="RtlHardcoded" />
+                    </LinearLayout>
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:gravity="right|center_vertical"
+                        android:orientation="vertical"
+                        tools:ignore="RtlHardcoded">
+
+                        <ir.fearefull.wheretoapp.Widget.MyTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/MyTheme.TextAppearance.Medium"
+                            android:textColor="@color/textDarkSecondary"
+                            android:layout_gravity="right"
+                            android:text="@string/service"
+                            tools:ignore="RtlHardcoded" />
+
+                        <ir.fearefull.wheretoapp.Widget.MyTextView
+                            android:id="@+id/serviceScoreTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/MyTheme.TextAppearance.Medium"
+                            android:textColor="@color/textDarkPrimary"
+                            android:layout_gravity="right"
+                            tools:ignore="RtlHardcoded" />
+                    </LinearLayout>
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:gravity="right|center_vertical"
+                        android:orientation="vertical"
+                        tools:ignore="RtlHardcoded">
+
+                        <ir.fearefull.wheretoapp.Widget.MyTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/MyTheme.TextAppearance.Medium"
+                            android:textColor="@color/textDarkSecondary"
+                            android:layout_gravity="right"
+                            android:text="@string/food"
+                            tools:ignore="RtlHardcoded" />
+
+                        <ir.fearefull.wheretoapp.Widget.MyTextView
+                            android:id="@+id/foodScoreTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/MyTheme.TextAppearance.Medium"
+                            android:textColor="@color/textDarkPrimary"
+                            android:layout_gravity="right"
+                            tools:ignore="RtlHardcoded" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewPlaceReviews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layoutDirection="rtl"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            tools:ignore="RtlHardcoded" />
 
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

@@ -2,7 +2,10 @@ package ir.fearefull.wheretoapp.Model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CoordinatePlace {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class CoordinatePlace implements Serializable {
 
     @SerializedName("latitude")
     private float latitude;
