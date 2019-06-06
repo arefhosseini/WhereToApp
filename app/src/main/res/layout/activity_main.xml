@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <LinearLayout
         android:id="@+id/main_layout"
@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ir.fearefull.wheretoapp.Adapter.MainPager
+        <ir.fearefull.wheretoapp.ui.adapter.MainPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -30,13 +30,13 @@
                 android:layout_above="@id/tabs_appbar"
                 android:background="@drawable/shadow"/>
 
-            <android.support.design.widget.AppBarLayout
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/custom_tab_layout_height_bottom"
                 android:layout_alignParentBottom="true"
                 android:id="@+id/tabs_appbar">
 
-                <android.support.design.widget.TabLayout
+                <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabs"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/custom_tab_layout_height_bottom"
@@ -45,7 +45,7 @@
                     android:background="@color/colorBackground"
                     app:tabIndicatorHeight="0dp"
                     app:tabGravity="fill"/>
-            </android.support.design.widget.AppBarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
         </RelativeLayout>
     </LinearLayout>
 

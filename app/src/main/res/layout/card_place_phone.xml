@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ir.fearefull.wheretoapp.Widget.MyTextView android:layout_width="wrap_content"
+<ir.fearefull.wheretoapp.ui.widget.MyTextView android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     style="@style/MyTheme.TextAppearance.Small"
     android:paddingTop="4dp"

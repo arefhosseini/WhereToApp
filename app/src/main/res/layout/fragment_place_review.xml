@@ -1,4 +1,4 @@
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:isScrollContainer="false"
@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="0dp">
@@ -60,7 +60,7 @@
                                 android:progressDrawable="@drawable/seekbar_style"
                                 tools:ignore="NestedWeights" />
 
-                            <ir.fearefull.wheretoapp.Widget.MyTextView
+                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
@@ -95,7 +95,7 @@
                                 android:progressDrawable="@drawable/seekbar_style"
                                 tools:ignore="NestedWeights" />
 
-                            <ir.fearefull.wheretoapp.Widget.MyTextView
+                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
@@ -129,7 +129,7 @@
                                 android:progressDrawable="@drawable/seekbar_style"
                                 tools:ignore="NestedWeights" />
 
-                            <ir.fearefull.wheretoapp.Widget.MyTextView
+                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
@@ -163,7 +163,7 @@
                                 android:progressDrawable="@drawable/seekbar_style"
                                 tools:ignore="NestedWeights" />
 
-                            <ir.fearefull.wheretoapp.Widget.MyTextView
+                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
@@ -197,7 +197,7 @@
                                 android:progressDrawable="@drawable/seekbar_style"
                                 tools:ignore="NestedWeights" />
 
-                            <ir.fearefull.wheretoapp.Widget.MyTextView
+                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
@@ -217,7 +217,7 @@
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
 
-                        <ir.fearefull.wheretoapp.Widget.MyTextView
+                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
@@ -227,7 +227,7 @@
                             android:text="@string/overall"
                             tools:ignore="RtlHardcoded" />
 
-                        <ir.fearefull.wheretoapp.Widget.MyTextView
+                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
                             android:id="@+id/overallScoreTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -267,7 +267,7 @@
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
 
-                        <ir.fearefull.wheretoapp.Widget.MyTextView
+                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
@@ -276,7 +276,7 @@
                             android:text="@string/ambiance"
                             tools:ignore="RtlHardcoded" />
 
-                        <ir.fearefull.wheretoapp.Widget.MyTextView
+                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
                             android:id="@+id/ambianceScoreTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -297,7 +297,7 @@
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
 
-                        <ir.fearefull.wheretoapp.Widget.MyTextView
+                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
@@ -306,7 +306,7 @@
                             android:text="@string/service"
                             tools:ignore="RtlHardcoded" />
 
-                        <ir.fearefull.wheretoapp.Widget.MyTextView
+                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
                             android:id="@+id/serviceScoreTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -327,7 +327,7 @@
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
 
-                        <ir.fearefull.wheretoapp.Widget.MyTextView
+                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
@@ -336,7 +336,7 @@
                             android:text="@string/food"
                             tools:ignore="RtlHardcoded" />
 
-                        <ir.fearefull.wheretoapp.Widget.MyTextView
+                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
                             android:id="@+id/foodScoreTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -347,8 +347,8 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.RecyclerView
+        </androidx.cardview.widget.CardView>
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewPlaceReviews"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -359,4 +359,4 @@
             tools:ignore="RtlHardcoded" />
 
     </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>

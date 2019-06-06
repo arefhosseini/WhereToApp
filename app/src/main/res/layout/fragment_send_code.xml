@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerVertical="true"
+    android:background="@color/colorBackground"
+    tools:context="ir.fearefull.wheretoapp.ui.fragment.SendCodeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/main_layout"
+        android:layout_alignParentTop="true"
+        android:id="@+id/header_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal">
+
+            <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/textDarkPrimary"
+                android:padding="10dp"
+                android:text="@string/send_code_text"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:id="@+id/main_layout"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ir.fearefull.wheretoapp.ui.widget.MyEditText
+                    android:id="@+id/codeEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:gravity="right"
+                    android:textSize="16sp"
+                    android:inputType="phone"
+                    android:textColor="@color/textDarkPrimary"
+                    android:hint="@string/hint_code"
+                    android:textColorHint="@android:color/darker_gray"
+                    tools:ignore="RtlHardcoded" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                android:id="@+id/countDownTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:padding="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:textColor="@android:color/darker_gray"
+                style="@style/MyTheme.TextAppearance.Small"
+                tools:ignore="RtlHardcoded" />
+        </LinearLayout>
+
+        <ir.fearefull.wheretoapp.ui.widget.MyButton
+            android:id="@+id/buttonSendCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_send_phone"
+            android:textSize="16sp"
+            android:background="@drawable/button"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:minHeight="0dp"
+            android:enabled="false"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textColor="@android:color/white"
+            android:focusable="true"
+            android:clickable="true"/>
+    </LinearLayout>
+</RelativeLayout>

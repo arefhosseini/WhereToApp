@@ -49,4 +49,16 @@ a;wldm;awmd;awdm"</string>
     <string name="ambiance">محیط</string>
     <string name="see_all_reviews">مشاهده تمامی نظرات</string>
     <string name="summary">خلاصه</string>
+    <string name="your_ratings">امتیاز شما</string>
+    <string name="confirm">تایید</string>
+    <string name="signup_toolbar_text">ثبت نام</string>
+    <string name="send_code_text">کد را وارد نمایید</string>
+    <string name="hint_code">کد دریافتی</string>
+    <string name="btn_send_phone">تایید</string>
+    <string name="send_phone_text">شماره تلفن خود را وارد نمایید</string>
+    <string name="hint_phone">شماره تلفن</string>
+    <string name="edit_profile_head_text">ویرایش پروفایل</string>
+    <string name="hint_first_name">نام</string>
+    <string name="hint_last_name">نام خانوادگی</string>
+    <string name="internal_storage">Internal storage</string>
 </resources>

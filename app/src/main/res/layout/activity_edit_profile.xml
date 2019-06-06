@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.EditProfileActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appBar"
+        android:theme="@style/MyTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetEnd="0dp"
+            app:contentInsetStart="0dp"
+            app:popupTheme="@style/MyTheme.PopupOverlay" >
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="@string/edit_profile_head_text"
+                    style="@style/MyTheme.TextAppearance.Medium"
+                    android:textColor="@color/textLightPrimary" />
+                <ImageButton
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="12dp"
+                    android:background="?actionBarItemBackground"
+                    android:src="@drawable/ic_arrow_forward_white_24dp"
+                    tools:ignore="RtlHardcoded" />
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            android:layout_margin="18dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:id="@+id/profileImageLayout"
+                    android:layout_width="102dp"
+                    android:layout_height="102dp"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:layout_gravity="center">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profileImageView"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:civ_circle_background_color="@color/colorBackground2"
+                        android:src="@mipmap/default_profile_image" />
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_add_circle_accent_24dp"
+                        android:layout_gravity="left|bottom"
+
+                        tools:ignore="RtlHardcoded" />
+                </FrameLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp">
+
+                    <ir.fearefull.wheretoapp.ui.widget.MyEditText
+                        android:id="@+id/phoneNumberEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="right"
+                        android:textSize="16sp"
+                        android:inputType="phone"
+                        android:enabled="false"
+                        android:textColor="@color/textDarkPrimary"
+                        android:hint="@string/hint_phone"
+                        android:textColorHint="@android:color/darker_gray"
+                        tools:ignore="RtlHardcoded" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp">
+
+                    <ir.fearefull.wheretoapp.ui.widget.MyEditText
+                        android:id="@+id/firstNameEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="right"
+                        android:textSize="16sp"
+                        android:inputType="textAutoComplete"
+                        android:textColor="@color/textDarkPrimary"
+                        android:hint="@string/hint_first_name"
+                        android:textColorHint="@android:color/darker_gray"
+                        tools:ignore="RtlHardcoded" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp">
+
+                    <ir.fearefull.wheretoapp.ui.widget.MyEditText
+                        android:id="@+id/lastNameEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="right"
+                        android:textSize="16sp"
+                        android:inputType="textAutoComplete"
+                        android:textColor="@color/textDarkPrimary"
+                        android:hint="@string/hint_last_name"
+                        android:textColorHint="@android:color/darker_gray"
+                        tools:ignore="RtlHardcoded" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <ir.fearefull.wheretoapp.ui.widget.MyButton
+                android:id="@+id/confirmButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_send_phone"
+                android:textSize="16sp"
+                android:background="@drawable/button"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:minHeight="0dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textColor="@android:color/white"
+                android:focusable="true"
+                android:clickable="true"/>
+        </RelativeLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
