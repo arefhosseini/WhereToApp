@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:orientation="vertical">
-        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+        <ir.fearefull.wheretoapp.view.base.MyTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/MyTheme.TextAppearance.Medium"
@@ -42,7 +42,7 @@
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
         android:gravity="center">
-        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+        <ir.fearefull.wheretoapp.view.base.MyTextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             style="@style/MyTheme.TextAppearance.Small"
@@ -65,7 +65,7 @@
         android:padding="4dp"
         android:orientation="horizontal"
         android:gravity="center">
-        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+        <ir.fearefull.wheretoapp.view.base.MyTextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             style="@style/MyTheme.TextAppearance.Small"
@@ -88,7 +88,7 @@
         android:padding="4dp"
         android:orientation="horizontal"
         android:gravity="center">
-        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+        <ir.fearefull.wheretoapp.view.base.MyTextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             style="@style/MyTheme.TextAppearance.Small"

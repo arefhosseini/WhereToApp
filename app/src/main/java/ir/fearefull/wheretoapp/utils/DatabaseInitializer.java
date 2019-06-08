@@ -1,7 +1,7 @@
 package ir.fearefull.wheretoapp.utils;
 
-import ir.fearefull.wheretoapp.data.local.AppDatabase;
-import ir.fearefull.wheretoapp.data.model.db.User;
+import ir.fearefull.wheretoapp.controller.data_controller.local.AppDatabase;
+import ir.fearefull.wheretoapp.model.db.User;
 
 public class DatabaseInitializer {
 

@@ -9,7 +9,7 @@
     android:id="@+id/rootView"
     tools:ignore="RtlHardcoded">
 
-    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+    <ir.fearefull.wheretoapp.view.base.MyTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -17,7 +17,7 @@
         android:textColor="@color/textDarkPrimary"
         android:text="@string/your_review" />
 
-    <ir.fearefull.wheretoapp.ui.widget.MyEditText
+    <ir.fearefull.wheretoapp.view.base.MyEditText
         android:id="@+id/reviewEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

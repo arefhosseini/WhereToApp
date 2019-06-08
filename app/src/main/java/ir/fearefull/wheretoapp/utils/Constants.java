@@ -1,8 +1,9 @@
 package ir.fearefull.wheretoapp.utils;
 
 public class Constants {
-    public static final String BASE_URL = "http://10.0.2.2:8000/";
-    //public static final String BASE_URL = "http://fearefull.pythonanywhere.com/";
+    //public static final String BASE_URL = "http://10.0.2.2:8000/";
+    public static final String BASE_URL = "http://fearefull.pythonanywhere.com/";
+    public static final String MEDIA_URL = "http://fearefull.pythonanywhere.com/media/";
 
     // Number of columns of Grid View
     public static final int NUM_OF_COLUMNS_PLACE_IMAGE = 2;

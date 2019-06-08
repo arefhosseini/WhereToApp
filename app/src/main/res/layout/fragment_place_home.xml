@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/MyTheme.TextAppearance.Medium"
@@ -41,7 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"/>
 
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/placeAddressTextView"
@@ -68,7 +68,7 @@
                         android:gravity="right|center_vertical"
                         android:orientation="horizontal">
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Small"
@@ -103,7 +103,7 @@
                     android:padding="12dp"
                     tools:ignore="RtlHardcoded">
 
-                    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/placePriceTextView"
@@ -119,7 +119,7 @@
                         android:orientation="horizontal"
                         tools:ignore="RtlHardcoded">
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Small"
@@ -147,7 +147,7 @@
                         android:gravity="right|center_vertical"
                         android:orientation="horizontal">
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Small"
@@ -170,7 +170,7 @@
                         android:orientation="vertical"
                         android:gravity="right">
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/placeOpenHoursTextView"
@@ -193,7 +193,7 @@
                         android:gravity="right|center_vertical"
                         android:orientation="horizontal">
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Small"
@@ -216,7 +216,7 @@
                         android:orientation="vertical"
                         android:gravity="right">
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/placeFeaturesTextView"
@@ -246,7 +246,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical">
 
-                    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyTheme.TextAppearance.Medium"
@@ -337,7 +337,7 @@
                             android:background="@color/colorBackground" />
                     </LinearLayout>
                 </LinearLayout>
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:id="@+id/showPlaceImagesTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -369,7 +369,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical">
 
-                    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyTheme.TextAppearance.Medium"
@@ -398,7 +398,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:orientation="vertical">
-                    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyTheme.TextAppearance.Medium"
@@ -457,7 +457,7 @@
                                 android:progressDrawable="@drawable/seekbar_style"
                                 tools:ignore="NestedWeights" />
 
-                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                            <ir.fearefull.wheretoapp.view.base.MyTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
@@ -491,7 +491,7 @@
                                 android:progressDrawable="@drawable/seekbar_style"
                                 tools:ignore="NestedWeights" />
 
-                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                            <ir.fearefull.wheretoapp.view.base.MyTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
@@ -525,7 +525,7 @@
                                 android:progressDrawable="@drawable/seekbar_style"
                                 tools:ignore="NestedWeights" />
 
-                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                            <ir.fearefull.wheretoapp.view.base.MyTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
@@ -559,7 +559,7 @@
                                 android:progressDrawable="@drawable/seekbar_style"
                                 tools:ignore="NestedWeights" />
 
-                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                            <ir.fearefull.wheretoapp.view.base.MyTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
@@ -592,7 +592,7 @@
                                 android:progressDrawable="@drawable/seekbar_style"
                                 tools:ignore="NestedWeights" />
 
-                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                            <ir.fearefull.wheretoapp.view.base.MyTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
@@ -612,7 +612,7 @@
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
@@ -622,7 +622,7 @@
                             android:text="@string/overall"
                             tools:ignore="RtlHardcoded" />
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:id="@+id/overallScoreTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -664,7 +664,7 @@
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
@@ -673,7 +673,7 @@
                             android:text="@string/ambiance"
                             tools:ignore="RtlHardcoded" />
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:id="@+id/ambianceScoreTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -694,7 +694,7 @@
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
@@ -703,7 +703,7 @@
                             android:text="@string/service"
                             tools:ignore="RtlHardcoded" />
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:id="@+id/serviceScoreTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -724,7 +724,7 @@
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
@@ -733,7 +733,7 @@
                             android:text="@string/food"
                             tools:ignore="RtlHardcoded" />
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:id="@+id/foodScoreTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -743,7 +743,7 @@
                             tools:ignore="RtlHardcoded" />
                     </LinearLayout>
                 </LinearLayout>
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:id="@+id/showReviewTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

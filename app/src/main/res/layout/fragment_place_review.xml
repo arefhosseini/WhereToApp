@@ -61,7 +61,7 @@
                                 android:progressDrawable="@drawable/seekbar_style"
                                 tools:ignore="NestedWeights" />
 
-                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                            <ir.fearefull.wheretoapp.view.base.MyTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
@@ -95,7 +95,7 @@
                                 android:progressDrawable="@drawable/seekbar_style"
                                 tools:ignore="NestedWeights" />
 
-                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                            <ir.fearefull.wheretoapp.view.base.MyTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
@@ -129,7 +129,7 @@
                                 android:progressDrawable="@drawable/seekbar_style"
                                 tools:ignore="NestedWeights" />
 
-                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                            <ir.fearefull.wheretoapp.view.base.MyTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
@@ -163,7 +163,7 @@
                                 android:progressDrawable="@drawable/seekbar_style"
                                 tools:ignore="NestedWeights" />
 
-                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                            <ir.fearefull.wheretoapp.view.base.MyTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
@@ -196,7 +196,7 @@
                                 android:progressDrawable="@drawable/seekbar_style"
                                 tools:ignore="NestedWeights" />
 
-                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                            <ir.fearefull.wheretoapp.view.base.MyTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
@@ -216,7 +216,7 @@
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
@@ -226,7 +226,7 @@
                             android:text="@string/overall"
                             tools:ignore="RtlHardcoded" />
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:id="@+id/overallScoreTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -266,7 +266,7 @@
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
@@ -275,7 +275,7 @@
                             android:text="@string/ambiance"
                             tools:ignore="RtlHardcoded" />
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:id="@+id/ambianceScoreTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -296,7 +296,7 @@
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
@@ -305,7 +305,7 @@
                             android:text="@string/service"
                             tools:ignore="RtlHardcoded" />
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:id="@+id/serviceScoreTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -326,7 +326,7 @@
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
@@ -335,7 +335,7 @@
                             android:text="@string/food"
                             tools:ignore="RtlHardcoded" />
 
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:id="@+id/foodScoreTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

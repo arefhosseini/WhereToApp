@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:ignore="RtlHardcoded"
     android:fitsSystemWindows="true"
-    tools:context=".ui.UserActivity">
+    tools:context=".controller.view_controller.user.UserActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:id="@+id/followTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -72,7 +72,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:layout_gravity="right|bottom">
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:id="@+id/userScoreTextView"
                             android:layout_width="40dp"
                             android:layout_height="match_parent"
@@ -93,7 +93,7 @@
                 android:gravity="center"
                 android:padding="8dp"
                 android:orientation="horizontal">
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/firstNameTextView"
@@ -102,7 +102,7 @@
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
                     android:layout_gravity="right" />
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/lastNameTextView"
@@ -128,7 +128,7 @@
                         android:focusable="true"
                         android:clickable="true"
                         android:orientation="vertical">
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/followersCountTextView"
@@ -137,7 +137,7 @@
                             android:padding="4dp"
                             android:gravity="center"
                             android:layout_gravity="center" />
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Small"
@@ -162,7 +162,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:orientation="vertical">
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/followingsCountTextView"
@@ -171,7 +171,7 @@
                             android:padding="4dp"
                             android:gravity="center"
                             android:layout_gravity="center" />
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Small"
@@ -216,7 +216,7 @@
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"/>
 
-                    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/favoritePlacesTextView"
@@ -228,7 +228,7 @@
                         android:layout_marginRight="16dp"
                         android:text="@string/favorite_places" />
 
-                    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:id="@+id/favoritePlacesCountTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -268,7 +268,7 @@
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"/>
 
-                    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/scoresTextView"
@@ -280,7 +280,7 @@
                         android:layout_marginRight="16dp"
                         android:text="@string/scores" />
 
-                    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:id="@+id/scoresCountTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -320,7 +320,7 @@
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"/>
 
-                    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/reviewsTextView"
@@ -332,7 +332,7 @@
                         android:layout_marginRight="16dp"
                         android:text="@string/reviews" />
 
-                    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:id="@+id/reviewsCountTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -372,7 +372,7 @@
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"/>
 
-                    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/placeImagesTextView"
@@ -384,7 +384,7 @@
                         android:layout_marginRight="16dp"
                         android:text="@string/place_images" />
 
-                    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:id="@+id/placeImagesCountTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

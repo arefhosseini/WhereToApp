@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:ignore="RtlHardcoded"
     android:fitsSystemWindows="true"
-    tools:context=".ui.fragment.ProfileFragment">
+    tools:context=".controller.view_controller.home.fragment.ProfileFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

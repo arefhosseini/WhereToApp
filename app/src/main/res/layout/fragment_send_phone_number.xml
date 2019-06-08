@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerVertical="true"
-    tools:context="ir.fearefull.wheretoapp.ui.fragment.SendPhoneNumberFragment">
+    tools:context="ir.fearefull.wheretoapp.controller.view_controller.verify.fragment.SendPhoneNumberFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
