@@ -23,6 +23,7 @@
                 android:layout_height="50dp"
                 android:clickable="true"
                 android:focusable="true"
+                app:civ_circle_background_color="@color/colorBackground2"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true" />
             <ir.fearefull.wheretoapp.ui.widget.MyTextView

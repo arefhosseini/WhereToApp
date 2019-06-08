@@ -1,12 +1,18 @@
 package ir.fearefull.wheretoapp.ui.fragment;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,34 +32,64 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
+import org.json.JSONException;
+
+import java.io.File;
 import java.util.Objects;
 
+import ir.fearefull.wheretoapp.data.model.api.AddReviewRequest;
+import ir.fearefull.wheretoapp.data.model.api.AddScoreRequest;
+import ir.fearefull.wheretoapp.data.model.api.AddScoreResponse;
+import ir.fearefull.wheretoapp.data.model.api.CreateUserRequest;
 import ir.fearefull.wheretoapp.data.model.api.PlaceResponse;
+import ir.fearefull.wheretoapp.data.model.api.PlaceScore;
+import ir.fearefull.wheretoapp.data.model.api.UserResponse;
+import ir.fearefull.wheretoapp.data.model.db.User;
+import ir.fearefull.wheretoapp.data.remote.GetDataService;
+import ir.fearefull.wheretoapp.data.remote.RetrofitClientInstance;
+import ir.fearefull.wheretoapp.ui.EditProfileActivity;
 import ir.fearefull.wheretoapp.utils.Constants;
 import ir.fearefull.wheretoapp.ui.GridViewPlaceImageActivity;
 import ir.fearefull.wheretoapp.R;
+import ir.fearefull.wheretoapp.utils.FileUtils;
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.app.Activity.RESULT_OK;
+import static ir.fearefull.wheretoapp.utils.Constants.ADD_REVIEW_DIALOG;
+import static ir.fearefull.wheretoapp.utils.Constants.ADD_SCORE_DIALOG;
+import static ir.fearefull.wheretoapp.utils.Constants.PICK_FROM_GALLERY;
 
 public class PlaceHomeFragment extends Fragment {
 
+    private User user;
     private PlaceResponse placeResponse;
     private TextView placeAddressTextView, placePriceTextView, placeOpenHoursTextView,
             placeFeaturesTextView, placePhoneTextView, overallScoreTextView,
             foodScoreTextView, serviceScoreTextView, ambianceScoreTextView,
             showPlaceImagesTextView, showReviewTextView;
-    private LinearLayout placePhonesLayout;
+    private LinearLayout placePhonesLayout, yourOverallScoreLayout;
     private ImageView imagePlace1ImageView, imagePlace2ImageView, imagePlace3ImageView, imagePlace4ImageView, imagePlace5ImageView;
-    private MaterialRatingBar placeOverallScoreRatingBar;
+    private MaterialRatingBar placeOverallScoreRatingBar, yourOverallScoreRatingBar;
     private SeekBar oneScoreSeekBar, twoScoreSeekBar, threeScoreSeekBar, fourScoreSeekBar, fiveScoreSeekBar;
-    private ImageButton addPlaceImageImageButtn, addScoreImageButton;
+    private ImageButton addPlaceImageImageButton, addScoreImageButton;
 
     public PlaceHomeFragment(){
 
     }
 
     @SuppressLint("ValidFragment")
-    public PlaceHomeFragment(PlaceResponse placeResponse){
+    public PlaceHomeFragment(User user, PlaceResponse placeResponse){
+        this.user = user;
         this.placeResponse = placeResponse;
     }
 
@@ -139,8 +176,10 @@ public class PlaceHomeFragment extends Fragment {
         ambianceScoreTextView = view.findViewById(R.id.ambianceScoreTextView);
         showPlaceImagesTextView = view.findViewById(R.id.showPlaceImagesTextView);
         showReviewTextView = view.findViewById(R.id.showReviewTextView);
-        addPlaceImageImageButtn = view.findViewById(R.id.addPlaceImageImageButton);
+        addPlaceImageImageButton = view.findViewById(R.id.addPlaceImageImageButton);
         addScoreImageButton = view.findViewById(R.id.addScoreImageButton);
+        yourOverallScoreLayout = view.findViewById(R.id.yourOverallScoreLayout);
+        yourOverallScoreRatingBar = view.findViewById(R.id.yourOverallScoreRatingBar);
 
         placeAddressTextView.setText(placeResponse.getPlace().getAddress());
         placePriceTextView.setText(placeResponse.getPlace().getPrice());
@@ -176,6 +215,7 @@ public class PlaceHomeFragment extends Fragment {
         foodScoreTextView.setText(String.valueOf(placeResponse.getPlace().getFoodScoreAverage()));
         serviceScoreTextView.setText(String.valueOf(placeResponse.getPlace().getServiceScoreAverage()));
         ambianceScoreTextView.setText(String.valueOf(placeResponse.getPlace().getAmbianceScoreAverage()));
+        yourOverallScoreRatingBar.setRating(placeResponse.getPlaceScore().getTotalScore());
 
         showPlaceImagesTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,21 +233,65 @@ public class PlaceHomeFragment extends Fragment {
             }
         });
 
-        addPlaceImageImageButtn.setOnClickListener(new View.OnClickListener() {
+        addPlaceImageImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // add place image
+                try {
+                    if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getContext()), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(Objects.requireNonNull(getActivity()), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PICK_FROM_GALLERY);
+                    } else {
+                        CropImage.activity()
+                                .setFixAspectRatio(true)
+                                .setAspectRatio(1, 1)
+                                .setRequestedSize(500, 500, CropImageView.RequestSizeOptions.RESIZE_INSIDE)
+                                .start(Objects.requireNonNull(getActivity()));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
-        addScoreImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AddScoreDialog addScoreDialog = new AddScoreDialog(getActivity());
-                Objects.requireNonNull(addScoreDialog.getWindow()).setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                addScoreDialog.show();
-            }
-        });
+        addScoreImageButton.setOnClickListener(addScoreClickListener);
+        yourOverallScoreLayout.setOnClickListener(addScoreClickListener);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case ADD_SCORE_DIALOG:
+                if (resultCode == RESULT_OK) {
+                    Bundle bundle = data.getExtras();
+                    int overallScore = Objects.requireNonNull(bundle).getInt("overallScore");
+                    int foodScore = Objects.requireNonNull(bundle).getInt("foodScore");
+                    int serviceScore = Objects.requireNonNull(bundle).getInt("serviceScore");
+                    int ambianceScore = Objects.requireNonNull(bundle).getInt("ambianceScore");
+                    yourOverallScoreRatingBar.setRating(overallScore);
+                    try {
+                        addScoreRequest(new AddScoreRequest(user.getPhoneNumber(),
+                                placeResponse.getPlace().getId(), overallScore, foodScore,
+                                serviceScore, ambianceScore));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else if (resultCode == Activity.RESULT_CANCELED) {
+                    Log.d("addScoreDialog", "canceled");
+                    showAddReviewDialog();
+                }
+                break;
+            case ADD_REVIEW_DIALOG:
+                if (resultCode == RESULT_OK) {
+                    Bundle bundle = data.getExtras();
+                    String reviewText = Objects.requireNonNull(bundle).getString("reviewText");
+                    try {
+                        addReviewRequest(new AddReviewRequest(user.getPhoneNumber(),
+                                placeResponse.getPlace().getId(), reviewText));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+        }
     }
 
     private void onGoogleMapClick() {
@@ -222,11 +306,76 @@ public class PlaceHomeFragment extends Fragment {
         }
     }
 
-    TextView.OnClickListener onClickPhoneListener = new View.OnClickListener() {
+    private TextView.OnClickListener onClickPhoneListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", String.valueOf(((TextView) view).getText()), null));
             startActivity(intent);
         }
     };
+
+    private View.OnClickListener addScoreClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            AddScoreDialog addScoreDialog = new AddScoreDialog(placeResponse.getPlaceScore());
+            addScoreDialog.setTargetFragment(PlaceHomeFragment.this, ADD_SCORE_DIALOG);
+            addScoreDialog.show(Objects.requireNonNull(getFragmentManager()).beginTransaction(), "MyProgressDialog");
+        }
+    };
+
+    private void showAddReviewDialog() {
+        AddReviewDialog addReviewDialog = new AddReviewDialog();
+        addReviewDialog.setTargetFragment(PlaceHomeFragment.this, ADD_REVIEW_DIALOG);
+        addReviewDialog.show(Objects.requireNonNull(getFragmentManager()).beginTransaction(), "MyProgressDialog");
+    }
+
+    private void addScoreRequest(AddScoreRequest addScoreRequest) throws JSONException {
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<AddScoreResponse> call = service.addScore(addScoreRequest.toRequestBody());
+        call.enqueue(new Callback<AddScoreResponse>() {
+            @Override
+            public void onResponse(Call<AddScoreResponse> call, Response<AddScoreResponse> response) {
+                //progressDoalog.dismiss();
+                assert response.body() != null;
+                generateAddScoreData(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<AddScoreResponse> call, Throwable t) {
+                //progressDoalog.dismiss();
+                Toast.makeText(getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void addReviewRequest(AddReviewRequest addReviewRequest) throws JSONException {
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<ResponseBody> call = service.addReview(addReviewRequest.toRequestBody());
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                //progressDoalog.dismiss();
+                assert response.body() != null;
+                generateAddReviewData();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                //progressDoalog.dismiss();
+                Toast.makeText(getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void generateAddScoreData(AddScoreResponse addScoreResponse) {
+        placeResponse.setPlaceScore(new PlaceScore(addScoreResponse.getUser(), addScoreResponse.getPlace(),
+                addScoreResponse.getTotalScore(), addScoreResponse.getFoodScore(),
+                addScoreResponse.getServiceScore(), addScoreResponse.getAmbianceScore()));
+        Toast.makeText(getContext(), "امتیاز شما ثبت شد", Toast.LENGTH_SHORT).show();
+        showAddReviewDialog();
+    }
+
+    private void generateAddReviewData() {
+        Toast.makeText(getContext(), "نظر شما ثبت شد", Toast.LENGTH_SHORT).show();
+    }
 }

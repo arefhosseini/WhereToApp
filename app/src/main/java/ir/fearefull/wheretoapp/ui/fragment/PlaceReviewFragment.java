@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ir.fearefull.wheretoapp.data.model.api.PlaceResponse;
+import ir.fearefull.wheretoapp.data.model.db.User;
 import ir.fearefull.wheretoapp.ui.adapter.PlaceReviewsAdapter;
 import ir.fearefull.wheretoapp.data.model.api.PlaceReview;
 import ir.fearefull.wheretoapp.data.model.api.PlaceReviews;
@@ -32,8 +33,9 @@ import retrofit2.Response;
 
 public class PlaceReviewFragment extends Fragment {
 
-    View parentView;
+    User user;
     PlaceResponse placeResponse;
+    View parentView;
     private PlaceReviewsAdapter placeReviewsAdapter;
     private RecyclerView recyclerViewPlaceReviews;
     private List<PlaceReview> placeReviewList;
@@ -46,7 +48,8 @@ public class PlaceReviewFragment extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public PlaceReviewFragment(PlaceResponse placeResponse){
+    public PlaceReviewFragment(User user, PlaceResponse placeResponse){
+        this.user = user;
         this.placeResponse = placeResponse;
     }
 
@@ -117,8 +120,8 @@ public class PlaceReviewFragment extends Fragment {
     private void generateDataList(PlaceReviews placeReviews) {
         this.placeReviewList = placeReviews.getPlaceReviews();
         recyclerViewPlaceReviews = parentView.findViewById(R.id.recyclerViewPlaceReviews);
-        placeReviewsAdapter = new PlaceReviewsAdapter(this.placeReviewList, getContext());
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        placeReviewsAdapter = new PlaceReviewsAdapter(this.placeReviewList, getContext(), this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerViewPlaceReviews.setLayoutManager(layoutManager);
         recyclerViewPlaceReviews.setAdapter(placeReviewsAdapter);
     }

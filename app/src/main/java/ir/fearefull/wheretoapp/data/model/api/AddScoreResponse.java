@@ -2,9 +2,18 @@ package ir.fearefull.wheretoapp.data.model.api;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
-public class PlaceScore implements Serializable {
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+
+public class AddScoreResponse implements Serializable {
+    @SerializedName("id")
+    private long id;
+
     @SerializedName("user")
     private String user;
 
@@ -23,14 +32,19 @@ public class PlaceScore implements Serializable {
     @SerializedName("ambiance_score")
     private int ambiance_score;
 
-    public  PlaceScore(String user, long place, int total_score, int food_score,
-                       int service_score, int ambiance_score) {
+    public AddScoreResponse(long id, String user, long place, int total_score, int food_score,
+                            int service_score, int ambiance_score) {
+        this.id = id;
         this.user = user;
         this.place = place;
         this.total_score = total_score;
         this.food_score = food_score;
         this.service_score = service_score;
         this.ambiance_score = ambiance_score;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getUser() {
@@ -55,6 +69,10 @@ public class PlaceScore implements Serializable {
 
     public int getAmbianceScore() {
         return ambiance_score;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public void setUser(String user) {

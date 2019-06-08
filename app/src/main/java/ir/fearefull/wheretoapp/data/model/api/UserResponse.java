@@ -41,10 +41,13 @@ public class UserResponse implements Serializable {
     @SerializedName("favorite_places_count")
     private int favorite_places_count;
 
+    @SerializedName("is_following")
+    private int is_following;
+
     public UserResponse(Long id, String phone_number, String profile_image, String first_name,
                         String last_name, int user_score, int followers_count, int followings_count,
                         int reviews_count, int place_scores_count, int uploaded_images_count,
-                        int favorite_places_count) {
+                        int favorite_places_count, int is_following) {
         this.id = id;
         this.phone_number = phone_number;
         this.profile_image = profile_image;
@@ -57,6 +60,7 @@ public class UserResponse implements Serializable {
         this.place_scores_count = place_scores_count;
         this.uploaded_images_count = uploaded_images_count;
         this.favorite_places_count = favorite_places_count;
+        this.is_following = is_following;
     }
 
     public Long getId() {
@@ -107,6 +111,10 @@ public class UserResponse implements Serializable {
         return favorite_places_count;
     }
 
+    public int getIsFollowing() {
+        return is_following;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -153,5 +161,9 @@ public class UserResponse implements Serializable {
 
     public void setFavoritePlacesCount(int favorite_places_count) {
         this.favorite_places_count = favorite_places_count;
+    }
+
+    public void setIsFollowing(int is_following) {
+        this.is_following = is_following;
     }
 }

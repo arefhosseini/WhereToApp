@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layoutDirection="rtl"
+    android:id="@+id/rootView"
+    tools:ignore="RtlHardcoded">
+
+    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        style="@style/MyTheme.TextAppearance.Small"
+        android:textColor="@color/textDarkPrimary"
+        android:text="@string/your_review" />
+
+    <ir.fearefull.wheretoapp.ui.widget.MyEditText
+        android:id="@+id/reviewEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="3"
+        android:maxLines="5"
+        android:gravity="right"
+        android:textSize="16sp"
+        android:inputType="textMultiLine"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/textDarkPrimary"
+        tools:ignore="RtlHardcoded" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/confirmButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_gravity="center"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="6dp"
+            android:background="@drawable/background_confirm_button"
+            android:text="@string/confirm"
+            android:textSize="14sp"
+            android:textColor="@color/textLightPrimary" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</LinearLayout>

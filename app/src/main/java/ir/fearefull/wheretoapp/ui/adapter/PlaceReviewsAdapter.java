@@ -2,7 +2,10 @@ package ir.fearefull.wheretoapp.ui.adapter;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +20,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import ir.fearefull.wheretoapp.ui.UserActivity;
 import ir.fearefull.wheretoapp.utils.Constants;
 import ir.fearefull.wheretoapp.data.model.api.PlaceReview;
 import ir.fearefull.wheretoapp.R;
@@ -28,6 +33,7 @@ public class PlaceReviewsAdapter extends RecyclerView.Adapter<PlaceReviewsAdapte
     private List<PlaceReview> placeReviewList;
     private Context context;
     private ViewGroup parent;
+    private Fragment fragment;
     private DateFormat dateFormat;
     private Date currentDate;
 
@@ -46,10 +52,12 @@ public class PlaceReviewsAdapter extends RecyclerView.Adapter<PlaceReviewsAdapte
         }
     }
 
-    public PlaceReviewsAdapter(List<PlaceReview> placeSummaryList, Context context) {
+    public PlaceReviewsAdapter(List<PlaceReview> placeSummaryList, Context context,
+                               Fragment fragment) {
         this.placeReviewList = placeSummaryList;
         this.context = context;
-        this.dateFormat = new SimpleDateFormat(Constants.DATE_FORMAT);
+        this.fragment = fragment;
+        this.dateFormat = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.getDefault());
         currentDate = new Date();
 
     }
@@ -71,26 +79,21 @@ public class PlaceReviewsAdapter extends RecyclerView.Adapter<PlaceReviewsAdapte
         holder.createdDateTextView.setText(calculateDateDifference(placeReview.getCreatedDate()));
         holder.nameTextView.setText(String.valueOf(placeReview.getFirstName() + " " + placeReview.getLastName()));
         holder.nameTextView.setTag(placeReview.getPhoneNumber());
-        holder.nameTextView.setOnClickListener(userClickListener);
         holder.textTextView.setText(placeReview.getText());
         holder.downVoteTextView.setText(String.valueOf(placeReview.getDownVote()));
         holder.upVoteTextView.setText(String.valueOf(placeReview.getUpVote()));
         Picasso.get().load(Constants.BASE_URL + placeReview.getProfileImage()).into(holder.profileImageView);
         holder.profileImageView.setTag(placeReview.getPhoneNumber());
-        holder.profileImageView.setOnClickListener(userClickListener);
+
+        OnUserOpenClickListener onUserOpenClickListener = new OnUserOpenClickListener(placeReview.getPhoneNumber());
+        holder.nameTextView.setOnClickListener(onUserOpenClickListener);
+        holder.profileImageView.setOnClickListener(onUserOpenClickListener);
     }
 
     @Override
     public int getItemCount() {
         return placeReviewList.size();
     }
-
-    private View.OnClickListener userClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Toast.makeText(context, String.valueOf("User " + view.getTag() + " should open"), Toast.LENGTH_LONG).show();
-        }
-    };
 
     private String calculateDateDifference(String dateString) {
         try {
@@ -124,5 +127,22 @@ public class PlaceReviewsAdapter extends RecyclerView.Adapter<PlaceReviewsAdapte
             e.printStackTrace();
         }
         return "";
+    }
+
+    class OnUserOpenClickListener implements View.OnClickListener {
+
+        private String phoneNumber;
+
+        // constructor
+        OnUserOpenClickListener(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent dashboardIntent = new Intent(context, UserActivity.class);
+            dashboardIntent.putExtra("phoneNumber", phoneNumber);
+            fragment.startActivity(dashboardIntent);
+        }
     }
 }

@@ -219,7 +219,7 @@ public class SendCodeFragment extends Fragment {
         DatabaseInitializer.resetUsers(AppDatabase.getAppDatabase(getContext()));
         User user = new User(userResponse.getPhoneNumber());
         DatabaseInitializer.addUser(AppDatabase.getAppDatabase(getContext()), user);
-        if (userResponse.getFirstName() == null && userResponse.getLastName() == null)
+        if (userResponse.getFirstName().equals("") || userResponse.getLastName().equals(""))
             showEditProfileActivity(userResponse);
         else
             showMainActivity(userResponse);

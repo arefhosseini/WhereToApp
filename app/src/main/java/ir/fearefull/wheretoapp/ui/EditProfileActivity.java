@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -30,6 +31,7 @@ import ir.fearefull.wheretoapp.data.model.api.UserResponse;
 import ir.fearefull.wheretoapp.data.model.db.User;
 import ir.fearefull.wheretoapp.data.remote.GetDataService;
 import ir.fearefull.wheretoapp.data.remote.RetrofitClientInstance;
+import ir.fearefull.wheretoapp.utils.Constants;
 import ir.fearefull.wheretoapp.utils.DatabaseInitializer;
 import ir.fearefull.wheretoapp.utils.FileUtils;
 import okhttp3.MediaType;
@@ -66,7 +68,11 @@ public class EditProfileActivity extends AppCompatActivity {
         profileImageLayout = findViewById(R.id.profileImageLayout);
         profileImageView = findViewById(R.id.profileImageView);
 
+        Picasso.get().load(Constants.BASE_URL + userResponse.getProfileImage()).into(profileImageView);
         phoneNumberEditText.setText(userResponse.getPhoneNumber());
+        firstNameEditText.setText(userResponse.getFirstName());
+        lastNameEditText.setText(userResponse.getLastName());
+
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -164,6 +170,9 @@ public class EditProfileActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        else
+            finishEditing();
+
     }
 
     private void editUser(String firstName, String lastName) throws JSONException {
@@ -194,8 +203,12 @@ public class EditProfileActivity extends AppCompatActivity {
         user.setProfileImage(userResponse.getProfileImage());
         DatabaseInitializer.updateUser(AppDatabase.getAppDatabase(getApplicationContext()), user);
 
+        finishEditing();
+    }
+
+    private void finishEditing() {
         Intent dashboardIntent = new Intent(EditProfileActivity.this, MainActivity.class);
+        dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(dashboardIntent);
-        finish();
     }
 }

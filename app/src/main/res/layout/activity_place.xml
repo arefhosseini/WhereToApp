@@ -149,6 +149,7 @@
                         android:textStyle="bold" />
 
                     <ImageButton
+                        android:id="@+id/backImageButton"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_alignParentRight="true"
@@ -159,13 +160,13 @@
                         tools:ignore="RtlHardcoded" />
 
                     <ImageButton
+                        android:id="@+id/favouriteImageButton"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:padding="12dp"
                         android:background="?actionBarItemBackground"
-                        android:src="@drawable/ic_star_border_white_24dp"
                         tools:ignore="RtlHardcoded" />
                 </RelativeLayout>
             </androidx.appcompat.widget.Toolbar>

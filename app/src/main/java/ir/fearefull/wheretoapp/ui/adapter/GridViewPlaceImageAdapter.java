@@ -95,6 +95,5 @@ public class GridViewPlaceImageAdapter extends BaseAdapter {
             i.putExtra("place", place);
             activity.startActivity(i);
         }
-
     }
 }

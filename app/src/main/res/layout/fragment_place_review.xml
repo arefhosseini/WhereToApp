@@ -43,45 +43,11 @@
                             android:layout_weight="1"
                             android:gravity="right|center_vertical"
                             android:orientation="horizontal"
-                            tools:ignore="NestedWeights,RtlHardcoded">
-
-                            <SeekBar
-                                android:id="@+id/oneScoreSeekBar"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:max="100"
-                                android:progress="0"
-                                android:thumb="@null"
-                                android:paddingStart="0dp"
-                                android:paddingEnd="0dp"
-                                android:layoutDirection="rtl"
-                                android:mirrorForRtl="true"
-                                android:progressDrawable="@drawable/seekbar_style"
-                                tools:ignore="NestedWeights" />
-
-                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                style="@style/MyTheme.TextAppearance.Small"
-                                android:textColor="@color/textDarkSecondary"
-                                android:text="@string/number_1"
-                                android:paddingLeft="8dp"
-                                android:paddingRight="4dp"
-                                tools:ignore="RtlHardcoded" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="right|center_vertical"
-                            android:orientation="horizontal"
                             android:layout_marginTop="4dp"
                             tools:ignore="NestedWeights,RtlHardcoded">
 
                             <SeekBar
-                                android:id="@+id/twoScoreSeekBar"
+                                android:id="@+id/fiveScoreSeekBar"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -100,41 +66,7 @@
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
                                 android:textColor="@color/textDarkSecondary"
-                                android:text="@string/number_2"
-                                android:paddingLeft="8dp"
-                                android:paddingRight="4dp"
-                                tools:ignore="RtlHardcoded" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="right|center_vertical"
-                            android:orientation="horizontal"
-                            android:layout_marginTop="4dp"
-                            tools:ignore="NestedWeights,RtlHardcoded">
-
-                            <SeekBar
-                                android:id="@+id/threeScoreSeekBar"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:max="100"
-                                android:progress="0"
-                                android:thumb="@null"
-                                android:paddingStart="0dp"
-                                android:paddingEnd="0dp"
-                                android:layoutDirection="rtl"
-                                android:mirrorForRtl="true"
-                                android:progressDrawable="@drawable/seekbar_style"
-                                tools:ignore="NestedWeights" />
-
-                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                style="@style/MyTheme.TextAppearance.Small"
-                                android:textColor="@color/textDarkSecondary"
-                                android:text="@string/number_3"
+                                android:text="@string/number_5"
                                 android:paddingLeft="8dp"
                                 android:paddingRight="4dp"
                                 tools:ignore="RtlHardcoded" />
@@ -183,7 +115,7 @@
                             tools:ignore="NestedWeights,RtlHardcoded">
 
                             <SeekBar
-                                android:id="@+id/fiveScoreSeekBar"
+                                android:id="@+id/threeScoreSeekBar"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -202,7 +134,74 @@
                                 android:layout_height="wrap_content"
                                 style="@style/MyTheme.TextAppearance.Small"
                                 android:textColor="@color/textDarkSecondary"
-                                android:text="@string/number_5"
+                                android:text="@string/number_3"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="4dp"
+                                tools:ignore="RtlHardcoded" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="4dp"
+                            tools:ignore="NestedWeights,RtlHardcoded">
+
+                            <SeekBar
+                                android:id="@+id/twoScoreSeekBar"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:max="100"
+                                android:progress="0"
+                                android:thumb="@null"
+                                android:paddingStart="0dp"
+                                android:paddingEnd="0dp"
+                                android:layoutDirection="rtl"
+                                android:mirrorForRtl="true"
+                                android:progressDrawable="@drawable/seekbar_style"
+                                tools:ignore="NestedWeights" />
+
+                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/MyTheme.TextAppearance.Small"
+                                android:textColor="@color/textDarkSecondary"
+                                android:text="@string/number_2"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="4dp"
+                                tools:ignore="RtlHardcoded" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:orientation="horizontal"
+                            tools:ignore="NestedWeights,RtlHardcoded">
+
+                            <SeekBar
+                                android:id="@+id/oneScoreSeekBar"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:max="100"
+                                android:progress="0"
+                                android:thumb="@null"
+                                android:paddingStart="0dp"
+                                android:paddingEnd="0dp"
+                                android:layoutDirection="rtl"
+                                android:mirrorForRtl="true"
+                                android:progressDrawable="@drawable/seekbar_style"
+                                tools:ignore="NestedWeights" />
+
+                            <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/MyTheme.TextAppearance.Small"
+                                android:textColor="@color/textDarkSecondary"
+                                android:text="@string/number_1"
                                 android:paddingLeft="8dp"
                                 android:paddingRight="4dp"
                                 tools:ignore="RtlHardcoded" />

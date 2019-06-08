@@ -11,17 +11,19 @@ import android.view.ViewGroup;
 
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.data.model.api.PlaceResponse;
+import ir.fearefull.wheretoapp.data.model.db.User;
 
 public class PlaceMenuFragment extends Fragment {
 
+    User user;
     PlaceResponse placeResponse;
 
     public PlaceMenuFragment(){
-
     }
 
     @SuppressLint("ValidFragment")
-    public PlaceMenuFragment(PlaceResponse placeResponse){
+    public PlaceMenuFragment(User user, PlaceResponse placeResponse){
+        this.user = user;
         this.placeResponse = placeResponse;
     }
 
