@@ -10,14 +10,16 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
@@ -121,7 +123,10 @@ public class ReviewFragment extends Fragment {
         this.placeReviewList = placeReviews.getPlaceReviews();
         recyclerViewPlaceReviews = parentView.findViewById(R.id.recyclerViewPlaceReviews);
         reviewsAdapter = new ReviewsAdapter(this.placeReviewList, getContext(), this);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),
+                RecyclerView.VERTICAL, false);
+        recyclerViewPlaceReviews.addItemDecoration(
+                new DividerItemDecoration(recyclerViewPlaceReviews.getContext(), DividerItemDecoration.VERTICAL));
         recyclerViewPlaceReviews.setLayoutManager(layoutManager);
         recyclerViewPlaceReviews.setAdapter(reviewsAdapter);
     }

@@ -17,9 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            tools:ignore="UselessParent">
 
-            <ir.fearefull.wheretoapp.ui.widget.MyTextView
+            <ir.fearefull.wheretoapp.view.base.MyTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -43,7 +44,7 @@
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content">
 
-            <ir.fearefull.wheretoapp.ui.widget.MyEditText
+            <ir.fearefull.wheretoapp.view.base.MyEditText
                 android:id="@+id/phoneNumberEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +58,7 @@
                 tools:ignore="RtlHardcoded" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <ir.fearefull.wheretoapp.ui.widget.MyButton
+        <ir.fearefull.wheretoapp.view.base.MyButton
             android:id="@+id/buttonSendPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

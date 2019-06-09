@@ -36,7 +36,7 @@
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:text="@string/edit_profile_head_text"
-                    style="@style/MyTheme.TextAppearance.Medium"
+                    style="@style/MyTheme.TextAppearance.Header"
                     android:textColor="@color/textLightPrimary" />
                 <ImageButton
                     android:layout_width="48dp"

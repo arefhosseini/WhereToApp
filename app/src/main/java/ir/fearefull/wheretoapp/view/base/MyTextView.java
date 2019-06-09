@@ -23,7 +23,7 @@ public class MyTextView extends androidx.appcompat.widget.AppCompatTextView {
 
     private void init() {
         if (!isInEditMode()) {
-            Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "font/my_font.ttf");
+            Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "font/iran_sans_web.ttf");
             setTypeface(tf);
         }
     }

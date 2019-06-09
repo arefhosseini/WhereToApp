@@ -8,23 +8,24 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
 import ir.fearefull.wheretoapp.controller.view_controller.user.UserActivity;
 import ir.fearefull.wheretoapp.model.api.relation.Relation;
+import ir.fearefull.wheretoapp.model.api.relation.RelationRequest;
 import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.utils.Constants;
 import ir.fearefull.wheretoapp.view.relation.RelationViewHolder;
-import ir.fearefull.wheretoapp.model.api.relation.RelationRequest;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,7 +50,7 @@ public class RelationAdapter extends RecyclerView.Adapter<RelationViewHolder> {
     @Override
     public RelationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_friend, parent, false);
+                .inflate(R.layout.card_relation, parent, false);
 
         this.parent = parent;
         return new RelationViewHolder(itemView);

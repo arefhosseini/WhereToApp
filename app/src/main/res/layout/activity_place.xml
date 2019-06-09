@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.PlaceActivity">
+    tools:ignore="ContentDescription,RtlHardcoded,PrivateResource,UselessParent,RelativeOverlap"
+    tools:context=".controller.view_controller.place.PlaceActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -47,17 +48,15 @@
                     android:background="@drawable/background_overall_score_rating_bar"
                     android:paddingLeft="4dp"
                     android:paddingRight="8dp"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
                     tools:ignore="RtlHardcoded">
 
-                    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:id="@+id/placeOverallScoreTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textLightSecondary"
-                        android:textSize="16sp"
-                        android:paddingLeft="4dp"
+                        style="@style/MyTheme.TextAppearance.Small"
+                        android:paddingLeft="2dp"
                         android:paddingRight="4dp" />
 
                     <me.zhanghai.android.materialratingbar.MaterialRatingBar
@@ -66,11 +65,9 @@
                         android:layout_height="wrap_content"
                         android:minHeight="16dp"
                         android:maxHeight="16dp"
-                        android:stepSize="0.01"
+                        android:stepSize="0.1"
                         android:rotation="180"
                         android:scaleY="-1"
-                        app:mrb_fillBackgroundStars="@color/ratingBarColor"
-                        app:mrb_secondaryProgressTint="@color/ratingBarColor"
                         app:mrb_progressTint="@color/ratingBarColor" />
                 </LinearLayout>
 
@@ -83,24 +80,22 @@
                     android:background="@drawable/background_price_degree_rating_bar"
                     android:paddingLeft="8dp"
                     android:paddingRight="4dp"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
                     tools:ignore="RtlHardcoded">
 
-                    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:id="@+id/placePriceDegreeTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textLightPrimary"
-                        android:textSize="16sp"
+                        style="@style/MyTheme.TextAppearance.Small"
                         android:paddingLeft="4dp"
                         tools:ignore="RtlSymmetry" />
-                    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:id="@+id/placePriceDegreeUnselectedTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textLightSecondary"
-                        android:textSize="16sp"
+                        style="@style/MyTheme.TextAppearance.Small"
                         android:paddingRight="4dp"
                         tools:ignore="RtlSymmetry" />
                 </LinearLayout>
@@ -114,8 +109,6 @@
                     android:gravity="center"
                     android:paddingLeft="8dp"
                     android:paddingRight="4dp"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
                     tools:ignore="RtlHardcoded">
 
                 </LinearLayout>
@@ -137,14 +130,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical">
-                    <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:id="@+id/placeNameTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
                         android:gravity="center"
-                        style="@style/MyTheme.TextAppearance.Medium"
+                        style="@style/MyTheme.TextAppearance.Header"
                         android:textColor="@color/textLightPrimary"
                         android:textStyle="bold" />
 
@@ -183,7 +176,7 @@
             app:tabGravity="fill" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ir.fearefull.wheretoapp.ui.adapter.MainPager
+    <ir.fearefull.wheretoapp.view.base.MainPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

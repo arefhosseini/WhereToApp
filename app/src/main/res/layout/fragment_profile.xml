@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:ignore="RtlHardcoded"
+    tools:ignore="ContentDescription,RtlHardcoded,PrivateResource,UselessParent,RelativeOverlap"
     android:fitsSystemWindows="true"
     tools:context=".controller.view_controller.home.fragment.ProfileFragment">
 
@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical">
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:id="@+id/appName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:text="@string/profile_head_text"
-                    style="@style/MyTheme.TextAppearance.Medium"
+                    style="@style/MyTheme.TextAppearance.Header"
                     android:textColor="@color/textLightPrimary" />
                 <ImageButton
                     android:id="@+id/logoutImageButton"
@@ -50,14 +50,14 @@
                     android:background="?actionBarItemBackground"
                     android:src="@drawable/ic_exit_to_app_white_24dp"
                     tools:ignore="RtlHardcoded" />
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:id="@+id/editProfileTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     style="@style/MyTheme.TextAppearance.Small"
                     android:textColor="@color/textLightPrimary"
                     android:background="@drawable/edit_button_shape"
-                    android:layout_margin="8dp"
+                    android:layout_marginLeft="12dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:paddingTop="4dp"
@@ -65,7 +65,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
                     android:gravity="center"
                     android:text="@string/edit"
                     tools:ignore="RelativeOverlap" />
@@ -101,7 +101,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:layout_gravity="right|bottom">
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:id="@+id/userScoreTextView"
                             android:layout_width="40dp"
                             android:layout_height="match_parent"
@@ -122,7 +122,7 @@
                 android:gravity="center"
                 android:padding="8dp"
                 android:orientation="horizontal">
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/firstNameTextView"
@@ -131,7 +131,7 @@
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
                     android:layout_gravity="right" />
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/lastNameTextView"
@@ -142,7 +142,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:baselineAligned="false">
 
                 <RelativeLayout
                     android:layout_width="0dp"
@@ -157,16 +158,16 @@
                         android:focusable="true"
                         android:clickable="true"
                         android:orientation="vertical">
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/followersCountTextView"
                             style="@style/MyTheme.TextAppearance.Medium"
                             android:textColor="@color/textLightPrimary"
-                            android:padding="4dp"
+                            android:padding="2dp"
                             android:gravity="center"
                             android:layout_gravity="center" />
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Small"
@@ -191,16 +192,16 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:orientation="vertical">
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/followingsCountTextView"
                             style="@style/MyTheme.TextAppearance.Medium"
                             android:textColor="@color/textLightPrimary"
-                            android:padding="4dp"
+                            android:padding="2dp"
                             android:gravity="center"
                             android:layout_gravity="center" />
-                        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Small"
@@ -245,7 +246,7 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"/>
 
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/favoritePlacesTextView"
@@ -257,11 +258,11 @@
                     android:layout_marginRight="16dp"
                     android:text="@string/favorite_places" />
 
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:id="@+id/favoritePlacesCountTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/MyTheme.TextAppearance.Small"
+                    style="@style/MyTheme.TextAppearance.XSmall"
                     android:background="@drawable/circle_number_shape"
                     android:textColor="@color/textLightPrimary"
                     android:gravity="center"
@@ -297,11 +298,11 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"/>
 
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/scoresTextView"
-                    style="@style/MyTheme.TextAppearance.Medium"
+                    style="@style/MyTheme.TextAppearance.Small"
                     android:textColor="@color/textDarkPrimary"
                     android:gravity="right"
                     android:layout_toLeftOf="@id/scoresImageView"
@@ -309,11 +310,11 @@
                     android:layout_marginRight="16dp"
                     android:text="@string/scores" />
 
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:id="@+id/scoresCountTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/MyTheme.TextAppearance.Small"
+                    style="@style/MyTheme.TextAppearance.XSmall"
                     android:background="@drawable/circle_number_shape"
                     android:textColor="@color/textLightPrimary"
                     android:gravity="center"
@@ -349,7 +350,7 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"/>
 
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/reviewsTextView"
@@ -361,11 +362,11 @@
                     android:layout_marginRight="16dp"
                     android:text="@string/reviews" />
 
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:id="@+id/reviewsCountTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/MyTheme.TextAppearance.Small"
+                    style="@style/MyTheme.TextAppearance.XSmall"
                     android:background="@drawable/circle_number_shape"
                     android:textColor="@color/textLightPrimary"
                     android:gravity="center"
@@ -401,7 +402,7 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"/>
 
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/placeImagesTextView"
@@ -413,11 +414,11 @@
                     android:layout_marginRight="16dp"
                     android:text="@string/place_images" />
 
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:id="@+id/placeImagesCountTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/MyTheme.TextAppearance.Small"
+                    style="@style/MyTheme.TextAppearance.XSmall"
                     android:background="@drawable/circle_number_shape"
                     android:textColor="@color/textLightPrimary"
                     android:gravity="center"

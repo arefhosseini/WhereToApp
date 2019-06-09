@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical">
-                <ir.fearefull.wheretoapp.ui.widget.MyTextView
+                <ir.fearefull.wheretoapp.view.base.MyTextView
                     android:id="@+id/appName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:text="@string/home_head_text"
-                    style="@style/MyTheme.TextAppearance.Medium"
+                    style="@style/MyTheme.TextAppearance.Header"
                     android:textColor="@color/textLightPrimary" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -47,7 +47,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:ignore="PrivateResource">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewPlaceSummary"

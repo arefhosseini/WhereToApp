@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
+    tools:ignore="PrivateResource"
     tools:context=".controller.view_controller.verify.VerifyActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -24,11 +25,12 @@
             app:contentInsetStart="0dp"
             app:popupTheme="@style/MyTheme.PopupOverlay" >
 
-            <ir.fearefull.wheretoapp.ui.widget.MyTextView
+            <ir.fearefull.wheretoapp.view.base.MyTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="18sp"
+                style="@style/MyTheme.TextAppearance.Header"
                 android:textColor="@android:color/white"
                 android:text="@string/signup_toolbar_text"/>
         </androidx.appcompat.widget.Toolbar>

@@ -20,7 +20,7 @@ public class MyButton extends androidx.appcompat.widget.AppCompatButton {
         init();
     }
     private void init(){
-        Typeface font_type= Typeface.createFromAsset(getContext().getAssets(), "font/my_font.ttf");
+        Typeface font_type= Typeface.createFromAsset(getContext().getAssets(), "font/iran_sans_web.ttf");
         setTypeface(font_type);
     }
 }

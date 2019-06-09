@@ -22,7 +22,7 @@ public class MyEditText extends androidx.appcompat.widget.AppCompatEditText {
     }
 
     private void init() {
-        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "font/my_font.ttf");
+        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "font/iran_sans_web.ttf");
         setTypeface(font);
     }
 }

@@ -8,6 +8,7 @@
     android:layout_gravity="fill_vertical"
     android:clipToPadding="false"
     android:background="@color/colorBackground"
+    tools:ignore="ContentDescription,RtlHardcoded,PrivateResource,UselessParent,RelativeOverlap"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
@@ -45,8 +46,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/placeAddressTextView"
-                    style="@style/MyTheme.TextAppearance.Medium"
-                    android:textColor="@color/textDarkPrimary"
+                    style="@style/MyTheme.TextAppearance.Small"
+                    android:textColor="@color/textDarkSecondary"
                     android:padding="12dp"
                     android:layout_gravity="right"
                     tools:ignore="RtlHardcoded" />
@@ -60,7 +61,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="12dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingTop="12dp"
                     tools:ignore="RtlHardcoded">
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -94,30 +97,19 @@
 
                     </LinearLayout>
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical|right"
-                    android:orientation="horizontal"
-                    android:padding="12dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingTop="12dp"
                     tools:ignore="RtlHardcoded">
-
-                    <ir.fearefull.wheretoapp.view.base.MyTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/placePriceTextView"
-                        style="@style/MyTheme.TextAppearance.Small"
-                        android:textColor="@color/textDarkPrimary"
-                        android:gravity="right"
-                        tools:ignore="RtlHardcoded" />
-
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        tools:ignore="RtlHardcoded">
+                        android:gravity="right|center_vertical"
+                        android:orientation="horizontal">
 
                         <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:layout_width="wrap_content"
@@ -132,14 +124,28 @@
                         <ImageView
                             android:layout_width="18dp"
                             android:layout_height="18dp"
+                            android:scaleX="-1"
                             android:src="@drawable/ic_attach_money_primary_24dp"/>
                     </LinearLayout>
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/placePriceTextView"
+                        style="@style/MyTheme.TextAppearance.Small"
+                        android:textColor="@color/textDarkSecondary"
+                        android:layout_marginRight="26dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:gravity="right"
+                        tools:ignore="RtlHardcoded" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="12dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingTop="12dp"
                     tools:ignore="RtlHardcoded">
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -163,29 +169,25 @@
                             android:scaleX="-1"
                             android:src="@drawable/ic_access_time_primary_24dp"/>
                     </LinearLayout>
-                    <LinearLayout
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:id="@+id/placeOpenHoursTextView"
+                        style="@style/MyTheme.TextAppearance.Small"
+                        android:textColor="@color/textDarkSecondary"
                         android:layout_marginRight="26dp"
-                        android:orientation="vertical"
-                        android:gravity="right">
-
-                        <ir.fearefull.wheretoapp.view.base.MyTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/placeOpenHoursTextView"
-                            style="@style/MyTheme.TextAppearance.Small"
-                            android:textColor="@color/textDarkPrimary"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp"
-                            tools:ignore="RtlHardcoded" />
-                    </LinearLayout>
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:gravity="right"
+                        tools:ignore="RtlHardcoded" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="12dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingTop="12dp"
                     tools:ignore="RtlHardcoded">
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -209,23 +211,17 @@
                             android:scaleX="-1"
                             android:src="@drawable/ic_comment_primary_24dp"/>
                     </LinearLayout>
-                    <LinearLayout
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:id="@+id/placeFeaturesTextView"
+                        style="@style/MyTheme.TextAppearance.Small"
+                        android:textColor="@color/textDarkSecondary"
                         android:layout_marginRight="26dp"
-                        android:orientation="vertical"
-                        android:gravity="right">
-
-                        <ir.fearefull.wheretoapp.view.base.MyTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/placeFeaturesTextView"
-                            style="@style/MyTheme.TextAppearance.Small"
-                            android:textColor="@color/textDarkPrimary"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp"
-                            tools:ignore="RtlHardcoded" />
-                    </LinearLayout>
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:gravity="right"
+                        tools:ignore="RtlHardcoded" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -233,7 +229,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             app:cardElevation="0dp">
 
             <LinearLayout
@@ -341,7 +337,7 @@
                     android:id="@+id/showPlaceImagesTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/MyTheme.TextAppearance.Medium"
+                    style="@style/MyTheme.TextAppearance.Small"
                     android:textColor="@color/colorPrimary"
                     android:padding="12dp"
                     android:layout_gravity="right|center_vertical"
@@ -356,7 +352,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             app:cardElevation="0dp">
 
             <LinearLayout
@@ -401,7 +397,7 @@
                     <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/MyTheme.TextAppearance.Medium"
+                        style="@style/MyTheme.TextAppearance.Small"
                         android:textColor="@color/textDarkSecondary"
                         android:padding="4dp"
                         android:layout_gravity="center"
@@ -410,14 +406,12 @@
                         android:id="@+id/yourOverallScoreRatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minHeight="24dp"
-                        android:maxHeight="24dp"
+                        android:minHeight="18dp"
+                        android:maxHeight="18dp"
                         android:stepSize="1"
                         android:rotation="180"
                         android:scaleY="-1"
                         android:isIndicator="true"
-                        app:mrb_fillBackgroundStars="@color/ratingBarColor"
-                        app:mrb_secondaryProgressTint="@color/ratingBarColor"
                         app:mrb_progressTint="@color/ratingBarColor" />
                 </LinearLayout>
 
@@ -425,8 +419,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="12dp">
-
+                    android:padding="12dp"
+                    tools:ignore="DisableBaselineAlignment">
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -437,9 +435,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:gravity="right|center_vertical"
+                            android:gravity="left|center_vertical"
                             android:orientation="horizontal"
-                            android:layout_marginTop="4dp"
                             tools:ignore="NestedWeights,RtlHardcoded">
 
                             <SeekBar
@@ -450,6 +447,8 @@
                                 android:max="100"
                                 android:progress="0"
                                 android:thumb="@null"
+                                android:shape="oval"
+                                android:splitTrack="false"
                                 android:paddingStart="0dp"
                                 android:paddingEnd="0dp"
                                 android:layoutDirection="rtl"
@@ -471,9 +470,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:gravity="right|center_vertical"
+                            android:gravity="left|center_vertical"
                             android:orientation="horizontal"
-                            android:layout_marginTop="4dp"
                             tools:ignore="NestedWeights,RtlHardcoded">
 
                             <SeekBar
@@ -484,6 +482,8 @@
                                 android:max="100"
                                 android:progress="0"
                                 android:thumb="@null"
+                                android:shape="oval"
+                                android:splitTrack="false"
                                 android:paddingStart="0dp"
                                 android:paddingEnd="0dp"
                                 android:layoutDirection="rtl"
@@ -505,9 +505,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:gravity="right|center_vertical"
+                            android:gravity="left|center_vertical"
                             android:orientation="horizontal"
-                            android:layout_marginTop="4dp"
                             tools:ignore="NestedWeights,RtlHardcoded">
 
                             <SeekBar
@@ -518,6 +517,8 @@
                                 android:max="100"
                                 android:progress="0"
                                 android:thumb="@null"
+                                android:shape="oval"
+                                android:splitTrack="false"
                                 android:paddingStart="0dp"
                                 android:paddingEnd="0dp"
                                 android:layoutDirection="rtl"
@@ -539,9 +540,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:gravity="right|center_vertical"
+                            android:gravity="left|center_vertical"
                             android:orientation="horizontal"
-                            android:layout_marginTop="4dp"
                             tools:ignore="NestedWeights,RtlHardcoded">
 
                             <SeekBar
@@ -552,6 +552,8 @@
                                 android:max="100"
                                 android:progress="0"
                                 android:thumb="@null"
+                                android:shape="oval"
+                                android:splitTrack="false"
                                 android:paddingStart="0dp"
                                 android:paddingEnd="0dp"
                                 android:layoutDirection="rtl"
@@ -573,7 +575,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:gravity="right|center_vertical"
+                            android:gravity="left|center_vertical"
                             android:orientation="horizontal"
                             tools:ignore="NestedWeights,RtlHardcoded">
 
@@ -585,6 +587,8 @@
                                 android:max="100"
                                 android:progress="0"
                                 android:thumb="@null"
+                                android:shape="oval"
+                                android:splitTrack="false"
                                 android:paddingStart="0dp"
                                 android:paddingEnd="0dp"
                                 android:layoutDirection="rtl"
@@ -603,24 +607,17 @@
                                 tools:ignore="RtlHardcoded" />
                         </LinearLayout>
                     </LinearLayout>
-
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:gravity="right"
+                        android:gravity="center"
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
-
-                        <ir.fearefull.wheretoapp.view.base.MyTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/MyTheme.TextAppearance.Medium"
-                            android:textColor="@color/textDarkSecondary"
-                            android:layout_gravity="right"
-                            android:paddingTop="8dp"
-                            android:text="@string/overall"
-                            tools:ignore="RtlHardcoded" />
 
                         <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:id="@+id/overallScoreTextView"
@@ -628,25 +625,25 @@
                             android:layout_height="wrap_content"
                             android:textSize="42sp"
                             android:textColor="@color/textDarkPrimary"
-                            android:layout_gravity="right"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp"
+                            android:layout_gravity="center"
                             tools:ignore="RtlHardcoded" />
 
                         <me.zhanghai.android.materialratingbar.MaterialRatingBar
                             android:id="@+id/placeOverallScoreRatingBar"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:minHeight="24dp"
-                            android:maxHeight="24dp"
-                            android:stepSize="0.01"
+                            android:minHeight="18dp"
+                            android:maxHeight="18dp"
+                            android:stepSize="0.1"
                             android:rotation="180"
                             android:scaleY="-1"
                             android:isIndicator="true"
-                            app:mrb_fillBackgroundStars="@color/ratingBarColor"
-                            app:mrb_secondaryProgressTint="@color/ratingBarColor"
                             app:mrb_progressTint="@color/ratingBarColor" />
                     </LinearLayout>
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -655,12 +652,11 @@
                     android:orientation="horizontal"
                     android:padding="12dp"
                     tools:ignore="RtlHardcoded">
-
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:gravity="right|center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
 
@@ -669,7 +665,6 @@
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
                             android:textColor="@color/textDarkSecondary"
-                            android:layout_gravity="right"
                             android:text="@string/ambiance"
                             tools:ignore="RtlHardcoded" />
 
@@ -679,18 +674,13 @@
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
                             android:textColor="@color/textDarkPrimary"
-                            android:layout_gravity="right"
                             tools:ignore="RtlHardcoded" />
                     </LinearLayout>
-                    <Space
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:gravity="right|center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
 
@@ -699,9 +689,8 @@
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
                             android:textColor="@color/textDarkSecondary"
-                            android:layout_gravity="right"
                             android:text="@string/service"
-                            tools:ignore="RtlHardcoded" />
+                            tools:ignore="RtlHardcoded,TooManyViews" />
 
                         <ir.fearefull.wheretoapp.view.base.MyTextView
                             android:id="@+id/serviceScoreTextView"
@@ -709,18 +698,13 @@
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
                             android:textColor="@color/textDarkPrimary"
-                            android:layout_gravity="right"
                             tools:ignore="RtlHardcoded" />
                     </LinearLayout>
-                    <Space
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:gravity="right|center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
 
@@ -729,7 +713,6 @@
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
                             android:textColor="@color/textDarkSecondary"
-                            android:layout_gravity="right"
                             android:text="@string/food"
                             tools:ignore="RtlHardcoded" />
 
@@ -739,7 +722,6 @@
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
                             android:textColor="@color/textDarkPrimary"
-                            android:layout_gravity="right"
                             tools:ignore="RtlHardcoded" />
                     </LinearLayout>
                 </LinearLayout>
@@ -747,7 +729,7 @@
                     android:id="@+id/showReviewTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/MyTheme.TextAppearance.Medium"
+                    style="@style/MyTheme.TextAppearance.Small"
                     android:textColor="@color/colorPrimary"
                     android:padding="12dp"
                     android:layout_gravity="right|center_vertical"

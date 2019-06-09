@@ -6,13 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.view_controller.relation.adapter.RelationAdapter;
 import ir.fearefull.wheretoapp.model.api.relation.Relation;
@@ -54,6 +56,8 @@ public class RelationFragment extends Fragment {
         recyclerViewRelations = parentView.findViewById(R.id.recyclerViewRelations);
         relationAdapter = new RelationAdapter(this.relationList, user, getActivity());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        recyclerViewRelations.addItemDecoration(
+                new DividerItemDecoration(recyclerViewRelations.getContext(), DividerItemDecoration.VERTICAL));
         recyclerViewRelations.setLayoutManager(layoutManager);
         recyclerViewRelations.setAdapter(relationAdapter);
     }

@@ -2,7 +2,6 @@
 <androidx.cardview.widget.CardView android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginTop="2dp"
     app:cardElevation="0dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:ignore="RtlHardcoded"
@@ -13,76 +12,99 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layoutDirection="rtl"
-        android:padding="12dp">
-        <RelativeLayout
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layoutDirection="rtl">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profileImageView"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:clickable="true"
                 android:focusable="true"
-                app:civ_circle_background_color="@color/colorBackground2"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true" />
+                app:civ_circle_background_color="@color/colorBackground2" />
+            <ir.fearefull.wheretoapp.view.base.MyTextView
+                android:id="@+id/nameTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginRight="4dp"
+                android:text="@string/ambiance"
+                style="@style/MyTheme.TextAppearance.Small"
+                android:textColor="@color/textDarkPrimary" />
             <ir.fearefull.wheretoapp.view.base.MyTextView
                 android:id="@+id/createdDateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/MyTheme.TextAppearance.Small"
-                android:textColor="@color/textDarkSecondary"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true" />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:layout_toLeftOf="@id/profileImageView"
-                android:orientation="vertical">
-                <ir.fearefull.wheretoapp.view.base.MyTextView
-                    android:id="@+id/nameTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:focusable="true"
-                    style="@style/MyTheme.TextAppearance.Medium"
-                    android:textColor="@color/textDarkPrimary"
-                    android:padding="5dp" />
-            </LinearLayout>
-        </RelativeLayout>
+                android:text="@string/common_google_play_services_enable_button"
+                style="@style/MyTheme.TextAppearance.XSmall"
+                android:textColor="@color/textDarkSecondary" />
+        </LinearLayout>
+        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+            android:id="@+id/userScoreRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="16dp"
+            android:maxHeight="16dp"
+            android:stepSize="0.1"
+            android:rotation="180"
+            android:scaleY="-1"
+            android:layout_marginTop="4dp"
+            app:mrb_progressTint="@color/ratingBarColor" />
         <ir.fearefull.wheretoapp.view.base.MyTextView
             android:id="@+id/textTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/MyTheme.TextAppearance.Medium"
-            android:textColor="@color/textDarkPrimary"
-            android:layout_marginTop="12dp"/>
+            style="@style/MyTheme.TextAppearance.Small"
+            android:textColor="@color/textDarkSecondary"
+            android:layout_marginTop="8dp"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginTop="2dp"
             android:orientation="horizontal">
             <ir.fearefull.wheretoapp.view.base.MyTextView
                 android:id="@+id/downVoteTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/MyTheme.TextAppearance.Small"
-                android:textColor="@color/textDarkSecondary"
-                android:drawableLeft="@drawable/ic_thumb_down_gray_24dp"
-                android:drawablePadding="4dp"
-                android:layout_margin="2dp"
-                android:padding="2dp"/>
+                android:layout_marginLeft="4dp"
+                android:textColor="@color/textDarkSecondary" />
+            <ImageButton
+                android:id="@+id/downVoteImageButton"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:padding="4dp"
+                android:layout_marginLeft="24dp"
+                android:layout_gravity="center_vertical"
+                android:background="?actionBarItemBackground"
+                android:src="@drawable/ic_thumb_down_gray_24dp"
+                tools:ignore="RtlHardcoded" />
             <ir.fearefull.wheretoapp.view.base.MyTextView
                 android:id="@+id/upVoteTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/MyTheme.TextAppearance.Small"
-                android:textColor="@color/textDarkSecondary"
-                android:drawableLeft="@drawable/ic_thumb_up_gray_24dp"
-                android:drawablePadding="4dp"
-                android:layout_margin="2dp"
-                android:padding="2dp"/>
+                android:layout_marginLeft="4dp"
+                android:textColor="@color/textDarkSecondary" />
+            <ImageButton
+                android:id="@+id/upVoteImageButton"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:padding="4dp"
+                android:layout_gravity="center_vertical"
+                android:background="?actionBarItemBackground"
+                android:src="@drawable/ic_thumb_up_gray_24dp"
+                tools:ignore="RtlHardcoded" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

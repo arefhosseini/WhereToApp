@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -17,6 +18,11 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -34,10 +40,6 @@ import org.json.JSONException;
 
 import java.util.Objects;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
@@ -142,7 +144,7 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    @SuppressLint("InflateParams")
+    @SuppressLint({"InflateParams", "ClickableViewAccessibility"})
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         placeAddressTextView = view.findViewById(R.id.placeAddressTextView);
@@ -182,6 +184,12 @@ public class HomeFragment extends Fragment {
             placePhoneTextView.setOnClickListener(onClickPhoneListener);
             placePhonesLayout.addView(placePhoneTextView);
         }
+
+        oneScoreSeekBar.setOnTouchListener(disabledOnTouchListener);
+        twoScoreSeekBar.setOnTouchListener(disabledOnTouchListener);
+        threeScoreSeekBar.setOnTouchListener(disabledOnTouchListener);
+        fourScoreSeekBar.setOnTouchListener(disabledOnTouchListener);
+        fiveScoreSeekBar.setOnTouchListener(disabledOnTouchListener);
 
         /*
         if (placeResponse.getPlace().getPlaceImages().size() >= 1)
@@ -397,4 +405,11 @@ public class HomeFragment extends Fragment {
     private void generateAddReviewData() {
         Toast.makeText(getContext(), "نظر شما ثبت شد", Toast.LENGTH_SHORT).show();
     }
+
+    SeekBar.OnTouchListener disabledOnTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            return true;
+        }
+    };
 }

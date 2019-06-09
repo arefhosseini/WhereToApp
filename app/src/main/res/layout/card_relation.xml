@@ -23,34 +23,28 @@
             app:civ_circle_background_color="@color/colorBackground2"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true" />
-        <LinearLayout
+        <ir.fearefull.wheretoapp.view.base.MyTextView
+            android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_marginRight="8dp"
             android:layout_toLeftOf="@id/profileImageView"
             android:layout_centerVertical="true"
-            android:orientation="vertical">
-            <ir.fearefull.wheretoapp.ui.widget.MyTextView
-                android:id="@+id/nameTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                style="@style/MyTheme.TextAppearance.Medium"
-                android:textColor="@color/textDarkPrimary"
-                android:padding="5dp" />
-        </LinearLayout>
-        <ir.fearefull.wheretoapp.ui.widget.MyTextView
+            style="@style/MyTheme.TextAppearance.Medium"
+            android:textColor="@color/textDarkPrimary" />
+        <ir.fearefull.wheretoapp.view.base.MyTextView
             android:id="@+id/followTextView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             style="@style/MyTheme.TextAppearance.Small"
             android:textColor="@color/textLightPrimary"
-            android:layout_margin="4dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
+            android:layout_marginLeft="4dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
             android:clickable="true"
             android:focusable="true"
             android:layout_alignParentLeft="true"
