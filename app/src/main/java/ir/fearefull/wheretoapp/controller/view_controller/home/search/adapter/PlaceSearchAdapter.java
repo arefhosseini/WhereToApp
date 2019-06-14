@@ -30,7 +30,7 @@ public class PlaceSearchAdapter extends RecyclerView.Adapter<PlaceSearchViewHold
     @Override
     public PlaceSearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_place_summary, parent, false);
+                .inflate(R.layout.card_place_search, parent, false);
 
         this.parent = parent;
         return new PlaceSearchViewHolder(itemView);

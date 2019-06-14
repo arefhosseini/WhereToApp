@@ -24,6 +24,7 @@ import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
 import ir.fearefull.wheretoapp.controller.view_controller.relation.RelationFragment;
+import ir.fearefull.wheretoapp.controller.view_controller.user.favorite_place.UserFavoritePlaceFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.user.review.UserReviewFragment;
 import ir.fearefull.wheretoapp.model.api.SimpleResponse;
 import ir.fearefull.wheretoapp.model.api.user.UserResponse;
@@ -41,8 +42,7 @@ public class UserFragment extends Fragment {
     private User user;
     private String phoneNumber;
     private UserResponse userResponse;
-    private ImageButton backImageButton, favoritePlacesImageButton, scoresImageButton,
-            reviewsImageButton, placeImagesImageButton;
+    private ImageButton backImageButton, favoritePlacesImageButton, reviewsImageButton;
     private ImageView profileImageView;
     private LinearLayout followersLayout, followingsLayout;
     private TextView followTextView, userScoreTextView, firstNameTextView, lastNameTextView, followersCountTextView,
@@ -74,9 +74,7 @@ public class UserFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         backImageButton = parentView.findViewById(R.id.backImageButton);
         favoritePlacesImageButton = parentView.findViewById(R.id.favoritePlacesImageButton);
-        scoresImageButton = parentView.findViewById(R.id.scoresImageButton);
         reviewsImageButton = parentView.findViewById(R.id.reviewsImageButton);
-        placeImagesImageButton = parentView.findViewById(R.id.placeImagesImageButton);
         profileImageView = parentView.findViewById(R.id.profileImageView);
         followTextView = parentView.findViewById(R.id.followTextView);
         userScoreTextView = parentView.findViewById(R.id.userScoreTextView);
@@ -161,6 +159,17 @@ public class UserFragment extends Fragment {
                 Objects.requireNonNull(Objects.requireNonNull(getActivity()).getSupportFragmentManager())
                         .beginTransaction()
                         .replace(R.id.fragmentUser, new UserReviewFragment(user, UserFragment.this.userResponse))
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+        favoritePlacesImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Objects.requireNonNull(Objects.requireNonNull(getActivity()).getSupportFragmentManager())
+                        .beginTransaction()
+                        .replace(R.id.fragmentUser, new UserFavoritePlaceFragment(user, UserFragment.this.userResponse))
                         .addToBackStack(null)
                         .commit();
             }

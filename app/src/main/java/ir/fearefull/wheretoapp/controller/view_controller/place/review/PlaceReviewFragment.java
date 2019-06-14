@@ -172,8 +172,8 @@ public class PlaceReviewFragment extends Fragment {
                     int foodScore = Objects.requireNonNull(bundle).getInt("foodScore");
                     int serviceScore = Objects.requireNonNull(bundle).getInt("serviceScore");
                     int ambianceScore = Objects.requireNonNull(bundle).getInt("ambianceScore");
-                    yourOverallScoreRatingBar.setRating(overallScore);
                     placeResponse.getPlaceScore().setTotalScore(overallScore);
+                    changeFragment(placeResponse);
                     placeHomeFragment.changeFragment(placeResponse);
                     try {
                         createPlaceScore(new CreatePlaceScoreRequest(user.getPhoneNumber(),

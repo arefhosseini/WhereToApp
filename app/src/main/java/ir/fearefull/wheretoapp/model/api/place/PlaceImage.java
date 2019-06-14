@@ -7,6 +7,9 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class PlaceImage implements Serializable {
 
+    @SerializedName("id")
+    private long id;
+
     @SerializedName("user")
     private long user;
 
@@ -25,14 +28,19 @@ public class PlaceImage implements Serializable {
     @SerializedName("image")
     private String image;
 
-    public PlaceImage(long user, long place, int up_votes,
+    public PlaceImage(long id, long user, long place, int up_votes,
                       int down_votes, int your_vote, String image) {
+        this.id = id;
         this.user = user;
         this.place = place;
         this.up_votes = up_votes;
         this.down_votes = down_votes;
         this.your_vote = your_vote;
         this.image = image;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public long getUser() {
@@ -57,6 +65,10 @@ public class PlaceImage implements Serializable {
 
     public String getImage() {
         return image;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public void setUser(long user) {

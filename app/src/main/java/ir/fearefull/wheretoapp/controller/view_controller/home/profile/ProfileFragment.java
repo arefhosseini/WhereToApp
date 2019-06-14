@@ -26,6 +26,7 @@ import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
 import ir.fearefull.wheretoapp.controller.view_controller.edit_profile.EditProfileActivity;
 import ir.fearefull.wheretoapp.controller.view_controller.relation.RelationFragment;
+import ir.fearefull.wheretoapp.controller.view_controller.user.favorite_place.UserFavoritePlaceFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.user.review.UserReviewFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.verify.VerifyActivity;
 import ir.fearefull.wheretoapp.model.api.user.UserResponse;
@@ -41,8 +42,7 @@ public class ProfileFragment extends Fragment {
 
     private User user;
     private UserResponse userResponse;
-    private ImageButton logoutImageButton, favoritePlacesImageButton, scoresImageButton,
-            reviewsImageButton, placeImagesImageButton;
+    private ImageButton logoutImageButton, favoritePlacesImageButton, reviewsImageButton;
     private ImageView profileImageView;
     private LinearLayout followersLayout, followingsLayout;
     private TextView editProfileTextView, userScoreTextView, firstNameTextView, lastNameTextView, followersCountTextView,
@@ -75,9 +75,7 @@ public class ProfileFragment extends Fragment {
 
         logoutImageButton = view.findViewById(R.id.logoutImageButton);
         favoritePlacesImageButton = view.findViewById(R.id.favoritePlacesImageButton);
-        scoresImageButton = view.findViewById(R.id.scoresImageButton);
         reviewsImageButton = view.findViewById(R.id.reviewsImageButton);
-        placeImagesImageButton = view.findViewById(R.id.placeImagesImageButton);
         profileImageView = view.findViewById(R.id.profileImageView);
         editProfileTextView = view.findViewById(R.id.editProfileTextView);
         userScoreTextView = view.findViewById(R.id.userScoreTextView);
@@ -158,6 +156,17 @@ public class ProfileFragment extends Fragment {
                         .commit();
             }
         });
+
+        favoritePlacesImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Objects.requireNonNull(Objects.requireNonNull(getActivity()).getSupportFragmentManager())
+                        .beginTransaction()
+                        .replace(R.id.fragmentHomeProfile, new UserFavoritePlaceFragment(user, ProfileFragment.this.userResponse))
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 
     private void showEditProfileActivity() {
@@ -168,6 +177,7 @@ public class ProfileFragment extends Fragment {
                 userResponse.getFavoritePlaceTypes()
         );
         dashboardIntent.putExtra("UserControlResponse", userControlResponse);
+        dashboardIntent.putExtra("isOpenedByRegister", false);
 
         startActivity(dashboardIntent);
     }

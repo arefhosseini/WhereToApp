@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="fill_vertical"
     android:clipToPadding="false"
+    android:background="@color/colorBackground"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:ignore="PrivateResource">
 
@@ -14,6 +15,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPlaceMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layoutDirection="rtl"
+            android:orientation="vertical"
+            tools:ignore="RtlHardcoded" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

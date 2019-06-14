@@ -76,7 +76,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewSuggestedPlaces"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:layout_gravity="right"
                     android:layoutDirection="rtl"
                     android:layout_marginTop="4dp"
@@ -91,7 +91,7 @@
                     android:textColor="@color/textDarkPrimary"
                     android:layout_marginLeft="6dp"
                     android:layout_marginRight="6dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:layout_gravity="right"
                     android:text="@string/total_places"
@@ -99,7 +99,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewTotalPlaces"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:layout_gravity="right"
                     android:layoutDirection="rtl"
                     android:layout_marginTop="4dp"

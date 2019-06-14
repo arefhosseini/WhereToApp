@@ -229,6 +229,7 @@ public class SendCodeFragment extends Fragment {
     private void showEditProfileActivity(UserControlResponse userControlResponse) {
         Intent dashboardIntent = new Intent(getContext(), EditProfileActivity.class);
         dashboardIntent.putExtra("UserControlResponse", userControlResponse);
+        dashboardIntent.putExtra("isOpenedByRegister", true);
 
         startActivity(dashboardIntent);
         Objects.requireNonNull(getActivity()).finish();

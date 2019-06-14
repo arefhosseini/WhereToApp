@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -46,10 +45,11 @@ import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientI
 import ir.fearefull.wheretoapp.controller.view_controller.place.PlaceFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.place.dialog.CreateReviewDialog;
 import ir.fearefull.wheretoapp.controller.view_controller.place.dialog.CreateScoreDialog;
-import ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.GridViewPlaceImageActivity;
+import ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.GridViewPlaceImageFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.place.review.PlaceReviewFragment;
 import ir.fearefull.wheretoapp.model.api.SimpleResponse;
 import ir.fearefull.wheretoapp.model.api.place.PlaceResponse;
+import ir.fearefull.wheretoapp.model.api.place.control.UploadPlaceImageRequest;
 import ir.fearefull.wheretoapp.model.api.review.CreateReviewRequest;
 import ir.fearefull.wheretoapp.model.api.score.CreatePlaceScoreRequest;
 import ir.fearefull.wheretoapp.model.api.score.PlaceScore;
@@ -61,6 +61,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
+import static androidx.core.content.ContextCompat.checkSelfPermission;
 import static ir.fearefull.wheretoapp.utils.Constants.CREATE_REVIEW_DIALOG;
 import static ir.fearefull.wheretoapp.utils.Constants.CREATE_SCORE_DIALOG;
 import static ir.fearefull.wheretoapp.utils.Constants.PICK_FROM_GALLERY;
@@ -231,14 +232,12 @@ public class PlaceHomeFragment extends Fragment {
         else
             yourOverallScoreTextView.setText(R.string.submit_your_ratings);
 
-        showPlaceImagesTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), GridViewPlaceImageActivity.class);
-                i.putExtra("place", placeResponse.getPlace());
-                startActivity(i);
-            }
-        });
+        showPlaceImagesTextView.setOnClickListener(onShowPlaceImages);
+        imagePlace1ImageView.setOnClickListener(onShowPlaceImages);
+        imagePlace2ImageView.setOnClickListener(onShowPlaceImages);
+        imagePlace3ImageView.setOnClickListener(onShowPlaceImages);
+        imagePlace4ImageView.setOnClickListener(onShowPlaceImages);
+        imagePlace5ImageView.setOnClickListener(onShowPlaceImages);
 
         showReviewTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -251,14 +250,14 @@ public class PlaceHomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 try {
-                    if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getContext()), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(Objects.requireNonNull(getActivity()), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PICK_FROM_GALLERY);
+                    if (checkSelfPermission(Objects.requireNonNull(getContext()), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PICK_FROM_GALLERY);
                     } else {
                         CropImage.activity()
                                 .setFixAspectRatio(true)
                                 .setAspectRatio(1, 1)
                                 .setRequestedSize(500, 500, CropImageView.RequestSizeOptions.RESIZE_INSIDE)
-                                .start(Objects.requireNonNull(getActivity()));
+                                .start(getContext(), PlaceHomeFragment.this);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -270,8 +269,36 @@ public class PlaceHomeFragment extends Fragment {
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        switch (requestCode) {
+            case PICK_FROM_GALLERY:
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    CropImage.activity()
+                            .setFixAspectRatio(true)
+                            .setAspectRatio(1, 1)
+                            .setRequestedSize(500, 500, CropImageView.RequestSizeOptions.RESIZE_INSIDE)
+                            .start(Objects.requireNonNull(getActivity()));
+                } else {
+                    Toast.makeText(getContext(), "لطفا دسترسی به گالری را بدهید", Toast.LENGTH_LONG).show();
+                }
+                break;
+        }
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
+            case CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE:
+                CropImage.ActivityResult result = CropImage.getActivityResult(data);
+                if (resultCode == RESULT_OK) {
+                    Uri resultUri = result.getUri();
+                    uploadImage(resultUri);
+                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                    Exception error = result.getError();
+                }
+                break;
             case CREATE_SCORE_DIALOG:
                 if (resultCode == RESULT_OK) {
                     Bundle bundle = data.getExtras();
@@ -279,9 +306,9 @@ public class PlaceHomeFragment extends Fragment {
                     int foodScore = Objects.requireNonNull(bundle).getInt("foodScore");
                     int serviceScore = Objects.requireNonNull(bundle).getInt("serviceScore");
                     int ambianceScore = Objects.requireNonNull(bundle).getInt("ambianceScore");
-                    yourOverallScoreRatingBar.setRating(overallScore);
                     placeResponse.getPlaceScore().setTotalScore(overallScore);
                     placeReviewFragment.changeFragment(placeResponse);
+                    changeFragment(placeResponse);
                     try {
                         createPlaceScore(new CreatePlaceScoreRequest(user.getPhoneNumber(),
                                 placeResponse.getPlace().getId(), overallScore, foodScore,
@@ -307,6 +334,33 @@ public class PlaceHomeFragment extends Fragment {
                 }
                 break;
         }
+    }
+
+    private void uploadImage(Uri resultUri) {
+        UploadPlaceImageRequest uploadPlaceImageRequest = new UploadPlaceImageRequest(
+                user.getPhoneNumber(), placeResponse.getPlace().getId(),
+                resultUri, getContext());
+
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<SimpleResponse> call = service.uploadPlaceImage(
+                uploadPlaceImageRequest.getUser(),
+                uploadPlaceImageRequest.getPlace(),
+                uploadPlaceImageRequest.getImage());
+        Log.v("Upload", "uploading");
+        call.enqueue(new Callback<SimpleResponse>() {
+            @Override
+            public void onResponse(Call<SimpleResponse> call,
+                                   Response<SimpleResponse> response) {
+                Log.v("Upload", "success");
+                Toast.makeText(getContext(), "عکس شما آپلود شد", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<SimpleResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "عکس شما آپلود نشد", Toast.LENGTH_SHORT).show();
+                Log.e("Upload error:", t.getMessage());
+            }
+        });
     }
 
     private void onGoogleMapClick() {
@@ -335,6 +389,18 @@ public class PlaceHomeFragment extends Fragment {
             CreateScoreDialog createScoreDialog = new CreateScoreDialog(placeResponse.getPlaceScore());
             createScoreDialog.setTargetFragment(PlaceHomeFragment.this, CREATE_SCORE_DIALOG);
             createScoreDialog.show(Objects.requireNonNull(getFragmentManager()).beginTransaction(), "MyProgressDialog");
+        }
+    };
+
+    private View.OnClickListener onShowPlaceImages = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Objects.requireNonNull(Objects.requireNonNull(getActivity()).getSupportFragmentManager())
+                    .beginTransaction()
+                    .replace(R.id.fragmentPlace,
+                            new GridViewPlaceImageFragment(placeResponse.getPlace(), user))
+                    .addToBackStack(null)
+                    .commit();
         }
     };
 

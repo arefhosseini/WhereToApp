@@ -276,6 +276,8 @@
                         android:layout_weight="2"
                         android:scaleType="centerCrop"
                         android:layout_marginRight="1dp"
+                        android:focusable="true"
+                        android:clickable="true"
                         android:background="@color/colorBackground"
                         tools:ignore="RtlHardcoded" />
                     <LinearLayout
@@ -293,6 +295,8 @@
                             android:layout_weight="1"
                             android:layout_marginBottom="1dp"
                             android:scaleType="centerCrop"
+                            android:focusable="true"
+                            android:clickable="true"
                             android:background="@color/colorBackground"
                             tools:ignore="NestedWeights" />
 
@@ -303,6 +307,8 @@
                             android:layout_weight="1"
                             android:layout_marginTop="1dp"
                             android:scaleType="centerCrop"
+                            android:focusable="true"
+                            android:clickable="true"
                             android:background="@color/colorBackground" />
                     </LinearLayout>
                     <LinearLayout
@@ -321,6 +327,8 @@
                             android:scaleType="centerCrop"
                             android:layout_marginBottom="1dp"
                             android:background="@color/colorBackground"
+                            android:focusable="true"
+                            android:clickable="true"
                             tools:ignore="NestedWeights" />
 
                         <ImageView
@@ -330,6 +338,8 @@
                             android:layout_weight="1"
                             android:scaleType="centerCrop"
                             android:layout_marginTop="1dp"
+                            android:focusable="true"
+                            android:clickable="true"
                             android:background="@color/colorBackground" />
                     </LinearLayout>
                 </LinearLayout>
@@ -370,7 +380,9 @@
                         android:layout_height="wrap_content"
                         style="@style/MyTheme.TextAppearance.Medium"
                         android:textColor="@color/textDarkPrimary"
-                        android:padding="12dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
                         android:layout_alignParentRight="true"
                         android:text="@string/ratings_reviews"
                         tools:ignore="RelativeOverlap,RtlHardcoded" />
@@ -701,7 +713,7 @@
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
                             android:textColor="@color/textDarkSecondary"
-                            android:text="@string/food"
+                            android:text="@string/foodResponse"
                             tools:ignore="RtlHardcoded" />
 
                         <ir.fearefull.wheretoapp.view.base.MyTextView

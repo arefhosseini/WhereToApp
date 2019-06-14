@@ -116,6 +116,8 @@
                         android:orientation="horizontal"
                         android:paddingLeft="8dp"
                         android:paddingRight="4dp"
+                        android:paddingBottom="4dp"
+                        android:paddingTop="4dp"
                         tools:ignore="RtlHardcoded">
 
                     </LinearLayout>

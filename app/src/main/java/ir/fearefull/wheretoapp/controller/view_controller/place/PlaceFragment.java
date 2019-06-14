@@ -1,9 +1,6 @@
 package ir.fearefull.wheretoapp.controller.view_controller.place;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,8 +18,6 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
 import org.json.JSONException;
 
@@ -39,7 +34,6 @@ import ir.fearefull.wheretoapp.model.api.Enum.PlaceTypeEnum;
 import ir.fearefull.wheretoapp.model.api.SimpleResponse;
 import ir.fearefull.wheretoapp.model.api.place.PlaceFavoriteRequest;
 import ir.fearefull.wheretoapp.model.api.place.PlaceResponse;
-import ir.fearefull.wheretoapp.model.api.place.control.UploadPlaceImageRequest;
 import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.utils.Constants;
 import ir.fearefull.wheretoapp.view.base.MainPager;
@@ -48,9 +42,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.app.Activity.RESULT_OK;
-import static ir.fearefull.wheretoapp.utils.Constants.PICK_FROM_GALLERY;
 
 public class PlaceFragment extends Fragment {
 
@@ -274,68 +265,6 @@ public class PlaceFragment extends Fragment {
 
     private static String repeat(int count) {
         return new String(new char[count]).replace("\0", "$");
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults)
-    {
-        switch (requestCode) {
-            case PICK_FROM_GALLERY:
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    CropImage.activity()
-                            .setFixAspectRatio(true)
-                            .setAspectRatio(1, 1)
-                            .setRequestedSize(500, 500, CropImageView.RequestSizeOptions.RESIZE_INSIDE)
-                            .start(Objects.requireNonNull(getActivity()));
-                } else {
-                    Toast.makeText(getContext(), "لطفا دسترسی به گالری را بدهید", Toast.LENGTH_LONG).show();
-                }
-                break;
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE:
-                CropImage.ActivityResult result = CropImage.getActivityResult(data);
-                if (resultCode == RESULT_OK) {
-                    Uri resultUri = result.getUri();
-                    uploadImage(resultUri);
-                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                    Exception error = result.getError();
-                }
-                break;
-        }
-    }
-
-    private void uploadImage(Uri resultUri) {
-        UploadPlaceImageRequest uploadPlaceImageRequest = new UploadPlaceImageRequest(
-                user.getPhoneNumber(), placeResponse.getPlace().getId(),
-                resultUri, getContext());
-
-        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<SimpleResponse> call = service.uploadPlaceImage(
-                uploadPlaceImageRequest.getUser(),
-                uploadPlaceImageRequest.getPlace(),
-                uploadPlaceImageRequest.getImage());
-        Log.v("Upload", "uploading");
-        call.enqueue(new Callback<SimpleResponse>() {
-            @Override
-            public void onResponse(Call<SimpleResponse> call,
-                                   Response<SimpleResponse> response) {
-                Log.v("Upload", "success");
-                Toast.makeText(getContext(), "عکس شما آپلود شد", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<SimpleResponse> call, Throwable t) {
-                Toast.makeText(getContext(), "عکس شما آپلود نشد", Toast.LENGTH_SHORT).show();
-                Log.e("Upload error:", t.getMessage());
-            }
-        });
     }
 
     private void addPlaceToFavourite() throws JSONException {

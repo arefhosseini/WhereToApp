@@ -354,7 +354,7 @@
                             android:layout_height="wrap_content"
                             style="@style/MyTheme.TextAppearance.Medium"
                             android:textColor="@color/textDarkSecondary"
-                            android:text="@string/food"
+                            android:text="@string/foodResponse"
                             tools:ignore="RtlHardcoded" />
 
                         <ir.fearefull.wheretoapp.view.base.MyTextView

@@ -44,13 +44,14 @@ import static ir.fearefull.wheretoapp.utils.Constants.PICK_FROM_GALLERY;
 
 
 public class EditProfileActivity extends AppCompatActivity {
-    UserControlResponse userControlResponse;
-    EditText phoneNumberEditText, firstNameEditText, lastNameEditText;
-    Button confirmButton;
-    ImageButton backImageButton;
-    FrameLayout profileImageLayout;
-    ImageView profileImageView;
-    Uri resultUri;
+    private UserControlResponse userControlResponse;
+    private EditText phoneNumberEditText, firstNameEditText, lastNameEditText;
+    private Button confirmButton;
+    private ImageButton backImageButton;
+    private FrameLayout profileImageLayout;
+    private ImageView profileImageView;
+    private Uri resultUri;
+    private boolean isOpenedByRegister;
 
     boolean sendProfileImage = false;
 
@@ -60,6 +61,8 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         userControlResponse = (UserControlResponse) getIntent().getSerializableExtra("UserControlResponse");
+        isOpenedByRegister = getIntent().getBooleanExtra("isOpenedByRegister", false);
+
         backImageButton = findViewById(R.id.backImageButton);
         phoneNumberEditText = findViewById(R.id.phoneNumberEditText);
         firstNameEditText = findViewById(R.id.firstNameEditText);
@@ -76,7 +79,10 @@ public class EditProfileActivity extends AppCompatActivity {
         backImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                if (isOpenedByRegister)
+                    finishEditing();
+                else
+                    finish();
             }
         });
 
@@ -106,6 +112,14 @@ public class EditProfileActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isOpenedByRegister)
+            finishEditing();
+        else
+            finish();
     }
 
     @Override
@@ -209,7 +223,10 @@ public class EditProfileActivity extends AppCompatActivity {
         user.setProfileImage(userControlResponse.getProfileImage());
         DatabaseInitializer.updateUser(AppDatabase.getAppDatabase(getApplicationContext()), user);
 
-        finishEditing();
+        if (isOpenedByRegister)
+            finishEditing();
+        else
+            finish();
     }
 
     private void finishEditing() {

@@ -1,7 +1,5 @@
 package ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.adapter;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,28 +7,35 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import androidx.fragment.app.Fragment;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Objects;
 
-import ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.FullScreenPlaceImageViewActivity;
+import ir.fearefull.wheretoapp.R;
+import ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.FullScreenPlaceImageFragment;
 import ir.fearefull.wheretoapp.model.api.place.Place;
 import ir.fearefull.wheretoapp.model.api.place.PlaceImage;
+import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.utils.Constants;
 
 public class GridViewPlaceImageAdapter extends BaseAdapter {
 
-    private Activity activity;
+    private Fragment fragment;
     private Place place;
+    private User user;
     private List<PlaceImage> placeImages;
     private int imageWidth;
 
-    public GridViewPlaceImageAdapter(Activity activity, Place place, List<PlaceImage> placeImages,
-                                     int imageWidth) {
-        this.activity = activity;
+    public GridViewPlaceImageAdapter(Fragment fragment, Place place, List<PlaceImage> placeImages,
+                                     int imageWidth, User user) {
+        this.fragment = fragment;
         this.place = place;
         this.placeImages = placeImages;
         this.imageWidth = imageWidth;
+        this.user = user;
     }
 
     @Override
@@ -52,7 +57,7 @@ public class GridViewPlaceImageAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView;
         if (convertView == null) {
-            imageView = new ImageView(activity);
+            imageView = new ImageView(fragment.getContext());
         } else {
             imageView = (ImageView) convertView;
         }
@@ -82,12 +87,12 @@ public class GridViewPlaceImageAdapter extends BaseAdapter {
 
         @Override
         public void onClick(View v) {
-            // on selecting grid view image
-            // launch full screen activity
-            Intent i = new Intent(activity, FullScreenPlaceImageViewActivity.class);
-            i.putExtra("position", position);
-            i.putExtra("place", place);
-            activity.startActivity(i);
+            Objects.requireNonNull(Objects.requireNonNull(fragment.getActivity()).getSupportFragmentManager())
+                    .beginTransaction()
+                    .replace(R.id.fragmentGridViewPlaceImage,
+                            new FullScreenPlaceImageFragment(place, position, user))
+                    .addToBackStack(null)
+                    .commit();
         }
     }
 }

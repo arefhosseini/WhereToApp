@@ -299,58 +299,6 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:scaleX="-1"
-                            android:src="@drawable/ic_grade_black_24dp"
-                            android:id="@+id/scoresImageView"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"/>
-
-                        <ir.fearefull.wheretoapp.view.base.MyTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/scoresTextView"
-                            style="@style/MyTheme.TextAppearance.Medium"
-                            android:textColor="@color/textDarkPrimary"
-                            android:gravity="right"
-                            android:layout_toLeftOf="@id/scoresImageView"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="16dp"
-                            android:text="@string/scores" />
-
-                        <ir.fearefull.wheretoapp.view.base.MyTextView
-                            android:id="@+id/scoresCountTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/MyTheme.TextAppearance.XSmall"
-                            android:background="@drawable/circle_number_shape"
-                            android:textColor="@color/textLightPrimary"
-                            android:gravity="center"
-                            android:layout_toLeftOf="@id/scoresTextView"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="16dp" />
-
-                        <ImageButton
-                            android:id="@+id/scoresImageButton"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_centerVertical="true"
-                            android:background="?actionBarItemBackground"
-                            android:src="@drawable/ic_keyboard_arrow_left_black_24dp" />
-                    </RelativeLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.3dp"
-                        android:background="@android:color/darker_gray"/>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layoutDirection="rtl"
-                        android:padding="12dp">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:scaleX="-1"
                             android:src="@drawable/ic_comment_black_24dp"
                             android:id="@+id/reviewsImageView"
                             android:layout_centerVertical="true"
@@ -403,6 +351,49 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:scaleX="-1"
+                            android:src="@drawable/ic_grade_black_24dp"
+                            android:id="@+id/scoresImageView"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"/>
+
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/scoresTextView"
+                            style="@style/MyTheme.TextAppearance.Medium"
+                            android:textColor="@color/textDarkPrimary"
+                            android:gravity="right"
+                            android:layout_toLeftOf="@id/scoresImageView"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="16dp"
+                            android:text="@string/scores" />
+
+                        <ir.fearefull.wheretoapp.view.base.MyTextView
+                            android:id="@+id/scoresCountTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/MyTheme.TextAppearance.XSmall"
+                            android:background="@drawable/circle_number_shape"
+                            android:textColor="@color/textLightPrimary"
+                            android:gravity="center"
+                            android:layout_toLeftOf="@id/scoresTextView"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="16dp" />
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.3dp"
+                        android:background="@android:color/darker_gray"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:scaleX="-1"
                             android:src="@drawable/ic_image_black_24dp"
                             android:id="@+id/placeImagesImageView"
                             android:layout_centerVertical="true"
@@ -431,15 +422,6 @@
                             android:layout_toLeftOf="@id/placeImagesTextView"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="16dp" />
-
-                        <ImageButton
-                            android:id="@+id/placeImagesImageButton"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_centerVertical="true"
-                            android:background="?actionBarItemBackground"
-                            android:src="@drawable/ic_keyboard_arrow_left_black_24dp" />
                     </RelativeLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

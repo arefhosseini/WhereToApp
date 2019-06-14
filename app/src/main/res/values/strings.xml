@@ -18,7 +18,7 @@
     <string name="number_3">3</string>
     <string name="number_4">4</string>
     <string name="number_5">5</string>
-    <string name="food">غذا</string>
+    <string name="foodResponse">غذا</string>
     <string name="service">سرویس دهی</string>
     <string name="ambiance">محیط</string>
     <string name="see_all_reviews">مشاهده تمامی نظرات</string>
@@ -49,4 +49,5 @@
     <string name="suggested_places">مخصوص شما</string>
     <string name="search_hint">جستجو</string>
     <string name="submit_your_ratings">امتیاز دهید</string>
+    <string name="place_images_head_text">عکس های آپلود شده</string>
 </resources>

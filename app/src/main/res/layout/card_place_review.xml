@@ -77,16 +77,18 @@
                 android:layout_height="wrap_content"
                 style="@style/MyTheme.TextAppearance.Small"
                 android:layout_marginLeft="4dp"
+                android:layout_gravity="center_vertical"
                 android:textColor="@color/textDarkSecondary" />
             <ImageButton
                 android:id="@+id/downVoteImageButton"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:padding="4dp"
+                android:scaleType="centerCrop"
                 android:layout_marginLeft="24dp"
                 android:layout_gravity="center_vertical"
                 android:background="?actionBarItemBackground"
-                android:src="@drawable/ic_thumb_down_gray_24dp"
+                android:src="@mipmap/disabled_dislike"
                 tools:ignore="RtlHardcoded" />
             <ir.fearefull.wheretoapp.view.base.MyTextView
                 android:id="@+id/upVoteTextView"
@@ -94,15 +96,17 @@
                 android:layout_height="wrap_content"
                 style="@style/MyTheme.TextAppearance.Small"
                 android:layout_marginLeft="4dp"
+                android:layout_gravity="center_vertical"
                 android:textColor="@color/textDarkSecondary" />
             <ImageButton
                 android:id="@+id/upVoteImageButton"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:padding="4dp"
+                android:scaleType="centerCrop"
                 android:layout_gravity="center_vertical"
                 android:background="?actionBarItemBackground"
-                android:src="@drawable/ic_thumb_up_gray_24dp"
+                android:src="@mipmap/disabled_like"
                 tools:ignore="RtlHardcoded" />
         </LinearLayout>
     </LinearLayout>

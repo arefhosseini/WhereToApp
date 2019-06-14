@@ -1,6 +1,7 @@
 package ir.fearefull.wheretoapp.view.place;
 
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 public class PlaceReviewsViewHolder extends RecyclerView.ViewHolder {
     private TextView createdDateTextView, nameTextView, textTextView, downVoteTextView, upVoteTextView;
     private ImageView profileImageView;
+    private ImageButton downVoteImageButton, upVoteImageButton;
     private MaterialRatingBar userScoreRatingBar;
 
     public PlaceReviewsViewHolder(View view) {
@@ -21,6 +23,8 @@ public class PlaceReviewsViewHolder extends RecyclerView.ViewHolder {
         downVoteTextView = view.findViewById(R.id.downVoteTextView);
         upVoteTextView = view.findViewById(R.id.upVoteTextView);
         profileImageView = view.findViewById(R.id.profileImageView);
+        downVoteImageButton = view.findViewById(R.id.downVoteImageButton);
+        upVoteImageButton = view.findViewById(R.id.upVoteImageButton);
         userScoreRatingBar = view.findViewById(R.id.userScoreRatingBar);
     }
 
@@ -78,5 +82,21 @@ public class PlaceReviewsViewHolder extends RecyclerView.ViewHolder {
 
     public void setUserScoreRatingBar(MaterialRatingBar userScoreRatingBar) {
         this.userScoreRatingBar = userScoreRatingBar;
+    }
+
+    public ImageButton getDownVoteImageButton() {
+        return downVoteImageButton;
+    }
+
+    public void setDownVoteImageButton(ImageButton downVoteImageButton) {
+        this.downVoteImageButton = downVoteImageButton;
+    }
+
+    public ImageButton getUpVoteImageButton() {
+        return upVoteImageButton;
+    }
+
+    public void setUpVoteImageButton(ImageButton upVoteImageButton) {
+        this.upVoteImageButton = upVoteImageButton;
     }
 }

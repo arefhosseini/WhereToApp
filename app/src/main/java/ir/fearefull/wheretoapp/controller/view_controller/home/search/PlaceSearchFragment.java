@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -59,8 +59,8 @@ public class PlaceSearchFragment extends Fragment {
         parentView = view;
         recyclerViewPlaceSearch = parentView.findViewById(R.id.recyclerViewPlaceSearch);
         placeSearchAdapter = new PlaceSearchAdapter(placeSearchResponseList);
-        recyclerViewPlaceSearch.setLayoutManager(new GridLayoutManager(getContext(), 2));
-
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        recyclerViewPlaceSearch.setLayoutManager(layoutManager);
         recyclerViewPlaceSearch.setAdapter(placeSearchAdapter);
 
 
