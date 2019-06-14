@@ -39,6 +39,7 @@
                     style="@style/MyTheme.TextAppearance.Header"
                     android:textColor="@color/textLightPrimary" />
                 <ImageButton
+                    android:id="@+id/backImageButton"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_alignParentRight="true"

@@ -16,23 +16,24 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import org.json.JSONException;
 
 import java.util.Objects;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.local.AppDatabase;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
 import ir.fearefull.wheretoapp.controller.view_controller.edit_profile.EditProfileActivity;
 import ir.fearefull.wheretoapp.controller.view_controller.home.HomeActivity;
-import ir.fearefull.wheretoapp.model.api.user.CreateUserRequest;
-import ir.fearefull.wheretoapp.model.api.user.UserResponse;
-import ir.fearefull.wheretoapp.model.api.user.verify.VerifyRequest;
-import ir.fearefull.wheretoapp.model.api.user.verify.VerifyResponse;
+import ir.fearefull.wheretoapp.model.api.user.control.UserControlResponse;
+import ir.fearefull.wheretoapp.model.api.user.control.CreateUserRequest;
+import ir.fearefull.wheretoapp.model.api.user.control.VerifyUserRequest;
+import ir.fearefull.wheretoapp.model.api.user.control.VerifyUserResponse;
 import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.utils.DatabaseInitializer;
 import retrofit2.Call;
@@ -43,7 +44,7 @@ import static ir.fearefull.wheretoapp.utils.Constants.staticCountdownNumber;
 
 public class SendCodeFragment extends Fragment {
 
-    private VerifyResponse verifyResponse;
+    private VerifyUserResponse verifyUserResponse;
     private Button buttonSendCode;
     private EditText codeEditText;
     private TextView countDownTextView;
@@ -56,8 +57,8 @@ public class SendCodeFragment extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public SendCodeFragment(VerifyResponse verifyResponse) {
-        this.verifyResponse = verifyResponse;
+    public SendCodeFragment(VerifyUserResponse verifyUserResponse) {
+        this.verifyUserResponse = verifyUserResponse;
     }
 
     @Override
@@ -82,7 +83,7 @@ public class SendCodeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (buttonSendCode.isEnabled()) {
-                    if (codeEditText.getText().toString().equals(verifyResponse.getVerifyCode())) {
+                    if (codeEditText.getText().toString().equals(verifyUserResponse.getVerifyCode())) {
                         try {
                             createUserRequest();
                         } catch (JSONException e) {
@@ -173,17 +174,17 @@ public class SendCodeFragment extends Fragment {
 
     private void sendCodeRequest() throws JSONException {
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<VerifyResponse> call = service.verifyUser(new VerifyRequest(verifyResponse.getPhoneNumber()).toRequestBody());
-        call.enqueue(new Callback<VerifyResponse>() {
+        Call<VerifyUserResponse> call = service.verifyUser(new VerifyUserRequest(verifyUserResponse.getPhoneNumber()).toRequestBody());
+        call.enqueue(new Callback<VerifyUserResponse>() {
             @Override
-            public void onResponse(Call<VerifyResponse> call, Response<VerifyResponse> response) {
+            public void onResponse(Call<VerifyUserResponse> call, Response<VerifyUserResponse> response) {
                 //progressDoalog.dismiss();
                 assert response.body() != null;
                 generateVerifyCodeData(response.body());
             }
 
             @Override
-            public void onFailure(Call<VerifyResponse> call, Throwable t) {
+            public void onFailure(Call<VerifyUserResponse> call, Throwable t) {
                 //progressDoalog.dismiss();
                 Toast.makeText(getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
@@ -192,48 +193,48 @@ public class SendCodeFragment extends Fragment {
 
     private void createUserRequest() throws JSONException {
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<UserResponse> call = service.createUser(new CreateUserRequest(verifyResponse.getPhoneNumber()).toRequestBody());
-        call.enqueue(new Callback<UserResponse>() {
+        Call<UserControlResponse> call = service.createUser(new CreateUserRequest(verifyUserResponse.getPhoneNumber()).toRequestBody());
+        call.enqueue(new Callback<UserControlResponse>() {
             @Override
-            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+            public void onResponse(Call<UserControlResponse> call, Response<UserControlResponse> response) {
                 //progressDoalog.dismiss();
                 assert response.body() != null;
                 generateCreateUserData(response.body());
             }
 
             @Override
-            public void onFailure(Call<UserResponse> call, Throwable t) {
+            public void onFailure(Call<UserControlResponse> call, Throwable t) {
                 //progressDoalog.dismiss();
                 Toast.makeText(getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void generateVerifyCodeData(VerifyResponse verifyResponse) {
-        this.verifyResponse = verifyResponse;
+    private void generateVerifyCodeData(VerifyUserResponse verifyUserResponse) {
+        this.verifyUserResponse = verifyUserResponse;
         countDownTextView.setTextColor(getResources().getColor(R.color.darker_gray));
         timerHandler.post(runnable);
     }
 
-    private void generateCreateUserData(UserResponse userResponse) {
+    private void generateCreateUserData(UserControlResponse userControlResponse) {
         DatabaseInitializer.resetUsers(AppDatabase.getAppDatabase(getContext()));
-        User user = new User(userResponse.getPhoneNumber());
+        User user = new User(userControlResponse.getPhoneNumber());
         DatabaseInitializer.addUser(AppDatabase.getAppDatabase(getContext()), user);
-        if (userResponse.getFirstName().equals("") || userResponse.getLastName().equals(""))
-            showEditProfileActivity(userResponse);
+        if (userControlResponse.getFirstName().equals("") || userControlResponse.getLastName().equals(""))
+            showEditProfileActivity(userControlResponse);
         else
-            showMainActivity(userResponse);
+            showMainActivity();
     }
 
-    private void showEditProfileActivity(UserResponse userResponse) {
+    private void showEditProfileActivity(UserControlResponse userControlResponse) {
         Intent dashboardIntent = new Intent(getContext(), EditProfileActivity.class);
-        dashboardIntent.putExtra("UserResponse", userResponse);
+        dashboardIntent.putExtra("UserControlResponse", userControlResponse);
 
         startActivity(dashboardIntent);
         Objects.requireNonNull(getActivity()).finish();
     }
 
-    private void showMainActivity(UserResponse userResponse) {
+    private void showMainActivity() {
         Intent dashboardIntent = new Intent(getContext(), HomeActivity.class);
         startActivity(dashboardIntent);
         Objects.requireNonNull(getActivity()).finish();

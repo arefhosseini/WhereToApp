@@ -23,12 +23,17 @@ public class PlaceSummary {
     @SerializedName("overall_score")
     private float overall_score;
 
-    public PlaceSummary(long id, String name, List<PlaceTypeEnum> place_types, String place_image, float overall_score) {
+    @SerializedName("all_scores_count")
+    private int all_scores_count;
+
+    public PlaceSummary(long id, String name, List<PlaceTypeEnum> place_types,
+                        String place_image, float overall_score, int all_scores_count) {
         this.id = id;
         this.name = name;
         this.place_types = place_types;
         this.place_image = place_image;
         this.overall_score = overall_score;
+        this.all_scores_count = all_scores_count;
     }
 
     public long getId() {
@@ -51,6 +56,10 @@ public class PlaceSummary {
         return overall_score;
     }
 
+    public int getAllScoresCount() {
+        return all_scores_count;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -69,5 +78,9 @@ public class PlaceSummary {
 
     public void setOverallScore(float overall_score) {
         this.overall_score = overall_score;
+    }
+
+    public void setAllScoresCount(int all_scores_count) {
+        this.all_scores_count = all_scores_count;
     }
 }

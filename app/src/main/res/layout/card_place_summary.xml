@@ -4,12 +4,14 @@
     android:layout_width="140dp"
     android:layout_height="140dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="2dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
     app:cardCornerRadius="4dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:focusable="true"
     android:clickable="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="RtlHardcoded">
 
     <LinearLayout
         android:layout_width="match_parent"

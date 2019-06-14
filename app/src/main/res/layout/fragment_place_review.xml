@@ -36,13 +36,13 @@
                     android:layout_gravity="center_horizontal"
                     android:orientation="vertical">
                     <ir.fearefull.wheretoapp.view.base.MyTextView
+                        android:id="@+id/yourOverallScoreTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyTheme.TextAppearance.Small"
                         android:textColor="@color/textDarkSecondary"
                         android:padding="4dp"
-                        android:layout_gravity="center"
-                        android:text="@string/your_ratings" />
+                        android:layout_gravity="center" />
                     <me.zhanghai.android.materialratingbar.MaterialRatingBar
                         android:id="@+id/yourOverallScoreRatingBar"
                         android:layout_width="wrap_content"

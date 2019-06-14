@@ -1,55 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
+<RelativeLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layoutDirection="rtl"
-    app:cardElevation="0dp"
-    tools:ignore="RtlHardcoded"
+    android:padding="12dp"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="RtlHardcoded"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:civ_circle_background_color="@color/colorBackground2"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
+    <ir.fearefull.wheretoapp.view.base.MyTextView
+        android:id="@+id/nameTextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profileImageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:civ_circle_background_color="@color/colorBackground2"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true" />
-        <ir.fearefull.wheretoapp.view.base.MyTextView
-            android:id="@+id/nameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_marginRight="8dp"
-            android:layout_toLeftOf="@id/profileImageView"
-            android:layout_centerVertical="true"
-            style="@style/MyTheme.TextAppearance.Medium"
-            android:textColor="@color/textDarkPrimary" />
-        <ir.fearefull.wheretoapp.view.base.MyTextView
-            android:id="@+id/followTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            style="@style/MyTheme.TextAppearance.Small"
-            android:textColor="@color/textLightPrimary"
-            android:layout_marginLeft="4dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            tools:ignore="RelativeOverlap" />
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@id/profileImageView"
+        android:layout_centerVertical="true"
+        style="@style/MyTheme.TextAppearance.Medium"
+        android:textColor="@color/textDarkPrimary"
+        tools:ignore="RelativeOverlap" />
+    <ir.fearefull.wheretoapp.view.base.MyTextView
+        android:id="@+id/followTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        style="@style/MyTheme.TextAppearance.Small"
+        android:textColor="@color/textLightPrimary"
+        android:layout_marginLeft="4dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        tools:ignore="RelativeOverlap" />
+</RelativeLayout>

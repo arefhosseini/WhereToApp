@@ -15,15 +15,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONException;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import org.json.JSONException;
+
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
-import ir.fearefull.wheretoapp.model.api.user.verify.VerifyRequest;
-import ir.fearefull.wheretoapp.model.api.user.verify.VerifyResponse;
+import ir.fearefull.wheretoapp.model.api.user.control.VerifyUserRequest;
+import ir.fearefull.wheretoapp.model.api.user.control.VerifyUserResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -121,26 +122,26 @@ public class SendPhoneNumberFragment extends Fragment {
 
     private void sendCodeRequest() throws JSONException {
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<VerifyResponse> call = service.verifyUser(new VerifyRequest(phoneNumber).toRequestBody());
-        call.enqueue(new Callback<VerifyResponse>() {
+        Call<VerifyUserResponse> call = service.verifyUser(new VerifyUserRequest(phoneNumber).toRequestBody());
+        call.enqueue(new Callback<VerifyUserResponse>() {
             @Override
-            public void onResponse(Call<VerifyResponse> call, Response<VerifyResponse> response) {
+            public void onResponse(Call<VerifyUserResponse> call, Response<VerifyUserResponse> response) {
                 //progressDoalog.dismiss();
                 assert response.body() != null;
                 generateData(response.body());
             }
 
             @Override
-            public void onFailure(Call<VerifyResponse> call, Throwable t) {
+            public void onFailure(Call<VerifyUserResponse> call, Throwable t) {
                 //progressDoalog.dismiss();
                 Toast.makeText(getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void generateData(VerifyResponse verifyResponse) {
-        Log.d("sendPhone", verifyResponse.getVerifyCode());
-        listener.onSendPhoneListener(verifyResponse);
+    private void generateData(VerifyUserResponse verifyUserResponse) {
+        Log.d("sendPhone", verifyUserResponse.getVerifyCode());
+        listener.onSendPhoneListener(verifyUserResponse);
     }
 
     @Override
@@ -155,6 +156,6 @@ public class SendPhoneNumberFragment extends Fragment {
     }
 
     public interface OnClickListener {
-        void onSendPhoneListener(VerifyResponse verifyResponse);
+        void onSendPhoneListener(VerifyUserResponse verifyUserResponse);
     }
 }

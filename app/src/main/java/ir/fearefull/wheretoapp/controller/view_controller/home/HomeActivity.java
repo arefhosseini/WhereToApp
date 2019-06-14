@@ -4,17 +4,18 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Objects;
 
-import androidx.appcompat.app.AppCompatActivity;
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.local.AppDatabase;
 import ir.fearefull.wheretoapp.controller.view_controller.base.ViewPagerAdapter;
-import ir.fearefull.wheretoapp.controller.view_controller.home.fragment.HomeFragment;
-import ir.fearefull.wheretoapp.controller.view_controller.home.fragment.ProfileFragment;
-import ir.fearefull.wheretoapp.controller.view_controller.home.fragment.SearchFragment;
+import ir.fearefull.wheretoapp.controller.view_controller.home.home.HomeFragment;
+import ir.fearefull.wheretoapp.controller.view_controller.home.profile.ProfileFragment;
+import ir.fearefull.wheretoapp.controller.view_controller.home.search.SearchFragment;
 import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.utils.DatabaseInitializer;
 import ir.fearefull.wheretoapp.view.base.MainPager;
@@ -85,6 +86,16 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         setupTabIcons();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+            //additional code
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @SuppressLint("InflateParams")

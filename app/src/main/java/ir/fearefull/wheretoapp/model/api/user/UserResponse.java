@@ -2,6 +2,9 @@ package ir.fearefull.wheretoapp.model.api.user;
 
 import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
+import java.util.List;
+
+import ir.fearefull.wheretoapp.model.api.Enum.PlaceTypeEnum;
 
 
 public class UserResponse implements Serializable {
@@ -44,10 +47,13 @@ public class UserResponse implements Serializable {
     @SerializedName("is_following")
     private int is_following;
 
+    @SerializedName("favorite_place_types")
+    private List<PlaceTypeEnum> favorite_place_types;
+
     public UserResponse(Long id, String phone_number, String profile_image, String first_name,
                         String last_name, int user_score, int followers_count, int followings_count,
                         int reviews_count, int place_scores_count, int uploaded_images_count,
-                        int favorite_places_count, int is_following) {
+                        int favorite_places_count, int is_following, List<PlaceTypeEnum> favorite_place_types) {
         this.id = id;
         this.phone_number = phone_number;
         this.profile_image = profile_image;
@@ -61,6 +67,7 @@ public class UserResponse implements Serializable {
         this.uploaded_images_count = uploaded_images_count;
         this.favorite_places_count = favorite_places_count;
         this.is_following = is_following;
+        this.favorite_place_types = favorite_place_types;
     }
 
     public Long getId() {
@@ -115,6 +122,10 @@ public class UserResponse implements Serializable {
         return is_following;
     }
 
+    public List<PlaceTypeEnum> getFavoritePlaceTypes() {
+        return favorite_place_types;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -165,5 +176,9 @@ public class UserResponse implements Serializable {
 
     public void setIsFollowing(int is_following) {
         this.is_following = is_following;
+    }
+
+    public void setFavoritePlaceTypes(List<PlaceTypeEnum> favorite_place_types) {
+        this.favorite_place_types = favorite_place_types;
     }
 }

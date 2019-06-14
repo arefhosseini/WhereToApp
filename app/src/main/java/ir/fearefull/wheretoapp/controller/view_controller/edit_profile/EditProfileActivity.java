@@ -10,8 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -19,26 +24,18 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import org.json.JSONException;
 
-import java.io.File;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.local.AppDatabase;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
 import ir.fearefull.wheretoapp.controller.view_controller.home.HomeActivity;
-import ir.fearefull.wheretoapp.model.api.user.EditUserRequest;
-import ir.fearefull.wheretoapp.model.api.user.UserResponse;
+import ir.fearefull.wheretoapp.model.api.SimpleResponse;
+import ir.fearefull.wheretoapp.model.api.user.control.EditUserRequest;
+import ir.fearefull.wheretoapp.model.api.user.control.UploadProfileImageRequest;
+import ir.fearefull.wheretoapp.model.api.user.control.UserControlResponse;
 import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.utils.Constants;
 import ir.fearefull.wheretoapp.utils.DatabaseInitializer;
-import ir.fearefull.wheretoapp.utils.FileUtils;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,9 +44,10 @@ import static ir.fearefull.wheretoapp.utils.Constants.PICK_FROM_GALLERY;
 
 
 public class EditProfileActivity extends AppCompatActivity {
-    UserResponse userResponse;
+    UserControlResponse userControlResponse;
     EditText phoneNumberEditText, firstNameEditText, lastNameEditText;
     Button confirmButton;
+    ImageButton backImageButton;
     FrameLayout profileImageLayout;
     ImageView profileImageView;
     Uri resultUri;
@@ -61,7 +59,8 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        userResponse = (UserResponse) getIntent().getSerializableExtra("UserResponse");
+        userControlResponse = (UserControlResponse) getIntent().getSerializableExtra("UserControlResponse");
+        backImageButton = findViewById(R.id.backImageButton);
         phoneNumberEditText = findViewById(R.id.phoneNumberEditText);
         firstNameEditText = findViewById(R.id.firstNameEditText);
         lastNameEditText = findViewById(R.id.lastNameEditText);
@@ -69,15 +68,17 @@ public class EditProfileActivity extends AppCompatActivity {
         profileImageLayout = findViewById(R.id.profileImageLayout);
         profileImageView = findViewById(R.id.profileImageView);
 
-        //Picasso.get().load(Constants.BASE_URL + userResponse.getProfileImage()).into(profileImageView);
-        if (userResponse.getProfileImage().contains("media"))
-            Picasso.get().load(Constants.BASE_URL + userResponse.getProfileImage()).into(profileImageView);
-        else
-            Picasso.get().load(Constants.MEDIA_URL + userResponse.getProfileImage()).into(profileImageView);
+        Picasso.get().load(Constants.BASE_URL + userControlResponse.getProfileImage()).into(profileImageView);
+        phoneNumberEditText.setText(userControlResponse.getPhoneNumber());
+        firstNameEditText.setText(userControlResponse.getFirstName());
+        lastNameEditText.setText(userControlResponse.getLastName());
 
-        phoneNumberEditText.setText(userResponse.getPhoneNumber());
-        firstNameEditText.setText(userResponse.getFirstName());
-        lastNameEditText.setText(userResponse.getLastName());
+        backImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +129,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
@@ -141,29 +143,23 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void uploadImage() {
-        // use the FileUtils to get the actual file by uri
-        File file = FileUtils.getFile(this, resultUri);
-
-        // create RequestBody instance from file
-        RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
-
-        RequestBody phoneNumber = RequestBody.create(
-                okhttp3.MultipartBody.FORM, userResponse.getPhoneNumber());
-        MultipartBody.Part body =
-                MultipartBody.Part.createFormData("profile_image", file.getName(), requestFile);
+        UploadProfileImageRequest uploadProfileImageRequest = new UploadProfileImageRequest(
+                userControlResponse.getPhoneNumber(), resultUri, getApplicationContext());
 
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<ResponseBody> call = service.uploadProfileImage(phoneNumber, body);
-        call.enqueue(new Callback<ResponseBody>() {
+        Call<SimpleResponse> call =
+                service.uploadUserProfileImage(uploadProfileImageRequest.getPhoneNumber(), uploadProfileImageRequest.getProfileImage());
+        call.enqueue(new Callback<SimpleResponse>() {
             @Override
-            public void onResponse(Call<ResponseBody> call,
-                                   Response<ResponseBody> response) {
+            public void onResponse(Call<SimpleResponse> call,
+                                   Response<SimpleResponse> response) {
                 Log.v("Upload", "success");
                 Toast.makeText(getApplicationContext(), "عکس شما آپلود شد", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<SimpleResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "عکس شما آپلود نشد", Toast.LENGTH_SHORT).show();
                 Log.e("Upload error:", t.getMessage());
             }
         });
@@ -186,30 +182,31 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void editUser(String firstName, String lastName) throws JSONException {
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<UserResponse> call = service.editUser(new EditUserRequest(userResponse.getPhoneNumber(),
+        Call<UserControlResponse> call = service.editUser(new EditUserRequest(userControlResponse.getPhoneNumber(),
                 firstName, lastName).toRequestBody());
-        call.enqueue(new Callback<UserResponse>() {
+        call.enqueue(new Callback<UserControlResponse>() {
             @Override
-            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+            public void onResponse(Call<UserControlResponse> call, Response<UserControlResponse> response) {
                 //progressDoalog.dismiss();
                 assert response.body() != null;
                 generateData(response.body());
             }
 
             @Override
-            public void onFailure(Call<UserResponse> call, Throwable t) {
+            public void onFailure(Call<UserControlResponse> call, Throwable t) {
                 //progressDoalog.dismiss();
                 Toast.makeText(getApplicationContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void generateData(UserResponse userResponse) {
+    private void generateData(UserControlResponse userControlResponse) {
+        this.userControlResponse = userControlResponse;
         Toast.makeText(getApplicationContext(), "اطلاعات شما با موفقیت تغییر پیدا کرد", Toast.LENGTH_SHORT).show();
         User user = DatabaseInitializer.getUser(AppDatabase.getAppDatabase(getApplicationContext()));
-        user.setFirstName(userResponse.getFirstName());
-        user.setLastName(userResponse.getLastName());
-        user.setProfileImage(userResponse.getProfileImage());
+        user.setFirstName(userControlResponse.getFirstName());
+        user.setLastName(userControlResponse.getLastName());
+        user.setProfileImage(userControlResponse.getProfileImage());
         DatabaseInitializer.updateUser(AppDatabase.getAppDatabase(getApplicationContext()), user);
 
         finishEditing();

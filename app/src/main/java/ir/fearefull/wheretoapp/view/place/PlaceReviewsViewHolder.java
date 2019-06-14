@@ -6,10 +6,12 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 import ir.fearefull.wheretoapp.R;
+import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 
 public class PlaceReviewsViewHolder extends RecyclerView.ViewHolder {
     private TextView createdDateTextView, nameTextView, textTextView, downVoteTextView, upVoteTextView;
     private ImageView profileImageView;
+    private MaterialRatingBar userScoreRatingBar;
 
     public PlaceReviewsViewHolder(View view) {
         super(view);
@@ -19,6 +21,7 @@ public class PlaceReviewsViewHolder extends RecyclerView.ViewHolder {
         downVoteTextView = view.findViewById(R.id.downVoteTextView);
         upVoteTextView = view.findViewById(R.id.upVoteTextView);
         profileImageView = view.findViewById(R.id.profileImageView);
+        userScoreRatingBar = view.findViewById(R.id.userScoreRatingBar);
     }
 
     public TextView getCreatedDateTextView() {
@@ -67,5 +70,13 @@ public class PlaceReviewsViewHolder extends RecyclerView.ViewHolder {
 
     public void setProfileImageView(ImageView profileImageView) {
         this.profileImageView = profileImageView;
+    }
+
+    public MaterialRatingBar getUserScoreRatingBar() {
+        return userScoreRatingBar;
+    }
+
+    public void setUserScoreRatingBar(MaterialRatingBar userScoreRatingBar) {
+        this.userScoreRatingBar = userScoreRatingBar;
     }
 }

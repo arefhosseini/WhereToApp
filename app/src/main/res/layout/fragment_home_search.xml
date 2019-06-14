@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/fragmentHomeSearch"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/appBar">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                app:contentInsetLeft="0dp"
+                app:contentInsetRight="0dp"
+                app:contentInsetEnd="0dp"
+                app:contentInsetStart="0dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical">
+                    <ir.fearefull.wheretoapp.view.base.MyEditText
+                        android:id="@+id/searchEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:hint="@string/search_hint"
+                        android:textColorHint="@color/textLightSecondary"
+                        android:imeOptions="actionSearch"
+                        android:textColor="@color/textLightPrimary"
+                        android:textDirection="rtl"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        style="@style/MyTheme.TextAppearance.Header"
+                        android:drawableRight="@drawable/ic_search_white_24dp"
+                        android:drawablePadding="10dp"
+                        android:inputType="text"
+                        tools:ignore="Autofill,RtlHardcoded"/>
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+            <com.google.android.material.tabs.TabLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:id="@+id/tabs"
+                app:tabIndicatorColor="@color/textLightPrimary"
+                app:tabIndicatorHeight="2dp"
+                app:tabMode="fixed"
+                app:tabGravity="fill" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ir.fearefull.wheretoapp.view.base.MainPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tabs"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:ignore="PrivateResource" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

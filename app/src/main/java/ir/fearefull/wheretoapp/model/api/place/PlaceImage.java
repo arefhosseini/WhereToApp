@@ -13,20 +13,25 @@ public class PlaceImage implements Serializable {
     @SerializedName("place")
     private long place;
 
-    @SerializedName("up_vote")
-    private int up_vote;
+    @SerializedName("up_votes")
+    private int up_votes;
 
-    @SerializedName("down_vote")
-    private int down_vote;
+    @SerializedName("down_votes")
+    private int down_votes;
+
+    @SerializedName("your_vote")
+    private int your_vote;
 
     @SerializedName("image")
     private String image;
 
-    public PlaceImage(long user, long place, int up_vote, int down_vote, String image) {
+    public PlaceImage(long user, long place, int up_votes,
+                      int down_votes, int your_vote, String image) {
         this.user = user;
         this.place = place;
-        this.up_vote = up_vote;
-        this.down_vote = down_vote;
+        this.up_votes = up_votes;
+        this.down_votes = down_votes;
+        this.your_vote = your_vote;
         this.image = image;
     }
 
@@ -38,12 +43,16 @@ public class PlaceImage implements Serializable {
         return place;
     }
 
-    public int getUpVote() {
-        return up_vote;
+    public int getUpVotes() {
+        return up_votes;
     }
 
-    public int getDownVote() {
-        return down_vote;
+    public int getDownVotes() {
+        return down_votes;
+    }
+
+    public int getYourVote() {
+        return your_vote;
     }
 
     public String getImage() {
@@ -58,12 +67,16 @@ public class PlaceImage implements Serializable {
         this.place = place;
     }
 
-    public void setUpVote(int up_vote) {
-        this.up_vote = up_vote;
+    public void setUpVotes(int up_votes) {
+        this.up_votes = up_votes;
     }
 
-    public void setDownVote(int down_vote) {
-        this.down_vote = down_vote;
+    public void setDownVotes(int down_votes) {
+        this.down_votes = down_votes;
+    }
+
+    public void setYourVote(int your_vote) {
+        this.your_vote = your_vote;
     }
 
     public void setImage(String image) {

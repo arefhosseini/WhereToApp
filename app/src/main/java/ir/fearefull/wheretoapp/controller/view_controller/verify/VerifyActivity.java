@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.view_controller.verify.fragment.SendCodeFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.verify.fragment.SendPhoneNumberFragment;
-import ir.fearefull.wheretoapp.model.api.user.verify.VerifyResponse;
+import ir.fearefull.wheretoapp.model.api.user.control.VerifyUserResponse;
 
 public class VerifyActivity extends AppCompatActivity implements SendPhoneNumberFragment.OnClickListener {
 
@@ -36,8 +36,8 @@ public class VerifyActivity extends AppCompatActivity implements SendPhoneNumber
     }
 
     @Override
-    public void onSendPhoneListener(VerifyResponse verifyResponse) {
-        SendCodeFragment sendCodeFragment = new SendCodeFragment(verifyResponse);
+    public void onSendPhoneListener(VerifyUserResponse verifyUserResponse) {
+        SendCodeFragment sendCodeFragment = new SendCodeFragment(verifyUserResponse);
 
         Bundle args = new Bundle();
         args.putInt("fragment", 1);

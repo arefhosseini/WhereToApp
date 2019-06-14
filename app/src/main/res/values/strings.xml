@@ -45,4 +45,8 @@
     <string name="follow">دنبال کردن</string>
     <string name="dont_follow">لغو دنبال کردن</string>
     <string name="friend_head_text">دوستان</string>
+    <string name="total_places">همه مکان ها</string>
+    <string name="suggested_places">مخصوص شما</string>
+    <string name="search_hint">جستجو</string>
+    <string name="submit_your_ratings">امتیاز دهید</string>
 </resources>

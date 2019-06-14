@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="12dp"
+    tools:ignore="RtlHardcoded"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:civ_circle_background_color="@color/colorBackground2"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
+    <ir.fearefull.wheretoapp.view.base.MyTextView
+        android:id="@+id/nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@id/profileImageView"
+        android:layout_centerVertical="true"
+        style="@style/MyTheme.TextAppearance.Medium"
+        android:textColor="@color/textDarkPrimary" />
+</RelativeLayout>
