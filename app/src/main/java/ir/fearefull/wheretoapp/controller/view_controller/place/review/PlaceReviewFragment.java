@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +32,7 @@ import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientI
 import ir.fearefull.wheretoapp.controller.view_controller.place.dialog.CreateReviewDialog;
 import ir.fearefull.wheretoapp.controller.view_controller.place.dialog.CreateScoreDialog;
 import ir.fearefull.wheretoapp.controller.view_controller.place.home.PlaceHomeFragment;
+import ir.fearefull.wheretoapp.controller.view_controller.user.UserFragment;
 import ir.fearefull.wheretoapp.model.api.SimpleResponse;
 import ir.fearefull.wheretoapp.model.api.place.PlaceResponse;
 import ir.fearefull.wheretoapp.model.api.review.CreateReviewRequest;
@@ -41,6 +41,7 @@ import ir.fearefull.wheretoapp.model.api.review.PlaceReviewsResponse;
 import ir.fearefull.wheretoapp.model.api.score.CreatePlaceScoreRequest;
 import ir.fearefull.wheretoapp.model.api.score.PlaceScore;
 import ir.fearefull.wheretoapp.model.db.User;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,13 +51,13 @@ import static android.app.Activity.RESULT_OK;
 import static ir.fearefull.wheretoapp.utils.Constants.CREATE_REVIEW_DIALOG;
 import static ir.fearefull.wheretoapp.utils.Constants.CREATE_SCORE_DIALOG;
 
-public class PlaceReviewFragment extends Fragment {
+public class PlaceReviewFragment extends MyFragment implements PlaceReviewAdapterCallBack{
 
     private User user;
     private PlaceResponse placeResponse;
     private PlaceHomeFragment placeHomeFragment;
     private View parentView;
-    private PlaceReviewsAdapter placeReviewsAdapter;
+    private PlaceReviewAdapter placeReviewAdapter;
     private RecyclerView recyclerViewPlaceReviews;
     private List<PlaceReviewResponse> placeReviewResponseList;
     private TextView overallScoreTextView, foodScoreTextView, serviceScoreTextView,
@@ -71,7 +72,8 @@ public class PlaceReviewFragment extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public PlaceReviewFragment(User user, PlaceResponse placeResponse){
+    public PlaceReviewFragment(String TAG, User user, PlaceResponse placeResponse){
+        this.TAG = TAG;
         this.user = user;
         this.placeResponse = placeResponse;
     }
@@ -203,16 +205,16 @@ public class PlaceReviewFragment extends Fragment {
     }
 
     private void generateDataList(PlaceReviewsResponse placeReviewsResponse) {
-        this.placeReviewResponseList = placeReviewsResponse.getPlaceReviews();
+        this.placeReviewResponseList.addAll(placeReviewsResponse.getPlaceReviews());
         recyclerViewPlaceReviews = parentView.findViewById(R.id.recyclerViewPlaceReviews);
-        placeReviewsAdapter = new PlaceReviewsAdapter(this.placeReviewResponseList,
-                this, user);
+        placeReviewAdapter = new PlaceReviewAdapter(this, getContext(),
+                this.placeReviewResponseList, user);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),
                 RecyclerView.VERTICAL, false);
         recyclerViewPlaceReviews.addItemDecoration(
                 new DividerItemDecoration(recyclerViewPlaceReviews.getContext(), DividerItemDecoration.VERTICAL));
         recyclerViewPlaceReviews.setLayoutManager(layoutManager);
-        recyclerViewPlaceReviews.setAdapter(placeReviewsAdapter);
+        recyclerViewPlaceReviews.setAdapter(placeReviewAdapter);
     }
 
     private View.OnClickListener createScoreClickListener = new View.OnClickListener() {
@@ -312,5 +314,11 @@ public class PlaceReviewFragment extends Fragment {
         foodScoreTextView.setText(String.valueOf(placeResponse.getPlace().getFoodScoreAverage()));
         serviceScoreTextView.setText(String.valueOf(placeResponse.getPlace().getServiceScoreAverage()));
         ambianceScoreTextView.setText(String.valueOf(placeResponse.getPlace().getAmbianceScoreAverage()));
+    }
+
+    @Override
+    public void onOpenUserFragment(String phoneNumber) {
+        UserFragment fragment = new UserFragment(TAG, user, phoneNumber);
+        openFragment(fragment, R.id.fragmentPlace);
     }
 }

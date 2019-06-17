@@ -9,17 +9,16 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.place.PlaceFragment;
 import ir.fearefull.wheretoapp.model.api.user.UserResponse;
 import ir.fearefull.wheretoapp.model.api.user.favorite_place.UserFavoritePlaceResponse;
@@ -30,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UserFavoritePlaceFragment extends Fragment {
+public class UserFavoritePlaceFragment extends MyFragment {
 
     private User user;
     private UserResponse userResponse;
@@ -43,7 +42,8 @@ public class UserFavoritePlaceFragment extends Fragment {
     public UserFavoritePlaceFragment(){
     }
 
-    public UserFavoritePlaceFragment(User user, UserResponse userResponse){
+    public UserFavoritePlaceFragment(String TAG, User user, UserResponse userResponse){
+        this.TAG = TAG;
         this.userResponse = userResponse;
         this.user = user;
     }
@@ -86,7 +86,7 @@ public class UserFavoritePlaceFragment extends Fragment {
     }
 
     private void generateDataList(UserFavoritePlacesResponse userFavoritePlacesResponse) {
-        this.userFavoritePlaceResponseList = userFavoritePlacesResponse.getFavoritePlaces();
+        this.userFavoritePlaceResponseList.addAll(userFavoritePlacesResponse.getFavoritePlaces());
         recyclerViewUserFavoritePlaces = parentView.findViewById(R.id.recyclerViewUserFavoritePlaces);
         userFavoritePlacesAdapter = new UserFavoritePlacesAdapter(this.userFavoritePlaceResponseList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),
@@ -110,10 +110,7 @@ public class UserFavoritePlaceFragment extends Fragment {
     }
 
     private void showPlaceFragment(long placeId) {
-        Objects.requireNonNull(Objects.requireNonNull(getActivity()).getSupportFragmentManager())
-                .beginTransaction()
-                .replace(R.id.fragmentUserFavoritePlace, new PlaceFragment(user, placeId))
-                .addToBackStack(null)
-                .commit();
+        PlaceFragment fragment = new PlaceFragment(TAG, user, placeId);
+        openFragment(fragment, R.id.fragmentUserFavoritePlace);
     }
 }

@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.squareup.picasso.Picasso;
 
@@ -31,12 +30,13 @@ import ir.fearefull.wheretoapp.model.api.user.UserResponse;
 import ir.fearefull.wheretoapp.model.api.user.relation.UserRelationRequest;
 import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.utils.Constants;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UserFragment extends Fragment {
+public class UserFragment extends MyFragment {
 
     private View parentView;
     private User user;
@@ -52,7 +52,8 @@ public class UserFragment extends Fragment {
     public UserFragment(){
     }
 
-    public UserFragment(User user, String phoneNumber){
+    public UserFragment(String TAG, User user, String phoneNumber){
+        this.TAG = TAG;
         this.user = user;
         this.phoneNumber = phoneNumber;
     }
@@ -156,22 +157,16 @@ public class UserFragment extends Fragment {
         reviewsImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Objects.requireNonNull(Objects.requireNonNull(getActivity()).getSupportFragmentManager())
-                        .beginTransaction()
-                        .replace(R.id.fragmentUser, new UserReviewFragment(user, UserFragment.this.userResponse))
-                        .addToBackStack(null)
-                        .commit();
+                UserReviewFragment fragment = new UserReviewFragment(TAG, user, UserFragment.this.userResponse);
+                openFragment(fragment, R.id.fragmentUser);
             }
         });
 
         favoritePlacesImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Objects.requireNonNull(Objects.requireNonNull(getActivity()).getSupportFragmentManager())
-                        .beginTransaction()
-                        .replace(R.id.fragmentUser, new UserFavoritePlaceFragment(user, UserFragment.this.userResponse))
-                        .addToBackStack(null)
-                        .commit();
+                UserFavoritePlaceFragment fragment = new UserFavoritePlaceFragment(TAG, user, UserFragment.this.userResponse);
+                openFragment(fragment, R.id.fragmentUser);
             }
         });
     }
@@ -247,22 +242,16 @@ public class UserFragment extends Fragment {
     private View.OnClickListener onOpenFriendActivityFollowersSelected = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Objects.requireNonNull(Objects.requireNonNull(getActivity()).getSupportFragmentManager())
-                    .beginTransaction()
-                    .replace(R.id.fragmentUser, new RelationFragment(user, userResponse, 1))
-                    .addToBackStack(null)
-                    .commit();
+            RelationFragment fragment = new RelationFragment(TAG, user, userResponse, 1);
+            openFragment(fragment, R.id.fragmentUser);
         }
     };
 
     private View.OnClickListener onOpenFriendActivityFollowingsSelected = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Objects.requireNonNull(Objects.requireNonNull(getActivity()).getSupportFragmentManager())
-                    .beginTransaction()
-                    .replace(R.id.fragmentUser, new RelationFragment(user, userResponse, 0))
-                    .addToBackStack(null)
-                    .commit();
+            RelationFragment fragment = new RelationFragment(TAG, user, userResponse, 0);
+            openFragment(fragment, R.id.fragmentUser);
         }
     };
 }

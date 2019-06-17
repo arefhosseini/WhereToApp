@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
@@ -37,13 +36,14 @@ import ir.fearefull.wheretoapp.model.api.place.PlaceResponse;
 import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.utils.Constants;
 import ir.fearefull.wheretoapp.view.base.MainPager;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlaceFragment extends Fragment {
+public class PlaceFragment extends MyFragment {
 
     private User user;
     private long placeId;
@@ -72,7 +72,8 @@ public class PlaceFragment extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public PlaceFragment(User user, long placeId){
+    public PlaceFragment(String TAG, User user, long placeId){
+        this.TAG = TAG;
         this.user = user;
         this.placeId = placeId;
     }
@@ -227,9 +228,9 @@ public class PlaceFragment extends Fragment {
     private void setupViewPager(MainPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
 
-        placeHomeFragment = new PlaceHomeFragment(user, this.placeResponse);
-        placeMenuFragment = new PlaceMenuFragment(user, this.placeResponse);
-        placeReviewFragment = new PlaceReviewFragment(user, this.placeResponse);
+        placeHomeFragment = new PlaceHomeFragment(TAG, user, this.placeResponse);
+        placeMenuFragment = new PlaceMenuFragment(TAG, user, this.placeResponse);
+        placeReviewFragment = new PlaceReviewFragment(TAG, user, this.placeResponse);
 
         placeHomeFragment.setFragments(this, placeReviewFragment);
         placeReviewFragment.setFragments(placeHomeFragment);

@@ -94,7 +94,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:layout_gravity="right"
-                    android:text="@string/total_places"
+                    android:text="@string/best_places"
                     tools:ignore="RtlHardcoded" />
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewTotalPlaces"

@@ -1,4 +1,4 @@
-package ir.fearefull.wheretoapp.controller.view_controller.home.search.adapter;
+package ir.fearefull.wheretoapp.controller.view_controller.home.search.place_search;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +22,7 @@ public class PlaceSearchAdapter extends RecyclerView.Adapter<PlaceSearchViewHold
     private List<PlaceSearchResponse> placeSearchResponseList;
     private ViewGroup parent;
 
-    public PlaceSearchAdapter(List<PlaceSearchResponse> placeSearchResponseList) {
+    PlaceSearchAdapter(List<PlaceSearchResponse> placeSearchResponseList) {
         this.placeSearchResponseList = placeSearchResponseList;
     }
 

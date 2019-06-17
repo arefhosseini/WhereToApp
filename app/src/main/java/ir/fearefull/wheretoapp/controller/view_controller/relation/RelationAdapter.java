@@ -1,5 +1,6 @@
-package ir.fearefull.wheretoapp.controller.view_controller.relation.adapter;
+package ir.fearefull.wheretoapp.controller.view_controller.relation;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,7 +8,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -15,12 +15,10 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 
 import java.util.List;
-import java.util.Objects;
 
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
-import ir.fearefull.wheretoapp.controller.view_controller.user.UserFragment;
 import ir.fearefull.wheretoapp.model.api.SimpleResponse;
 import ir.fearefull.wheretoapp.model.api.user.relation.UserRelation;
 import ir.fearefull.wheretoapp.model.api.user.relation.UserRelationRequest;
@@ -34,16 +32,19 @@ import retrofit2.Response;
 
 public class RelationAdapter extends RecyclerView.Adapter<RelationViewHolder> {
 
+    private RelationAdapterCallBack callBack;
+    private Context context;
     private List<UserRelation> followingList;
     private User user;
     private ViewGroup parent;
-    private Fragment fragment;
     private GetDataService service;
 
-    public RelationAdapter(List<UserRelation> followingList, User user, Fragment fragment) {
+    public RelationAdapter(RelationAdapterCallBack callBack, Context context,
+                           List<UserRelation> followingList, User user) {
+        this.callBack = callBack;
+        this.context = context;
         this.followingList = followingList;
         this.user = user;
-        this.fragment = fragment;
         service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
     }
 
@@ -66,13 +67,13 @@ public class RelationAdapter extends RecyclerView.Adapter<RelationViewHolder> {
         if (!userRelation.getPhoneNumber().equals(user.getPhoneNumber())) {
             if (userRelation.getIsFollowing() == 0) {
                 holder.getFollowTextView().setText(R.string.follow);
-                holder.getFollowTextView().setTextColor(fragment.getResources().getColor(R.color.textLightPrimary));
-                holder.getFollowTextView().setBackground(fragment.getResources().getDrawable(R.drawable.follow_button_shape));
+                holder.getFollowTextView().setTextColor(context.getResources().getColor(R.color.textLightPrimary));
+                holder.getFollowTextView().setBackground(context.getResources().getDrawable(R.drawable.follow_button_shape));
             }
             else {
                 holder.getFollowTextView().setText(R.string.dont_follow);
-                holder.getFollowTextView().setTextColor(fragment.getResources().getColor(R.color.textDarkPrimary));
-                holder.getFollowTextView().setBackground(fragment.getResources().getDrawable(R.drawable.dont_follow_dark_button_shape));
+                holder.getFollowTextView().setTextColor(context.getResources().getColor(R.color.textDarkPrimary));
+                holder.getFollowTextView().setBackground(context.getResources().getDrawable(R.drawable.dont_follow_dark_button_shape));
             }
         }
         else
@@ -95,11 +96,7 @@ public class RelationAdapter extends RecyclerView.Adapter<RelationViewHolder> {
 
         @Override
         public void onClick(View v) {
-            Objects.requireNonNull(Objects.requireNonNull(fragment.getActivity()).getSupportFragmentManager())
-                    .beginTransaction()
-                    .replace(R.id.fragmentRelation, new UserFragment(user, phoneNumber))
-                    .addToBackStack(null)
-                    .commit();
+            callBack.onOpenUserFragment(phoneNumber);
         }
     }
 
@@ -139,19 +136,19 @@ public class RelationAdapter extends RecyclerView.Adapter<RelationViewHolder> {
             @Override
             public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
                 //progressDoalog.dismiss();
-                Toast.makeText(fragment.getContext(), "این کاربر به لیست دنبال کنندگان شما اضافه شد", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "این کاربر به لیست دنبال کنندگان شما اضافه شد", Toast.LENGTH_LONG).show();
                 
                 followingList.get(position).setIsFollowing(1);
                 textView.setText(R.string.dont_follow);
-                textView.setTextColor(fragment.getResources().getColor(R.color.textDarkPrimary));
-                textView.setBackground(fragment.getResources().getDrawable(R.drawable.dont_follow_dark_button_shape));
+                textView.setTextColor(context.getResources().getColor(R.color.textDarkPrimary));
+                textView.setBackground(context.getResources().getDrawable(R.drawable.dont_follow_dark_button_shape));
                 assert response.body() != null;
             }
 
             @Override
             public void onFailure(Call<SimpleResponse> call, Throwable t) {
                 //progressDoalog.dismiss();
-                Toast.makeText(fragment.getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -163,19 +160,19 @@ public class RelationAdapter extends RecyclerView.Adapter<RelationViewHolder> {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 //progressDoalog.dismiss();
-                Toast.makeText(fragment.getContext(), "این کاربر از لیست دنبال کنندگان شما حذف شد", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "این کاربر از لیست دنبال کنندگان شما حذف شد", Toast.LENGTH_LONG).show();
 
                 followingList.get(position).setIsFollowing(0);
                 textView.setText(R.string.follow);
-                textView.setTextColor(fragment.getResources().getColor(R.color.textLightPrimary));
-                textView.setBackground(fragment.getResources().getDrawable(R.drawable.follow_button_shape));
+                textView.setTextColor(context.getResources().getColor(R.color.textLightPrimary));
+                textView.setBackground(context.getResources().getDrawable(R.drawable.follow_button_shape));
                 assert response.body() != null;
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 //progressDoalog.dismiss();
-                Toast.makeText(fragment.getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }

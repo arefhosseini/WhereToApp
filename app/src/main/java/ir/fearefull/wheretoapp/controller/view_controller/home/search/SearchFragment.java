@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -24,15 +23,18 @@ import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
 import ir.fearefull.wheretoapp.controller.view_controller.base.ViewPagerAdapter;
+import ir.fearefull.wheretoapp.controller.view_controller.home.search.place_search.PlaceSearchFragment;
+import ir.fearefull.wheretoapp.controller.view_controller.home.search.user_search.UserSearchFragment;
 import ir.fearefull.wheretoapp.model.api.search.PlaceSearchResponse;
 import ir.fearefull.wheretoapp.model.api.search.UserSearchResponse;
 import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.view.base.MainPager;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends MyFragment {
 
     private View parentView;
     private User user;
@@ -52,7 +54,8 @@ public class SearchFragment extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public SearchFragment(User user){
+    public SearchFragment(String TAG, User user){
+        this.TAG = TAG;
         this.user = user;
     }
 
@@ -133,8 +136,8 @@ public class SearchFragment extends Fragment {
     private void setupViewPager(MainPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
 
-        userSearchFragment = new UserSearchFragment(this, user);
-        placeSearchFragment = new PlaceSearchFragment(this, user);
+        userSearchFragment = new UserSearchFragment(TAG, this, user);
+        placeSearchFragment = new PlaceSearchFragment(TAG, this, user);
 
         adapter.addFragment(userSearchFragment, "userSearch");
         adapter.addFragment(placeSearchFragment, "placeSearch");

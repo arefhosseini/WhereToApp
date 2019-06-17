@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -22,16 +21,16 @@ import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
 import ir.fearefull.wheretoapp.controller.view_controller.base.ViewPagerAdapter;
-import ir.fearefull.wheretoapp.controller.view_controller.relation.fragment.RelationPartFragment;
 import ir.fearefull.wheretoapp.model.api.user.UserResponse;
 import ir.fearefull.wheretoapp.model.api.user.relation.UserRelationResponse;
 import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.view.base.MainPager;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RelationFragment extends Fragment {
+public class RelationFragment extends MyFragment {
 
     private User user;
     private UserResponse userResponse;
@@ -53,7 +52,8 @@ public class RelationFragment extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public RelationFragment(User user, UserResponse userResponse, int initSelectTab){
+    public RelationFragment(String TAG, User user, UserResponse userResponse, int initSelectTab){
+        this.TAG = TAG;
         this.user = user;
         this.userResponse = userResponse;
         this.initSelectTab = initSelectTab;
@@ -154,8 +154,8 @@ public class RelationFragment extends Fragment {
     private void setupViewPager(MainPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
 
-        followingFragment = new RelationPartFragment(user, userRelationResponse.getFollowings());
-        followerFragment = new RelationPartFragment(user, userRelationResponse.getFollowers());
+        followingFragment = new RelationPartFragment(TAG, user, userRelationResponse.getFollowings());
+        followerFragment = new RelationPartFragment(TAG, user, userRelationResponse.getFollowers());
 
         adapter.addFragment(followingFragment, "following");
         adapter.addFragment(followerFragment, "follower");

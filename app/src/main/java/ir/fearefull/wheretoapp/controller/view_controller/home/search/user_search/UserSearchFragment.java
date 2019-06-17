@@ -1,4 +1,4 @@
-package ir.fearefull.wheretoapp.controller.view_controller.home.search;
+package ir.fearefull.wheretoapp.controller.view_controller.home.search.user_search;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,11 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ir.fearefull.wheretoapp.R;
-import ir.fearefull.wheretoapp.controller.view_controller.home.search.adapter.UserSearchAdapter;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
+import ir.fearefull.wheretoapp.controller.view_controller.home.search.SearchFragment;
+import ir.fearefull.wheretoapp.controller.view_controller.user.UserFragment;
 import ir.fearefull.wheretoapp.model.api.search.UserSearchResponse;
 import ir.fearefull.wheretoapp.model.db.User;
 
-public class UserSearchFragment extends Fragment {
+public class UserSearchFragment extends MyFragment implements UserSearchAdapterCallBack{
 
     private List<UserSearchResponse> userSearchResponseList;
 
@@ -33,7 +34,8 @@ public class UserSearchFragment extends Fragment {
         userSearchResponseList = new ArrayList<>();
     }
 
-    UserSearchFragment(SearchFragment searchFragment, User user){
+    public UserSearchFragment(String TAG, SearchFragment searchFragment, User user){
+        this.TAG = TAG;
         userSearchResponseList = new ArrayList<>();
         this.searchFragment = searchFragment;
         this.user = user;
@@ -55,16 +57,22 @@ public class UserSearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         parentView = view;
         recyclerViewUserSearch = parentView.findViewById(R.id.recyclerViewUserSearch);
-        userSearchAdapter = new UserSearchAdapter(userSearchResponseList, this, user);
+        userSearchAdapter = new UserSearchAdapter(this, userSearchResponseList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerViewUserSearch.setLayoutManager(layoutManager);
         recyclerViewUserSearch.setAdapter(userSearchAdapter);
     }
 
-    void setData(List<UserSearchResponse> userSearchResponseList) {
+    public void setData(List<UserSearchResponse> userSearchResponseList) {
         this.userSearchResponseList.clear();
         this.userSearchResponseList.addAll(userSearchResponseList);
 
         userSearchAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onOpenUserFragment(String phoneNumber) {
+        UserFragment fragment = new UserFragment(TAG, user, phoneNumber);
+        openFragment(fragment, R.id.fragmentHomeSearch);
     }
 }

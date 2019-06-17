@@ -1,41 +1,33 @@
-package ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.adapter;
+package ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.grid_view;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-
-import androidx.fragment.app.Fragment;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-import java.util.Objects;
 
-import ir.fearefull.wheretoapp.R;
-import ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.FullScreenPlaceImageFragment;
-import ir.fearefull.wheretoapp.model.api.place.Place;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyBaseAdapter;
 import ir.fearefull.wheretoapp.model.api.place.PlaceImage;
-import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.utils.Constants;
 
-public class GridViewPlaceImageAdapter extends BaseAdapter {
+public class GridViewPlaceImageAdapter extends MyBaseAdapter {
 
-    private Fragment fragment;
-    private Place place;
-    private User user;
+    private Context context;
+    private GridViewPlaceImageAdapterCallBack callBack;
     private List<PlaceImage> placeImages;
     private int imageWidth;
 
-    public GridViewPlaceImageAdapter(Fragment fragment, Place place, List<PlaceImage> placeImages,
-                                     int imageWidth, User user) {
-        this.fragment = fragment;
-        this.place = place;
+    public GridViewPlaceImageAdapter(Context context, GridViewPlaceImageAdapterCallBack callBack,
+                                     List<PlaceImage> placeImages, int imageWidth) {
+        this.context = context;
+        this.callBack = callBack;
         this.placeImages = placeImages;
         this.imageWidth = imageWidth;
-        this.user = user;
     }
 
     @Override
@@ -57,7 +49,7 @@ public class GridViewPlaceImageAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView;
         if (convertView == null) {
-            imageView = new ImageView(fragment.getContext());
+            imageView = new ImageView(context);
         } else {
             imageView = (ImageView) convertView;
         }
@@ -87,12 +79,7 @@ public class GridViewPlaceImageAdapter extends BaseAdapter {
 
         @Override
         public void onClick(View v) {
-            Objects.requireNonNull(Objects.requireNonNull(fragment.getActivity()).getSupportFragmentManager())
-                    .beginTransaction()
-                    .replace(R.id.fragmentGridViewPlaceImage,
-                            new FullScreenPlaceImageFragment(place, position, user))
-                    .addToBackStack(null)
-                    .commit();
+            callBack.onOpenFullScreenFragment(position);
         }
     }
 }

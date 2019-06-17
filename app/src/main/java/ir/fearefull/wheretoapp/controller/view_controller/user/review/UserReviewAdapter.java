@@ -1,5 +1,6 @@
 package ir.fearefull.wheretoapp.controller.view_controller.user.review;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -25,8 +25,6 @@ import java.util.concurrent.TimeUnit;
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
-import ir.fearefull.wheretoapp.controller.view_controller.place.PlaceFragment;
-import ir.fearefull.wheretoapp.controller.view_controller.user.UserFragment;
 import ir.fearefull.wheretoapp.model.api.SimpleResponse;
 import ir.fearefull.wheretoapp.model.api.place.review_vote.CreateReviewVoteRequest;
 import ir.fearefull.wheretoapp.model.api.place.review_vote.RemoveReviewVoteRequest;
@@ -40,20 +38,23 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UserReviewsAdapter extends RecyclerView.Adapter<UserReviewsViewHolder> {
+public class UserReviewAdapter extends RecyclerView.Adapter<UserReviewsViewHolder> {
 
+    private Context context;
+    private UserReviewAdapterCallBack callBack;
     private List<UserReviewResponse> userReviewResponseList;
     private UserResponse userResponse;
     private User user;
     private ViewGroup parent;
-    private Fragment fragment;
     private Date currentDate;
 
-    UserReviewsAdapter(List<UserReviewResponse> userReviewResponseList,
-                       Fragment fragment, UserResponse userResponse, User user) {
+    UserReviewAdapter(UserReviewAdapterCallBack callBack, Context context,
+                      List<UserReviewResponse> userReviewResponseList,
+                      UserResponse userResponse, User user) {
+        this.context = context;
+        this.callBack = callBack;
         this.userReviewResponseList = userReviewResponseList;
         this.userResponse = userResponse;
-        this.fragment = fragment;
         currentDate = new Date();
         this.user = user;
     }
@@ -153,11 +154,7 @@ public class UserReviewsAdapter extends RecyclerView.Adapter<UserReviewsViewHold
 
         @Override
         public void onClick(View v) {
-            Objects.requireNonNull(Objects.requireNonNull(fragment.getActivity()).getSupportFragmentManager())
-                    .beginTransaction()
-                    .replace(R.id.fragmentUserReview, new UserFragment(user, phoneNumber))
-                    .addToBackStack(null)
-                    .commit();
+            callBack.onOpenUserFragment(phoneNumber);
         }
     }
 
@@ -172,11 +169,7 @@ public class UserReviewsAdapter extends RecyclerView.Adapter<UserReviewsViewHold
 
         @Override
         public void onClick(View v) {
-            Objects.requireNonNull(Objects.requireNonNull(fragment.getActivity()).getSupportFragmentManager())
-                    .beginTransaction()
-                    .replace(R.id.fragmentUserReview, new PlaceFragment(user, placeId))
-                    .addToBackStack(null)
-                    .commit();
+            callBack.onOpenPlaceFragment(placeId);
         }
     }
 
@@ -295,13 +288,13 @@ public class UserReviewsAdapter extends RecyclerView.Adapter<UserReviewsViewHold
                     Objects.requireNonNull(downVoteTextView).setText(String.valueOf(userReviewResponseList.get(position).getDownVotes()));
                     Objects.requireNonNull(downVoteImageButton).setImageResource(R.mipmap.disabled_dislike);
                 }
-                Toast.makeText(fragment.getContext(), "رای شما ثبت شد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "رای شما ثبت شد", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<SimpleResponse> call, Throwable t) {
                 //progressDoalog.dismiss();
-                Toast.makeText(fragment.getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -323,13 +316,13 @@ public class UserReviewsAdapter extends RecyclerView.Adapter<UserReviewsViewHold
                         userReviewResponseList.get(position).getUpVotes() - 1);
                 upVoteTextView.setText(String.valueOf(userReviewResponseList.get(position).getUpVotes()));
                 upVoteImageButton.setImageResource(R.mipmap.disabled_like);
-                Toast.makeText(fragment.getContext(), "رای شما حذف شد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "رای شما حذف شد", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 //progressDoalog.dismiss();
-                Toast.makeText(fragment.getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -353,7 +346,7 @@ public class UserReviewsAdapter extends RecyclerView.Adapter<UserReviewsViewHold
                         userReviewResponseList.get(position).getDownVotes() + 1);
                 downVoteTextView.setText(String.valueOf(userReviewResponseList.get(position).getDownVotes()));
                 downVoteImageButton.setImageResource(R.mipmap.enabled_dislike);
-                Toast.makeText(fragment.getContext(), "رای شما ثبت شد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "رای شما ثبت شد", Toast.LENGTH_SHORT).show();
                 if (shouldChange) {
                     userReviewResponseList.get(position).setUpVotes(
                             userReviewResponseList.get(position).getUpVotes() - 1);
@@ -365,7 +358,7 @@ public class UserReviewsAdapter extends RecyclerView.Adapter<UserReviewsViewHold
             @Override
             public void onFailure(Call<SimpleResponse> call, Throwable t) {
                 //progressDoalog.dismiss();
-                Toast.makeText(fragment.getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -387,13 +380,13 @@ public class UserReviewsAdapter extends RecyclerView.Adapter<UserReviewsViewHold
                         userReviewResponseList.get(position).getDownVotes() - 1);
                 downVoteTextView.setText(String.valueOf(userReviewResponseList.get(position).getDownVotes()));
                 downVoteImageButton.setImageResource(R.mipmap.disabled_dislike);
-                Toast.makeText(fragment.getContext(), "رای شما حذف شد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "رای شما حذف شد", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 //progressDoalog.dismiss();
-                Toast.makeText(fragment.getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }

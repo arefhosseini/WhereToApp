@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -20,6 +21,10 @@ import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.utils.DatabaseInitializer;
 import ir.fearefull.wheretoapp.view.base.MainPager;
 
+import static ir.fearefull.wheretoapp.utils.Constants.HOME_TAB_TAG;
+import static ir.fearefull.wheretoapp.utils.Constants.PROFILE_TAB_TAG;
+import static ir.fearefull.wheretoapp.utils.Constants.SEARCH_TAB_TAG;
+
 public class HomeActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
@@ -27,6 +32,7 @@ public class HomeActivity extends AppCompatActivity {
     private User user;
 
     private int lastSelectedTab = 0;
+    private String lastSelectedTabTag;
     private int[] tabIcons = {
             R.mipmap.search_selected,
             R.mipmap.home_selected,
@@ -61,16 +67,19 @@ public class HomeActivity extends AppCompatActivity {
                     Objects.requireNonNull(tab.getCustomView()).findViewById(R.id.icon).setBackgroundResource(tabIcons[0]);
                     Objects.requireNonNull(Objects.requireNonNull(tabLayout.getTabAt(lastSelectedTab)).getCustomView()).findViewById(R.id.icon).setBackgroundResource(tabIcons[lastSelectedTab + 3]);
                     lastSelectedTab = 0;
+                    lastSelectedTabTag = SEARCH_TAB_TAG;
                 }
                 else if (tab.getPosition() == 1 && lastSelectedTab != 1) {
                     Objects.requireNonNull(tab.getCustomView()).findViewById(R.id.icon).setBackgroundResource(tabIcons[1]);
                     Objects.requireNonNull(Objects.requireNonNull(tabLayout.getTabAt(lastSelectedTab)).getCustomView()).findViewById(R.id.icon).setBackgroundResource(tabIcons[lastSelectedTab + 3]);
                     lastSelectedTab = 1;
+                    lastSelectedTabTag = HOME_TAB_TAG;
                 }
                 else if (tab.getPosition() == 2 && lastSelectedTab != 2) {
                     Objects.requireNonNull(tab.getCustomView()).findViewById(R.id.icon).setBackgroundResource(tabIcons[2]);
                     Objects.requireNonNull(Objects.requireNonNull(tabLayout.getTabAt(lastSelectedTab)).getCustomView()).findViewById(R.id.icon).setBackgroundResource(tabIcons[lastSelectedTab + 3]);
                     lastSelectedTab = 2;
+                    lastSelectedTabTag = PROFILE_TAB_TAG;
                 }
             }
 
@@ -90,8 +99,33 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            getSupportFragmentManager().popBackStack();
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+        if (count > 0) {
+            Fragment lastFragment = getSupportFragmentManager().findFragmentByTag(HOME_TAB_TAG + "_" + count);
+            if (lastFragment != null) {
+                if (lastSelectedTabTag.equals(HOME_TAB_TAG))
+                    getSupportFragmentManager().popBackStack();
+                else
+                    Objects.requireNonNull(tabLayout.getTabAt(1)).select();
+            }
+            else {
+                lastFragment = getSupportFragmentManager().findFragmentByTag(PROFILE_TAB_TAG + "_" + count);
+                if (lastFragment != null) {
+                    if (lastSelectedTabTag.equals(PROFILE_TAB_TAG))
+                        getSupportFragmentManager().popBackStack();
+                    else
+                        Objects.requireNonNull(tabLayout.getTabAt(2)).select();
+                }
+                else {
+                    lastFragment = getSupportFragmentManager().findFragmentByTag(SEARCH_TAB_TAG + "_" + count);
+                    if (lastFragment != null) {
+                        if (lastSelectedTabTag.equals(SEARCH_TAB_TAG))
+                            getSupportFragmentManager().popBackStack();
+                        else
+                            Objects.requireNonNull(tabLayout.getTabAt(0)).select();
+                    }
+                }
+            }
             //additional code
         } else {
             super.onBackPressed();
@@ -118,9 +152,9 @@ public class HomeActivity extends AppCompatActivity {
     private void setupViewPager(MainPager viewPager) {
         viewPager.setEnableSwipe(false);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        searchFragment = new SearchFragment(user);
-        homeFragment = new HomeFragment(user);
-        profileFragment = new ProfileFragment(user);
+        searchFragment = new SearchFragment(SEARCH_TAB_TAG, user);
+        homeFragment = new HomeFragment(HOME_TAB_TAG, user);
+        profileFragment = new ProfileFragment(PROFILE_TAB_TAG, user);
         adapter.addFragment(searchFragment, "Search");
         adapter.addFragment(homeFragment, "Home");
         adapter.addFragment(profileFragment, "Profile");

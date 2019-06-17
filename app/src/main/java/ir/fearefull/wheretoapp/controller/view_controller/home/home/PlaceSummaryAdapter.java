@@ -17,12 +17,12 @@ import ir.fearefull.wheretoapp.model.api.place.PlaceSummary;
 import ir.fearefull.wheretoapp.utils.Constants;
 import ir.fearefull.wheretoapp.view.home.PlaceSummaryViewHolder;
 
-public class PlacesSummaryAdapter extends RecyclerView.Adapter<PlaceSummaryViewHolder> {
+public class PlaceSummaryAdapter extends RecyclerView.Adapter<PlaceSummaryViewHolder> {
 
     private List<PlaceSummary> placeSummaryList;
     private ViewGroup parent;
 
-    public PlacesSummaryAdapter(List<PlaceSummary> placeSummaryList) {
+    public PlaceSummaryAdapter(List<PlaceSummary> placeSummaryList) {
         this.placeSummaryList = placeSummaryList;
     }
 

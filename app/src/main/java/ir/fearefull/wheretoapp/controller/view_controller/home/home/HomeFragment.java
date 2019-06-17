@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -27,16 +26,17 @@ import ir.fearefull.wheretoapp.controller.view_controller.place.PlaceFragment;
 import ir.fearefull.wheretoapp.model.api.place.PlaceSummary;
 import ir.fearefull.wheretoapp.model.api.place.PlacesResponse;
 import ir.fearefull.wheretoapp.model.db.User;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
 import ir.fearefull.wheretoapp.view.base.RecyclerTouchListener;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends MyFragment {
 
     private User user;
     private View parentView;
-    private PlacesSummaryAdapter totalPlacesAdapter, suggestedPlacesAdapter;
+    private PlaceSummaryAdapter totalPlacesAdapter, suggestedPlacesAdapter;
     private RecyclerView recyclerViewTotalPlaces, recyclerViewSuggestedPlaces;
     private List<PlaceSummary> totalPlacesList, suggestedPlacesList;
 
@@ -46,7 +46,8 @@ public class HomeFragment extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public HomeFragment(User user){
+    public HomeFragment(String TAG, User user){
+        this.TAG = TAG;
         this.user = user;
     }
 
@@ -80,8 +81,8 @@ public class HomeFragment extends Fragment {
 
         recyclerViewTotalPlaces = view.findViewById(R.id.recyclerViewTotalPlaces);
         recyclerViewSuggestedPlaces = view.findViewById(R.id.recyclerViewSuggestedPlaces);
-        totalPlacesAdapter = new PlacesSummaryAdapter(totalPlacesList);
-        suggestedPlacesAdapter = new PlacesSummaryAdapter(suggestedPlacesList);
+        totalPlacesAdapter = new PlaceSummaryAdapter(totalPlacesList);
+        suggestedPlacesAdapter = new PlaceSummaryAdapter(suggestedPlacesList);
         RecyclerView.LayoutManager layoutManagerTotalPlaces = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView.LayoutManager layoutManagerSuggestedPlaces = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewTotalPlaces.setLayoutManager(layoutManagerTotalPlaces);
@@ -152,10 +153,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void showPlaceFragment(long placeId) {
-        Objects.requireNonNull(Objects.requireNonNull(getActivity()).getSupportFragmentManager())
-                .beginTransaction()
-                .replace(R.id.fragmentHomeHome, new PlaceFragment(user, placeId))
-                .addToBackStack(null)
-                .commit();
+        PlaceFragment fragment = new PlaceFragment(TAG, user, placeId);
+        openFragment(fragment, R.id.fragmentHomeHome);
     }
 }

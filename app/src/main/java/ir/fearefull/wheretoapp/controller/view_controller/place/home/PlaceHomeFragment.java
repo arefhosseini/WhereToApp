@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -42,10 +41,11 @@ import java.util.Objects;
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.place.PlaceFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.place.dialog.CreateReviewDialog;
 import ir.fearefull.wheretoapp.controller.view_controller.place.dialog.CreateScoreDialog;
-import ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.GridViewPlaceImageFragment;
+import ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.grid_view.GridViewPlaceImageFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.place.review.PlaceReviewFragment;
 import ir.fearefull.wheretoapp.model.api.SimpleResponse;
 import ir.fearefull.wheretoapp.model.api.place.PlaceResponse;
@@ -66,7 +66,7 @@ import static ir.fearefull.wheretoapp.utils.Constants.CREATE_REVIEW_DIALOG;
 import static ir.fearefull.wheretoapp.utils.Constants.CREATE_SCORE_DIALOG;
 import static ir.fearefull.wheretoapp.utils.Constants.PICK_FROM_GALLERY;
 
-public class PlaceHomeFragment extends Fragment {
+public class PlaceHomeFragment extends MyFragment {
 
     private User user;
     private PlaceResponse placeResponse;
@@ -87,7 +87,8 @@ public class PlaceHomeFragment extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public PlaceHomeFragment(User user, PlaceResponse placeResponse){
+    public PlaceHomeFragment(String TAG, User user, PlaceResponse placeResponse){
+        this.TAG = TAG;
         this.user = user;
         this.placeResponse = placeResponse;
     }
@@ -395,12 +396,8 @@ public class PlaceHomeFragment extends Fragment {
     private View.OnClickListener onShowPlaceImages = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Objects.requireNonNull(Objects.requireNonNull(getActivity()).getSupportFragmentManager())
-                    .beginTransaction()
-                    .replace(R.id.fragmentPlace,
-                            new GridViewPlaceImageFragment(placeResponse.getPlace(), user))
-                    .addToBackStack(null)
-                    .commit();
+            GridViewPlaceImageFragment fragment = new GridViewPlaceImageFragment(TAG, placeResponse.getPlace(), user);
+            openFragment(fragment, R.id.fragmentPlace);
         }
     };
 
@@ -493,4 +490,6 @@ public class PlaceHomeFragment extends Fragment {
         serviceScoreTextView.setText(String.valueOf(placeResponse.getPlace().getServiceScoreAverage()));
         ambianceScoreTextView.setText(String.valueOf(placeResponse.getPlace().getAmbianceScoreAverage()));
     }
+
+
 }

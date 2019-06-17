@@ -1,4 +1,4 @@
-package ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image;
+package ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.grid_view;
 
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -11,16 +11,16 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import ir.fearefull.wheretoapp.R;
-import ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.adapter.GridViewPlaceImageAdapter;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
+import ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.full_screen.FullScreenPlaceImageFragment;
 import ir.fearefull.wheretoapp.model.api.place.Place;
 import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.utils.Constants;
 import ir.fearefull.wheretoapp.utils.Utils;
 
-public class GridViewPlaceImageFragment extends Fragment {
+public class GridViewPlaceImageFragment extends MyFragment implements GridViewPlaceImageAdapterCallBack {
 
     private View parentView;
     private Utils utils;
@@ -34,7 +34,8 @@ public class GridViewPlaceImageFragment extends Fragment {
     public GridViewPlaceImageFragment(){
     }
 
-    public GridViewPlaceImageFragment(Place place, User user){
+    public GridViewPlaceImageFragment(String TAG, Place place, User user){
+        this.TAG = TAG;
         this.place = place;
         this.user = user;
     }
@@ -74,8 +75,8 @@ public class GridViewPlaceImageFragment extends Fragment {
         InitializeGridLayout();
 
         // GridView adapter
-        adapter = new GridViewPlaceImageAdapter(this, place, place.getPlaceImages(),
-                columnWidth, user);
+        adapter = new GridViewPlaceImageAdapter(getContext(), this,
+                place.getPlaceImages(), columnWidth);
 
         // setting grid view adapter
         gridView.setAdapter(adapter);
@@ -95,5 +96,12 @@ public class GridViewPlaceImageFragment extends Fragment {
                 (int) padding);
         gridView.setHorizontalSpacing((int) padding);
         gridView.setVerticalSpacing((int) padding);
+    }
+
+    @Override
+    public void onOpenFullScreenFragment(int position) {
+        FullScreenPlaceImageFragment fragment = new FullScreenPlaceImageFragment(TAG, place,
+                position, user);
+        openFragment(fragment, R.id.fragmentGridViewPlaceImage);
     }
 }

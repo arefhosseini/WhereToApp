@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +20,9 @@ import java.util.List;
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
+import ir.fearefull.wheretoapp.controller.view_controller.place.PlaceFragment;
+import ir.fearefull.wheretoapp.controller.view_controller.user.UserFragment;
 import ir.fearefull.wheretoapp.model.api.review.UserReviewResponse;
 import ir.fearefull.wheretoapp.model.api.review.UserReviewsResponse;
 import ir.fearefull.wheretoapp.model.api.user.UserResponse;
@@ -29,11 +31,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UserReviewFragment extends Fragment {
+public class UserReviewFragment extends MyFragment implements UserReviewAdapterCallBack {
     private User user;
     private UserResponse userResponse;
     private View parentView;
-    private UserReviewsAdapter userReviewsAdapter;
+    private UserReviewAdapter userReviewAdapter;
     private RecyclerView recyclerViewUserReviews;
     private List<UserReviewResponse> userReviewResponseList;
 
@@ -41,7 +43,8 @@ public class UserReviewFragment extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public UserReviewFragment(User user, UserResponse userResponse){
+    public UserReviewFragment(String TAG, User user, UserResponse userResponse){
+        this.TAG = TAG;
         this.user = user;
         this.userResponse = userResponse;
     }
@@ -84,15 +87,27 @@ public class UserReviewFragment extends Fragment {
     }
 
     private void generateDataList(UserReviewsResponse userReviewsResponse) {
-        this.userReviewResponseList = userReviewsResponse.getUserReviews();
+        this.userReviewResponseList.addAll(userReviewsResponse.getUserReviews());
         recyclerViewUserReviews = parentView.findViewById(R.id.recyclerViewUserReviews);
-        userReviewsAdapter = new UserReviewsAdapter(this.userReviewResponseList,
-                this, userResponse, user);
+        userReviewAdapter = new UserReviewAdapter(this, getContext(), this.userReviewResponseList,
+                userResponse, user);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),
                 RecyclerView.VERTICAL, false);
         recyclerViewUserReviews.addItemDecoration(
                 new DividerItemDecoration(recyclerViewUserReviews.getContext(), DividerItemDecoration.VERTICAL));
         recyclerViewUserReviews.setLayoutManager(layoutManager);
-        recyclerViewUserReviews.setAdapter(userReviewsAdapter);
+        recyclerViewUserReviews.setAdapter(userReviewAdapter);
+    }
+
+    @Override
+    public void onOpenUserFragment(String phoneNumber) {
+        UserFragment fragment = new UserFragment(TAG, user, phoneNumber);
+        openFragment(fragment, R.id.fragmentRelation);
+    }
+
+    @Override
+    public void onOpenPlaceFragment(long placeId) {
+        PlaceFragment fragment = new PlaceFragment(TAG, user, placeId);
+        openFragment(fragment, R.id.fragmentUserReview);
     }
 }

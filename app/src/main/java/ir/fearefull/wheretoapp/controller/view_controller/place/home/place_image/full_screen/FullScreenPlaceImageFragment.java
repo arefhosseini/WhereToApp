@@ -1,4 +1,4 @@
-package ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image;
+package ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.full_screen;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,15 +8,14 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import ir.fearefull.wheretoapp.R;
-import ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.adapter.FullScreenPlaceImageAdapter;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
 import ir.fearefull.wheretoapp.model.api.place.Place;
 import ir.fearefull.wheretoapp.model.db.User;
 
-public class FullScreenPlaceImageFragment extends Fragment {
+public class FullScreenPlaceImageFragment extends MyFragment {
 
     private View parentView;
     private Place place;
@@ -29,7 +28,8 @@ public class FullScreenPlaceImageFragment extends Fragment {
     public FullScreenPlaceImageFragment(){
     }
 
-    public FullScreenPlaceImageFragment(Place place, int position, User user){
+    public FullScreenPlaceImageFragment(String TAG, Place place, int position, User user){
+        this.TAG = TAG;
         this.place = place;
         this.position = position;
         this.user = user;
@@ -64,7 +64,7 @@ public class FullScreenPlaceImageFragment extends Fragment {
             }
         });
 
-        adapter = new FullScreenPlaceImageAdapter(this, place, place.getPlaceImages(), user);
+        adapter = new FullScreenPlaceImageAdapter(getContext(), place.getPlaceImages(), user);
 
         viewPager.setAdapter(adapter);
 

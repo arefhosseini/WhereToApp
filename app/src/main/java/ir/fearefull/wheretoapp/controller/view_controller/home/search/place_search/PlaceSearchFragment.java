@@ -1,4 +1,4 @@
-package ir.fearefull.wheretoapp.controller.view_controller.home.search;
+package ir.fearefull.wheretoapp.controller.view_controller.home.search.place_search;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,22 +7,21 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import ir.fearefull.wheretoapp.R;
-import ir.fearefull.wheretoapp.controller.view_controller.home.search.adapter.PlaceSearchAdapter;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
+import ir.fearefull.wheretoapp.controller.view_controller.home.search.SearchFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.place.PlaceFragment;
 import ir.fearefull.wheretoapp.model.api.search.PlaceSearchResponse;
 import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.view.base.RecyclerTouchListener;
 
-public class PlaceSearchFragment extends Fragment {
+public class PlaceSearchFragment extends MyFragment {
 
     private SearchFragment searchFragment;
     private User user;
@@ -36,7 +35,8 @@ public class PlaceSearchFragment extends Fragment {
         placeSearchResponseList = new ArrayList<>();
     }
 
-    PlaceSearchFragment(SearchFragment searchFragment, User user){
+    public PlaceSearchFragment(String TAG, SearchFragment searchFragment, User user){
+        this.TAG = TAG;
         placeSearchResponseList = new ArrayList<>();
         this.searchFragment = searchFragment;
         this.user = user;
@@ -79,7 +79,7 @@ public class PlaceSearchFragment extends Fragment {
         }));
     }
 
-    void setData(List<PlaceSearchResponse> placeSearchResponseList) {
+    public void setData(List<PlaceSearchResponse> placeSearchResponseList) {
         this.placeSearchResponseList.clear();
         this.placeSearchResponseList.addAll(placeSearchResponseList);
 
@@ -87,10 +87,7 @@ public class PlaceSearchFragment extends Fragment {
     }
 
     private void showPlaceFragment(long placeId) {
-        Objects.requireNonNull(Objects.requireNonNull(getActivity()).getSupportFragmentManager())
-                .beginTransaction()
-                .replace(R.id.fragmentHomeSearch, new PlaceFragment(user, placeId))
-                .addToBackStack(null)
-                .commit();
+        PlaceFragment fragment = new PlaceFragment(TAG, user, placeId);
+        openFragment(fragment, R.id.fragmentHomeSearch);
     }
 }

@@ -1,9 +1,8 @@
 package ir.fearefull.wheretoapp.view.place;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
-
-import androidx.fragment.app.Fragment;
 
 import com.thoughtbot.expandablerecyclerview.viewholders.ChildViewHolder;
 
@@ -12,14 +11,14 @@ import ir.fearefull.wheretoapp.model.api.place.menu.FoodResponse;
 
 public class FoodViewHolder extends ChildViewHolder {
 
-    private Fragment fragment;
+    private Context context;
     private TextView nameTextView;
     private TextView detailTextView;
     private TextView priceTextView;
 
-    public FoodViewHolder(View itemView, Fragment fragment) {
+    public FoodViewHolder(View itemView, Context context) {
         super(itemView);
-        this.fragment = fragment;
+        this.context = context;
         nameTextView = itemView.findViewById(R.id.nameTextView);
         detailTextView = itemView.findViewById(R.id.detailTextView);
         priceTextView = itemView.findViewById(R.id.priceTextView);

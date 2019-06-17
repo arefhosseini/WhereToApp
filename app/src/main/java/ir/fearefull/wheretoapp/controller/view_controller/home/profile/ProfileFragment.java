@@ -14,11 +14,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.squareup.picasso.Picasso;
-
-import java.util.Objects;
 
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.local.AppDatabase;
@@ -34,11 +31,12 @@ import ir.fearefull.wheretoapp.model.api.user.control.UserControlResponse;
 import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.utils.Constants;
 import ir.fearefull.wheretoapp.utils.DatabaseInitializer;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends MyFragment {
 
     private User user;
     private UserResponse userResponse;
@@ -54,8 +52,9 @@ public class ProfileFragment extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public ProfileFragment(User user){
+    public ProfileFragment(String TAG, User user){
         this.user = user;
+        this.TAG = TAG;
     }
 
     @Override
@@ -149,22 +148,16 @@ public class ProfileFragment extends Fragment {
         reviewsImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Objects.requireNonNull(Objects.requireNonNull(getActivity()).getSupportFragmentManager())
-                        .beginTransaction()
-                        .replace(R.id.fragmentHomeProfile, new UserReviewFragment(user, ProfileFragment.this.userResponse))
-                        .addToBackStack(null)
-                        .commit();
+                UserReviewFragment fragment = new UserReviewFragment(TAG, user, ProfileFragment.this.userResponse);
+                openFragment(fragment, R.id.fragmentHomeProfile);
             }
         });
 
         favoritePlacesImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Objects.requireNonNull(Objects.requireNonNull(getActivity()).getSupportFragmentManager())
-                        .beginTransaction()
-                        .replace(R.id.fragmentHomeProfile, new UserFavoritePlaceFragment(user, ProfileFragment.this.userResponse))
-                        .addToBackStack(null)
-                        .commit();
+                UserFavoritePlaceFragment fragment = new UserFavoritePlaceFragment(TAG, user, ProfileFragment.this.userResponse);
+                openFragment(fragment, R.id.fragmentHomeProfile);
             }
         });
     }
@@ -192,22 +185,16 @@ public class ProfileFragment extends Fragment {
     private View.OnClickListener onOpenFriendActivityFollowersSelected = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Objects.requireNonNull(Objects.requireNonNull(getActivity()).getSupportFragmentManager())
-                    .beginTransaction()
-                    .replace(R.id.fragmentHomeProfile, new RelationFragment(user, userResponse, 1))
-                    .addToBackStack(null)
-                    .commit();
+            RelationFragment fragment = new RelationFragment(TAG, user, userResponse, 1);
+            openFragment(fragment, R.id.fragmentHomeProfile);
         }
     };
 
     private View.OnClickListener onOpenFriendActivityFollowingsSelected = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Objects.requireNonNull(Objects.requireNonNull(getActivity()).getSupportFragmentManager())
-                    .beginTransaction()
-                    .replace(R.id.fragmentHomeProfile, new RelationFragment(user, userResponse, 0))
-                    .addToBackStack(null)
-                    .commit();
+            RelationFragment fragment = new RelationFragment(TAG, user, userResponse, 0);
+            openFragment(fragment, R.id.fragmentHomeProfile);
         }
     };
 }

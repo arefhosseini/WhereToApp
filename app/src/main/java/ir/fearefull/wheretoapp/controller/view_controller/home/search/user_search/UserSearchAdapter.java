@@ -1,37 +1,30 @@
-package ir.fearefull.wheretoapp.controller.view_controller.home.search.adapter;
+package ir.fearefull.wheretoapp.controller.view_controller.home.search.user_search;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-import java.util.Objects;
 
 import ir.fearefull.wheretoapp.R;
-import ir.fearefull.wheretoapp.controller.view_controller.user.UserFragment;
 import ir.fearefull.wheretoapp.model.api.search.UserSearchResponse;
-import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.utils.Constants;
 import ir.fearefull.wheretoapp.view.search.UserSearchViewHolder;
 
 public class UserSearchAdapter extends RecyclerView.Adapter<UserSearchViewHolder> {
 
+    private UserSearchAdapterCallBack callBack;
     private List<UserSearchResponse> userSearchResponseList;
-    private Fragment fragment;
-    private User user;
     private ViewGroup parent;
 
-    public UserSearchAdapter(List<UserSearchResponse> userSearchResponseList,
-                             Fragment fragment, User user) {
+    UserSearchAdapter(UserSearchAdapterCallBack callBack, List<UserSearchResponse> userSearchResponseList) {
+        this.callBack = callBack;
         this.userSearchResponseList = userSearchResponseList;
-        this.fragment = fragment;
-        this.user = user;
     }
 
     @NonNull
@@ -66,11 +59,7 @@ public class UserSearchAdapter extends RecyclerView.Adapter<UserSearchViewHolder
 
         @Override
         public void onClick(View v) {
-            Objects.requireNonNull(Objects.requireNonNull(fragment.getActivity()).getSupportFragmentManager())
-                    .beginTransaction()
-                    .replace(R.id.fragmentHomeSearch, new UserFragment(user, phoneNumber))
-                    .addToBackStack(null)
-                    .commit();
+            callBack.onOpenUserFragment(phoneNumber);
         }
     }
 

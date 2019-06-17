@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,23 +27,25 @@ import ir.fearefull.wheretoapp.model.api.place.menu.Menu;
 import ir.fearefull.wheretoapp.model.api.place.menu.MenuResponse;
 import ir.fearefull.wheretoapp.model.api.place.menu.PlaceMenuResponse;
 import ir.fearefull.wheretoapp.model.db.User;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlaceMenuFragment extends Fragment {
+public class PlaceMenuFragment extends MyFragment {
 
     private User user;
     private PlaceResponse placeResponse;
     private View parentView;
-    private MenusAdapter menusAdapter;
+    private MenuAdapter menuAdapter;
     private RecyclerView recyclerViewPlaceMenu;
 
     public PlaceMenuFragment(){
     }
 
     @SuppressLint("ValidFragment")
-    public PlaceMenuFragment(User user, PlaceResponse placeResponse){
+    public PlaceMenuFragment(String TAG, User user, PlaceResponse placeResponse){
+        this.TAG = TAG;
         this.user = user;
         this.placeResponse = placeResponse;
     }
@@ -107,9 +108,9 @@ public class PlaceMenuFragment extends Fragment {
             menuList.add(menu);
         }
 
-        menusAdapter = new MenusAdapter(menuList, this);
+        menuAdapter = new MenuAdapter(menuList, getContext());
         recyclerViewPlaceMenu.setLayoutManager(layoutManager);
-        recyclerViewPlaceMenu.setAdapter(menusAdapter);
+        recyclerViewPlaceMenu.setAdapter(menuAdapter);
     }
 
 }

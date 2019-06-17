@@ -1,10 +1,9 @@
 package ir.fearefull.wheretoapp.controller.view_controller.place.menu;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import androidx.fragment.app.Fragment;
 
 import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter;
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
@@ -17,27 +16,27 @@ import ir.fearefull.wheretoapp.model.api.place.menu.Menu;
 import ir.fearefull.wheretoapp.view.place.FoodViewHolder;
 import ir.fearefull.wheretoapp.view.place.MenuViewHolder;
 
-public class MenusAdapter extends ExpandableRecyclerViewAdapter<MenuViewHolder, FoodViewHolder> {
+public class MenuAdapter extends ExpandableRecyclerViewAdapter<MenuViewHolder, FoodViewHolder> {
 
-    private Fragment fragment;
+    private Context context;
 
-    MenusAdapter(List<? extends ExpandableGroup> groups, Fragment fragment) {
+    MenuAdapter(List<? extends ExpandableGroup> groups, Context context) {
         super(groups);
-        this.fragment = fragment;
+        this.context = context;
     }
 
     @Override
     public MenuViewHolder onCreateGroupViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_place_menu, parent, false);
-        return new MenuViewHolder(view, fragment);
+        return new MenuViewHolder(view, context);
     }
 
     @Override
     public FoodViewHolder onCreateChildViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_place_menu_food, parent, false);
-        return new FoodViewHolder(view, fragment);
+        return new FoodViewHolder(view, context);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.adapter;
+package ir.fearefull.wheretoapp.controller.view_controller.place.home.place_image.full_screen;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,8 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.PagerAdapter;
 
 import com.squareup.picasso.Picasso;
 
@@ -24,8 +22,8 @@ import java.util.Objects;
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyPagerAdapter;
 import ir.fearefull.wheretoapp.model.api.SimpleResponse;
-import ir.fearefull.wheretoapp.model.api.place.Place;
 import ir.fearefull.wheretoapp.model.api.place.PlaceImage;
 import ir.fearefull.wheretoapp.model.api.place.place_image_vote.CreatePlaceImageVoteRequest;
 import ir.fearefull.wheretoapp.model.api.place.place_image_vote.RemovePlaceImageVoteRequest;
@@ -37,17 +35,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FullScreenPlaceImageAdapter extends PagerAdapter {
+public class FullScreenPlaceImageAdapter extends MyPagerAdapter {
 
-    private Fragment fragment;
+    private Context context;
     private List<PlaceImage> placeImageList;
     private User user;
     private LayoutInflater inflater;
 
-    // constructor
-    public FullScreenPlaceImageAdapter(Fragment fragment, Place place,
-                                       List<PlaceImage> placeImageList, User user) {
-        this.fragment = fragment;
+    public FullScreenPlaceImageAdapter(Context context, List<PlaceImage> placeImageList, User user) {
+        this.context = context;
         this.user = user;
         this.placeImageList = placeImageList;
     }
@@ -70,8 +66,7 @@ public class FullScreenPlaceImageAdapter extends PagerAdapter {
         
         PlaceImage placeImage = placeImageList.get(position);
 
-        inflater = (LayoutInflater) Objects.requireNonNull(fragment.getActivity())
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View viewLayout = Objects.requireNonNull(inflater).inflate(R.layout.card_fullscreen_place_image, container,
                 false);
 
@@ -227,13 +222,13 @@ public class FullScreenPlaceImageAdapter extends PagerAdapter {
                     Objects.requireNonNull(downVoteTextView).setText(String.valueOf(placeImageList.get(position).getDownVotes()));
                     Objects.requireNonNull(downVoteImageButton).setImageResource(R.mipmap.disabled_dislike);
                 }
-                Toast.makeText(fragment.getContext(), "رای شما ثبت شد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "رای شما ثبت شد", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<SimpleResponse> call, Throwable t) {
                 //progressDoalog.dismiss();
-                Toast.makeText(fragment.getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -255,13 +250,13 @@ public class FullScreenPlaceImageAdapter extends PagerAdapter {
                         placeImageList.get(position).getUpVotes() - 1);
                 upVoteTextView.setText(String.valueOf(placeImageList.get(position).getUpVotes()));
                 upVoteImageButton.setImageResource(R.mipmap.disabled_like);
-                Toast.makeText(fragment.getContext(), "رای شما حذف شد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "رای شما حذف شد", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 //progressDoalog.dismiss();
-                Toast.makeText(fragment.getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -285,7 +280,7 @@ public class FullScreenPlaceImageAdapter extends PagerAdapter {
                         placeImageList.get(position).getDownVotes() + 1);
                 downVoteTextView.setText(String.valueOf(placeImageList.get(position).getDownVotes()));
                 downVoteImageButton.setImageResource(R.mipmap.enabled_dislike);
-                Toast.makeText(fragment.getContext(), "رای شما ثبت شد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "رای شما ثبت شد", Toast.LENGTH_SHORT).show();
                 if (shouldChange) {
                     placeImageList.get(position).setUpVotes(
                             placeImageList.get(position).getUpVotes() - 1);
@@ -297,7 +292,7 @@ public class FullScreenPlaceImageAdapter extends PagerAdapter {
             @Override
             public void onFailure(Call<SimpleResponse> call, Throwable t) {
                 //progressDoalog.dismiss();
-                Toast.makeText(fragment.getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -319,13 +314,13 @@ public class FullScreenPlaceImageAdapter extends PagerAdapter {
                         placeImageList.get(position).getDownVotes() - 1);
                 downVoteTextView.setText(String.valueOf(placeImageList.get(position).getDownVotes()));
                 downVoteImageButton.setImageResource(R.mipmap.disabled_dislike);
-                Toast.makeText(fragment.getContext(), "رای شما حذف شد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "رای شما حذف شد", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 //progressDoalog.dismiss();
-                Toast.makeText(fragment.getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }
