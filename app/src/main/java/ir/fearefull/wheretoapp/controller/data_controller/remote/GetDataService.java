@@ -62,10 +62,7 @@ public interface GetDataService {
     Call<ResponseBody> removeUserFavoritePlace(@Body RequestBody requestBody);
 
     @POST("/user/favorite_place_type/")
-    Call<SimpleResponse> createUserFavoritePlaceType(@Body RequestBody requestBody);
-
-    @HTTP(method = "DELETE", path = "/user/favorite_place_type/", hasBody = true)
-    Call<ResponseBody> removeUserFavoritePlaceType(@Body RequestBody requestBody);
+    Call<SimpleResponse> controlUserFavoritePlaceType(@Body RequestBody requestBody);
 
     @GET("/user/{yourPhoneNumber}/{userPhoneNumber}/")
     Call<UserResponse> getUser(@Path("yourPhoneNumber") String yourPhoneNumber,

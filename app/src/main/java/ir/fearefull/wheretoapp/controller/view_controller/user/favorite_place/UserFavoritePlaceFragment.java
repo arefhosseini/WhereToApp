@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,7 @@ public class UserFavoritePlaceFragment extends MyFragment {
     private View parentView;
     private UserFavoritePlacesAdapter userFavoritePlacesAdapter;
     private RecyclerView recyclerViewUserFavoritePlaces;
+    private ImageButton backImageButton;
 
     public UserFavoritePlaceFragment(){
     }
@@ -64,6 +66,14 @@ public class UserFavoritePlaceFragment extends MyFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         parentView = view;
         userFavoritePlaceResponseList = new ArrayList<>();
+        backImageButton = parentView.findViewById(R.id.backImageButton);
+
+        backImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         /*Create handle for the RetrofitInstance interface*/
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);

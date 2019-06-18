@@ -24,8 +24,10 @@
         android:lines="3"
         android:maxLines="5"
         android:gravity="right"
-        android:textSize="16sp"
+        style="@style/MyTheme.TextAppearance.Small"
         android:inputType="textMultiLine"
+        android:padding="10dp"
+        android:background="@drawable/background_multi_line_edit_text"
         android:layout_marginTop="8dp"
         android:textColor="@color/textDarkPrimary"
         tools:ignore="RtlHardcoded" />

@@ -50,4 +50,12 @@
     <string name="search_hint">جستجو</string>
     <string name="submit_your_ratings">امتیاز دهید</string>
     <string name="place_images_head_text">عکس های آپلود شده</string>
+    <string name="favorite_place_head_text">مکان های مورد علاقه</string>
+    <string name="user_review_head_text">نظرات</string>
+    <string name="favorite_place_types">سلیقه کاربر</string>
+    <string name="your_favorite_place_types">سلیقه شما</string>
+    <string name="type_italian">ایتالیایی</string>
+    <string name="type_irani">ایرانی</string>
+    <string name="type_fast_food">فست فود</string>
+    <string name="type_cafe">کافه</string>
 </resources>

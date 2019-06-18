@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/fragmentUserFavoritePlaceType"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:clipChildren="false"
+    android:focusable="true"
+    android:clickable="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/appBar"
+            android:theme="@style/MyTheme.AppBarOverlay">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                app:contentInsetLeft="0dp"
+                app:contentInsetRight="0dp"
+                app:contentInsetEnd="0dp"
+                app:contentInsetStart="0dp"
+                app:popupTheme="@style/MyTheme.PopupOverlay" >
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+                    <ir.fearefull.wheretoapp.view.base.MyTextView
+                        android:id="@+id/appName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:text="@string/favorite_place_types"
+                        style="@style/MyTheme.TextAppearance.Header"
+                        android:textColor="@color/textLightPrimary" />
+                    <ImageButton
+                        android:id="@+id/backImageButton"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="12dp"
+                        android:background="?actionBarItemBackground"
+                        android:src="@drawable/ic_arrow_forward_white_24dp"
+                        tools:ignore="RtlHardcoded" />
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:background="@color/colorBackground"
+            android:orientation="horizontal"
+            tools:ignore="PrivateResource">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:orientation="vertical"
+                android:layout_margin="18dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentTop="true"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="86dp"
+                            android:layout_weight="1">
+                            <LinearLayout
+                                android:id="@+id/typeItalianLayout"
+                                android:layout_width="86dp"
+                                android:layout_height="86dp"
+                                android:padding="10dp"
+                                android:background="@drawable/background_favorite_place_type"
+                                android:orientation="vertical"
+                                android:layout_centerInParent="true"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:gravity="center_horizontal">
+
+                                <ImageView
+                                    android:id="@+id/typeItalianImageView"
+                                    android:layout_width="36dp"
+                                    android:layout_height="36dp"
+                                    android:src="@mipmap/type_italian_unselected"/>
+                                <ir.fearefull.wheretoapp.view.base.MyTextView
+                                    android:id="@+id/typeItalianTextView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:gravity="center"
+                                    style="@style/MyTheme.TextAppearance.Small"
+                                    android:textColor="@color/textDarkPrimary"
+                                    android:text="@string/type_italian"/>
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="86dp"
+                            android:layout_weight="1">
+
+                            <LinearLayout
+                                android:id="@+id/typeFastFoodLayout"
+                                android:layout_width="86dp"
+                                android:layout_height="86dp"
+                                android:padding="10dp"
+                                android:background="@drawable/background_favorite_place_type"
+                                android:orientation="vertical"
+                                android:layout_centerInParent="true"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:gravity="center_horizontal">
+
+                                <ImageView
+                                    android:id="@+id/typeFastFoodImageView"
+                                    android:layout_width="36dp"
+                                    android:layout_height="36dp"
+                                    android:src="@mipmap/type_fast_food_unselected"/>
+                                <ir.fearefull.wheretoapp.view.base.MyTextView
+                                    android:id="@+id/typeFastFoodTextView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:gravity="center"
+                                    style="@style/MyTheme.TextAppearance.Small"
+                                    android:textColor="@color/textDarkPrimary"
+                                    android:text="@string/type_fast_food"/>
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="86dp"
+                            android:layout_weight="1">
+                            <LinearLayout
+                                android:id="@+id/typeIraniLayout"
+                                android:layout_width="86dp"
+                                android:layout_height="86dp"
+                                android:padding="10dp"
+                                android:background="@drawable/background_favorite_place_type"
+                                android:orientation="vertical"
+                                android:layout_centerInParent="true"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:gravity="center_horizontal">
+
+                                <ImageView
+                                    android:id="@+id/typeIraniImageView"
+                                    android:layout_width="36dp"
+                                    android:layout_height="36dp"
+                                    android:src="@mipmap/type_irani_unselected"/>
+                                <ir.fearefull.wheretoapp.view.base.MyTextView
+                                    android:id="@+id/typeIraniTextView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:gravity="center"
+                                    style="@style/MyTheme.TextAppearance.Small"
+                                    android:textColor="@color/textDarkPrimary"
+                                    android:text="@string/type_irani"/>
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="86dp"
+                            android:layout_weight="1">
+
+                            <LinearLayout
+                                android:id="@+id/typeCafeLayout"
+                                android:layout_width="86dp"
+                                android:layout_height="86dp"
+                                android:padding="10dp"
+                                android:background="@drawable/background_favorite_place_type"
+                                android:orientation="vertical"
+                                android:layout_centerInParent="true"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:gravity="center_horizontal">
+
+                                <ImageView
+                                    android:id="@+id/typeCafeImageView"
+                                    android:layout_width="36dp"
+                                    android:layout_height="36dp"
+                                    android:src="@mipmap/type_cafe_unselected"/>
+                                <ir.fearefull.wheretoapp.view.base.MyTextView
+                                    android:id="@+id/typeCafeTextView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:gravity="center"
+                                    style="@style/MyTheme.TextAppearance.Small"
+                                    android:textColor="@color/textDarkPrimary"
+                                    android:text="@string/type_cafe"/>
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ir.fearefull.wheretoapp.view.base.MyButton
+                    android:id="@+id/confirmButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_send_phone"
+                    android:textSize="16sp"
+                    android:background="@drawable/button"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    android:minHeight="0dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:textColor="@android:color/white"
+                    android:focusable="true"
+                    android:clickable="true"/>
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

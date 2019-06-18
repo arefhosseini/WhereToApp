@@ -15,4 +15,12 @@ public class MyFragment extends Fragment {
                 .addToBackStack(null)
                 .commit();
     }
+
+    protected void finish() {
+        getChildFragmentManager()
+                .beginTransaction()
+                .remove(this)
+                .commit();
+        getChildFragmentManager().popBackStack();
+    }
 }

@@ -2,10 +2,15 @@ package ir.fearefull.wheretoapp.controller.view_controller.place.dialog;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -48,8 +53,19 @@ public class CreateReviewDialog extends DialogFragment implements View.OnClickLi
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
+
+        Window window = getDialog().getWindow();
+        Point size = new Point();
+
+        Display display = Objects.requireNonNull(window).getWindowManager().getDefaultDisplay();
+        display.getSize(size);
+
+        int width = size.x;
+
+        window.setLayout((int) (width * 0.75), WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setGravity(Gravity.CENTER);
     }
 
     @Override

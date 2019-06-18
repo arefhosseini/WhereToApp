@@ -22,15 +22,16 @@ import java.util.Objects;
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.relation.RelationFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.user.favorite_place.UserFavoritePlaceFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.user.review.UserReviewFragment;
+import ir.fearefull.wheretoapp.model.api.Enum.PlaceTypeEnum;
 import ir.fearefull.wheretoapp.model.api.SimpleResponse;
 import ir.fearefull.wheretoapp.model.api.user.UserResponse;
 import ir.fearefull.wheretoapp.model.api.user.relation.UserRelationRequest;
 import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.utils.Constants;
-import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,12 +43,14 @@ public class UserFragment extends MyFragment {
     private User user;
     private String phoneNumber;
     private UserResponse userResponse;
-    private ImageButton backImageButton, favoritePlacesImageButton, reviewsImageButton;
+    private ImageButton backImageButton, favoritePlacesImageButton,
+            reviewsImageButton;
     private ImageView profileImageView;
-    private LinearLayout followersLayout, followingsLayout;
-    private TextView followTextView, userScoreTextView, firstNameTextView, lastNameTextView, followersCountTextView,
-            followingsCountTextView, favoritePlacesCountTextView, scoresCountTextView,
-            reviewsCountTextView, placeImagesCountTextView;
+    private LinearLayout followersLayout, followingsLayout, placeTypesLayout;
+    private TextView followTextView, userScoreTextView, firstNameTextView, lastNameTextView,
+            favoritePlaceTypesCountTextView, followersCountTextView, followingsCountTextView,
+            favoritePlacesCountTextView, scoresCountTextView, reviewsCountTextView,
+            placeImagesCountTextView, placeTypeTextView;
 
     public UserFragment(){
     }
@@ -83,21 +86,19 @@ public class UserFragment extends MyFragment {
         lastNameTextView = parentView.findViewById(R.id.lastNameTextView);
         followersCountTextView = parentView.findViewById(R.id.followersCountTextView);
         followingsCountTextView = parentView.findViewById(R.id.followingsCountTextView);
+        favoritePlaceTypesCountTextView = view.findViewById(R.id.favoritePlaceTypesCountTextView);
         favoritePlacesCountTextView = parentView.findViewById(R.id.favoritePlacesCountTextView);
         scoresCountTextView = parentView.findViewById(R.id.scoresCountTextView);
         reviewsCountTextView = parentView.findViewById(R.id.reviewsCountTextView);
         placeImagesCountTextView = parentView.findViewById(R.id.placeImagesCountTextView);
         followersLayout = parentView.findViewById(R.id.followersLayout);
         followingsLayout = parentView.findViewById(R.id.followingsLayout);
+        placeTypesLayout = view.findViewById(R.id.placeTypesLayout);
 
         backImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getChildFragmentManager()
-                        .beginTransaction()
-                        .remove(UserFragment.this)
-                        .commit();
-                getChildFragmentManager().popBackStack();
+                finish();
             }
         });
 
@@ -153,6 +154,19 @@ public class UserFragment extends MyFragment {
         scoresCountTextView.setText(String.valueOf(userResponse.getPlaceScoresCount()));
         reviewsCountTextView.setText(String.valueOf(userResponse.getReviewsCount()));
         placeImagesCountTextView.setText(String.valueOf(userResponse.getUploadedImagesCount()));
+
+        if (userResponse.getFavoritePlaceTypes().isEmpty()) {
+            favoritePlaceTypesCountTextView.setText("0");
+        }
+        else {
+            favoritePlaceTypesCountTextView.setVisibility(View.GONE);
+            placeTypesLayout.setVisibility(View.VISIBLE);
+            for (PlaceTypeEnum placeTypeEnum: userResponse.getFavoritePlaceTypes()) {
+                placeTypeTextView = (TextView) getLayoutInflater().inflate(R.layout.card_place_type, placeTypesLayout, false);
+                placeTypeTextView.setText(placeTypeEnum.getText());
+                placeTypesLayout.addView(placeTypeTextView);
+            }
+        }
 
         reviewsImageButton.setOnClickListener(new View.OnClickListener() {
             @Override

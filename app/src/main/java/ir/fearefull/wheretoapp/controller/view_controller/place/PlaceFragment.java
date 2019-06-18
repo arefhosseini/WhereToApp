@@ -108,11 +108,7 @@ public class PlaceFragment extends MyFragment {
         backImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getChildFragmentManager()
-                        .beginTransaction()
-                        .remove(PlaceFragment.this)
-                        .commit();
-                getChildFragmentManager().popBackStack();
+                finish();
             }
         });
 

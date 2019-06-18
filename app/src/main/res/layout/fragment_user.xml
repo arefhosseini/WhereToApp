@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:clipChildren="false"
+    android:focusable="true"
+    android:clickable="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -209,7 +211,65 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layoutDirection="rtl">
 
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:scaleX="-1"
+                                android:id="@+id/favoritePlaceTypesImageView"
+                                android:src="@mipmap/place_type"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"/>
+
+                            <ir.fearefull.wheretoapp.view.base.MyTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/favoritePlaceTypesTextView"
+                                style="@style/MyTheme.TextAppearance.Medium"
+                                android:textColor="@color/textDarkPrimary"
+                                android:gravity="right"
+                                android:layout_toLeftOf="@id/favoritePlaceTypesImageView"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:text="@string/favorite_place_types" />
+
+                            <ir.fearefull.wheretoapp.view.base.MyTextView
+                                android:id="@+id/favoritePlaceTypesCountTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/MyTheme.TextAppearance.XSmall"
+                                android:background="@drawable/circle_number_shape"
+                                android:textColor="@color/textLightPrimary"
+                                android:gravity="center"
+                                android:layout_toLeftOf="@id/favoritePlaceTypesTextView"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp" />
+
+                        </RelativeLayout>
+                        <LinearLayout
+                            android:id="@+id/placeTypesLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|center_vertical"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            android:orientation="horizontal"
+                            android:paddingTop="8dp"
+                            tools:ignore="RtlHardcoded" />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.3dp"
+                        android:background="@android:color/darker_gray"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

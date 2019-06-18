@@ -61,11 +61,7 @@ public class GridViewPlaceImageFragment extends MyFragment implements GridViewPl
         backImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getChildFragmentManager()
-                        .beginTransaction()
-                        .remove(GridViewPlaceImageFragment.this)
-                        .commit();
-                getChildFragmentManager().popBackStack();
+                finish();
             }
         });
 

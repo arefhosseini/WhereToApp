@@ -7,7 +7,7 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorAccent2">#BFD81B60</color>
     <color name="colorBackground">#eff2f2</color>
-    <color name="colorBackground2">#BFEFF2F2</color>
+    <color name="colorBackground2">#BFDFE0E0</color>
     <color name="colorGlass">#3E141414</color>
 
     <!-- Dark Text Color for Light Background -->

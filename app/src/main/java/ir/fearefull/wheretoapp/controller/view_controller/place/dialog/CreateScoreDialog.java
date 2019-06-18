@@ -3,10 +3,15 @@ package ir.fearefull.wheretoapp.controller.view_controller.place.dialog;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -45,6 +50,22 @@ public class CreateScoreDialog extends DialogFragment implements View.OnClickLis
                              Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.dialog_create_score, container, false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Window window = getDialog().getWindow();
+        Point size = new Point();
+
+        Display display = Objects.requireNonNull(window).getWindowManager().getDefaultDisplay();
+        display.getSize(size);
+
+        int width = size.x;
+
+        window.setLayout((int) (width * 0.75), WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setGravity(Gravity.CENTER);
     }
 
     @Override

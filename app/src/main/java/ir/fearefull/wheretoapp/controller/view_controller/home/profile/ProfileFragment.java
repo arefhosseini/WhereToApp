@@ -17,35 +17,41 @@ import androidx.annotation.Nullable;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import ir.fearefull.wheretoapp.R;
 import ir.fearefull.wheretoapp.controller.data_controller.local.AppDatabase;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.GetDataService;
 import ir.fearefull.wheretoapp.controller.data_controller.remote.RetrofitClientInstance;
+import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.edit_profile.EditProfileActivity;
 import ir.fearefull.wheretoapp.controller.view_controller.relation.RelationFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.user.favorite_place.UserFavoritePlaceFragment;
+import ir.fearefull.wheretoapp.controller.view_controller.user.favorite_place_type.UserFavoritePlaceTypeFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.user.review.UserReviewFragment;
 import ir.fearefull.wheretoapp.controller.view_controller.verify.VerifyActivity;
+import ir.fearefull.wheretoapp.model.api.Enum.PlaceTypeEnum;
 import ir.fearefull.wheretoapp.model.api.user.UserResponse;
 import ir.fearefull.wheretoapp.model.api.user.control.UserControlResponse;
 import ir.fearefull.wheretoapp.model.db.User;
 import ir.fearefull.wheretoapp.utils.Constants;
 import ir.fearefull.wheretoapp.utils.DatabaseInitializer;
-import ir.fearefull.wheretoapp.controller.view_controller.base.MyFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProfileFragment extends MyFragment {
+public class ProfileFragment extends MyFragment implements UserFavoritePlaceTypeCallBack {
 
     private User user;
     private UserResponse userResponse;
-    private ImageButton logoutImageButton, favoritePlacesImageButton, reviewsImageButton;
+    private ImageButton logoutImageButton, favoritePlaceTypesImageButton, favoritePlacesImageButton,
+            reviewsImageButton;
     private ImageView profileImageView;
-    private LinearLayout followersLayout, followingsLayout;
-    private TextView editProfileTextView, userScoreTextView, firstNameTextView, lastNameTextView, followersCountTextView,
-            followingsCountTextView, favoritePlacesCountTextView, scoresCountTextView,
-            reviewsCountTextView, placeImagesCountTextView;
+    private LinearLayout followersLayout, followingsLayout, placeTypesLayout;
+    private TextView editProfileTextView, userScoreTextView, firstNameTextView, lastNameTextView,
+            followersCountTextView, followingsCountTextView, favoritePlaceTypesCountTextView,
+            favoritePlacesCountTextView, scoresCountTextView, reviewsCountTextView,
+            placeImagesCountTextView, placeTypeTextView;
 
     public ProfileFragment(){
 
@@ -74,6 +80,7 @@ public class ProfileFragment extends MyFragment {
 
         logoutImageButton = view.findViewById(R.id.logoutImageButton);
         favoritePlacesImageButton = view.findViewById(R.id.favoritePlacesImageButton);
+        favoritePlaceTypesImageButton = view.findViewById(R.id.favoritePlaceTypesImageButton);
         reviewsImageButton = view.findViewById(R.id.reviewsImageButton);
         profileImageView = view.findViewById(R.id.profileImageView);
         editProfileTextView = view.findViewById(R.id.editProfileTextView);
@@ -82,12 +89,14 @@ public class ProfileFragment extends MyFragment {
         lastNameTextView = view.findViewById(R.id.lastNameTextView);
         followersCountTextView = view.findViewById(R.id.followersCountTextView);
         followingsCountTextView = view.findViewById(R.id.followingsCountTextView);
+        favoritePlaceTypesCountTextView = view.findViewById(R.id.favoritePlaceTypesCountTextView);
         favoritePlacesCountTextView = view.findViewById(R.id.favoritePlacesCountTextView);
         scoresCountTextView = view.findViewById(R.id.scoresCountTextView);
         reviewsCountTextView = view.findViewById(R.id.reviewsCountTextView);
         placeImagesCountTextView = view.findViewById(R.id.placeImagesCountTextView);
         followersLayout = view.findViewById(R.id.followersLayout);
         followingsLayout = view.findViewById(R.id.followingsLayout);
+        placeTypesLayout = view.findViewById(R.id.placeTypesLayout);
 
         followersLayout.setOnClickListener(onOpenFriendActivityFollowersSelected);
         followingsLayout.setOnClickListener(onOpenFriendActivityFollowingsSelected);
@@ -145,6 +154,28 @@ public class ProfileFragment extends MyFragment {
         reviewsCountTextView.setText(String.valueOf(userResponse.getReviewsCount()));
         placeImagesCountTextView.setText(String.valueOf(userResponse.getUploadedImagesCount()));
 
+        if (userResponse.getFavoritePlaceTypes().isEmpty()) {
+            favoritePlaceTypesCountTextView.setText("0");
+        }
+        else {
+            favoritePlaceTypesCountTextView.setVisibility(View.GONE);
+            placeTypesLayout.setVisibility(View.VISIBLE);
+            for (PlaceTypeEnum placeTypeEnum: userResponse.getFavoritePlaceTypes()) {
+                placeTypeTextView = (TextView) getLayoutInflater().inflate(R.layout.card_place_type, placeTypesLayout, false);
+                placeTypeTextView.setText(placeTypeEnum.getText());
+                placeTypesLayout.addView(placeTypeTextView);
+            }
+        }
+
+        favoritePlaceTypesImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UserFavoritePlaceTypeFragment fragment = new UserFavoritePlaceTypeFragment(ProfileFragment.this,
+                        TAG, ProfileFragment.this.userResponse);
+                openFragment(fragment, R.id.fragmentHomeProfile);
+            }
+        });
+
         reviewsImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -197,4 +228,24 @@ public class ProfileFragment extends MyFragment {
             openFragment(fragment, R.id.fragmentHomeProfile);
         }
     };
+
+    @Override
+    public void changeUserFavoritePlace(List<PlaceTypeEnum> placeTypeEnumList) {
+        this.userResponse.setFavoritePlaceTypes(placeTypeEnumList);
+        if (userResponse.getFavoritePlaceTypes().isEmpty()) {
+            placeTypesLayout.setVisibility(View.GONE);
+            favoritePlaceTypesCountTextView.setVisibility(View.VISIBLE);
+            favoritePlaceTypesCountTextView.setText("0");
+        }
+        else {
+            favoritePlaceTypesCountTextView.setVisibility(View.GONE);
+            placeTypesLayout.setVisibility(View.VISIBLE);
+            placeTypesLayout.removeAllViews();
+            for (PlaceTypeEnum placeTypeEnum: userResponse.getFavoritePlaceTypes()) {
+                placeTypeTextView = (TextView) getLayoutInflater().inflate(R.layout.card_place_type, placeTypesLayout, false);
+                placeTypeTextView.setText(placeTypeEnum.getText());
+                placeTypesLayout.addView(placeTypeTextView);
+            }
+        }
+    }
 }
