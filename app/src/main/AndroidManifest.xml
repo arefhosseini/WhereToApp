@@ -30,7 +30,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".controller.view_controller.splash.SplashActivity"
+            android:name="ir.fearefull.wheretoapp.controller.view_controller.splash.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,11 +39,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".controller.view_controller.edit_profile.EditProfileActivity"
+            android:name="ir.fearefull.wheretoapp.controller.view_controller.edit_profile.EditProfileActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|adjustPan" />
         <activity
-            android:name=".controller.view_controller.verify.VerifyActivity"
+            android:name="ir.fearefull.wheretoapp.controller.view_controller.verify.VerifyActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|adjustPan" />
 
@@ -56,7 +56,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".controller.view_controller.home.HomeActivity"
+            android:name="ir.fearefull.wheretoapp.controller.view_controller.home.HomeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|adjustPan" />
         <activity
