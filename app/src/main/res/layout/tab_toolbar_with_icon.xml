@@ -11,5 +11,6 @@
         android:layout_height="28dp"
         android:scaleType="fitCenter"
         android:id="@+id/icon"
+        android:tint="@color/colorPrimary"
         tools:ignore="ContentDescription" />
 </LinearLayout>

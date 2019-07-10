@@ -117,7 +117,7 @@ public class PlaceFragment extends MyFragment {
             public void onClick(View view) {
                 if (placeResponse.getIsFavorite() == 0) {
                     try {
-                        favouriteImageButton.setImageResource(R.drawable.ic_favorite_white_24dp);
+                        favouriteImageButton.setImageResource(R.drawable.ic_favorite_black_24dp);
                         addPlaceToFavourite();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -125,7 +125,7 @@ public class PlaceFragment extends MyFragment {
                 }
                 else {
                     try {
-                        favouriteImageButton.setImageResource(R.drawable.ic_favorite_border_white_24dp);
+                        favouriteImageButton.setImageResource(R.drawable.ic_favorite_border_black_24dp);
                         removePlaceFromFavorite();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -168,10 +168,10 @@ public class PlaceFragment extends MyFragment {
         }
 
         if (placeResponse.getIsFavorite() == 0) {
-            favouriteImageButton.setImageResource(R.drawable.ic_favorite_border_white_24dp);
+            favouriteImageButton.setImageResource(R.drawable.ic_favorite_border_black_24dp);
         }
         else {
-            favouriteImageButton.setImageResource(R.drawable.ic_favorite_white_24dp);
+            favouriteImageButton.setImageResource(R.drawable.ic_favorite_black_24dp);
         }
 
         setupViewPager(viewPager);

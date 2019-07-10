@@ -37,14 +37,13 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:layout_marginRight="4dp"
-                android:text="@string/ambiance"
+                android:gravity="right"
                 style="@style/MyTheme.TextAppearance.Small"
                 android:textColor="@color/textDarkPrimary" />
             <ir.fearefull.wheretoapp.view.base.MyTextView
                 android:id="@+id/createdDateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/common_google_play_services_enable_button"
                 style="@style/MyTheme.TextAppearance.XSmall"
                 android:textColor="@color/textDarkSecondary" />
         </LinearLayout>

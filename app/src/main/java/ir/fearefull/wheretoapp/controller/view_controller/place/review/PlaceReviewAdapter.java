@@ -47,10 +47,10 @@ public class PlaceReviewAdapter extends RecyclerView.Adapter<PlaceReviewsViewHol
     private User user;
 
     public PlaceReviewAdapter(PlaceReviewAdapterCallBack callBack, Context context,
-                              List<PlaceReviewResponse> placeSummaryList, User user) {
+                              List<PlaceReviewResponse> placeReviewResponseList, User user) {
         this.callBack = callBack;
         this.context = context;
-        this.placeReviewResponseList = placeSummaryList;
+        this.placeReviewResponseList = placeReviewResponseList;
         currentDate = new Date();
         this.user = user;
     }

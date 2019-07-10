@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorPrimaryLight">#01AC98</color>
-    <color name="colorPrimaryVeryLight">#00DBC2</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="colorAccent2">#BFD81B60</color>
+    <color name="colorPrimary">#dd2c00</color>
+    <color name="colorPrimaryDark">#a30000</color>
+    <color name="colorPrimaryLight">#ff6434</color>
+    <color name="colorPrimaryVeryLight">#FF8F70</color>
+    <color name="colorAccent">#424242</color>
+    <color name="colorAccent2">#1b1b1b</color>
     <color name="colorBackground">#eff2f2</color>
     <color name="colorBackground2">#BFDFE0E0</color>
     <color name="colorGlass">#3E141414</color>
@@ -15,6 +15,7 @@
     <color name="textDarkSecondary">#8A000000</color> <!--8A for %54 opacity-->
     <color name="textDarkDisabled">#61000000</color> <!--61 for %38 opacity-->
     <color name="colorButtonDisabled">#848484</color>
+    <color name="colorImageButton">#242424</color>
 
     <!-- White Text Color for Dark Background -->
     <color name="textLightPrimary">#FFFFFF</color> <!--%100 opacity-->

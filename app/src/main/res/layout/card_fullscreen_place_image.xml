@@ -36,6 +36,7 @@
             android:layout_marginLeft="24dp"
             android:layout_gravity="center_vertical"
             android:background="?actionBarItemBackground"
+            android:tint="@color/colorImageButton"
             android:src="@mipmap/disabled_dislike" />
         <ir.fearefull.wheretoapp.view.base.MyTextView
             android:id="@+id/upVoteTextView"
@@ -53,6 +54,7 @@
             android:scaleType="centerCrop"
             android:layout_gravity="center_vertical"
             android:background="?actionBarItemBackground"
+            android:tint="@color/colorImageButton"
             android:src="@mipmap/disabled_like" />
     </LinearLayout>
 </RelativeLayout>

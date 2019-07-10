@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ public class UserFragment extends MyFragment {
             reviewsImageButton;
     private ImageView profileImageView;
     private LinearLayout followersLayout, followingsLayout, placeTypesLayout;
+    private RelativeLayout favoritePlacesLayout, reviewsLayout;
     private TextView followTextView, userScoreTextView, firstNameTextView, lastNameTextView,
             favoritePlaceTypesCountTextView, followersCountTextView, followingsCountTextView,
             favoritePlacesCountTextView, scoresCountTextView, reviewsCountTextView,
@@ -94,6 +96,8 @@ public class UserFragment extends MyFragment {
         followersLayout = parentView.findViewById(R.id.followersLayout);
         followingsLayout = parentView.findViewById(R.id.followingsLayout);
         placeTypesLayout = view.findViewById(R.id.placeTypesLayout);
+        favoritePlacesLayout = view.findViewById(R.id.favoritePlacesLayout);
+        reviewsLayout = view.findViewById(R.id.reviewsLayout);
 
         backImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,7 +172,7 @@ public class UserFragment extends MyFragment {
             }
         }
 
-        reviewsImageButton.setOnClickListener(new View.OnClickListener() {
+        reviewsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UserReviewFragment fragment = new UserReviewFragment(TAG, user, UserFragment.this.userResponse);
@@ -176,7 +180,7 @@ public class UserFragment extends MyFragment {
             }
         });
 
-        favoritePlacesImageButton.setOnClickListener(new View.OnClickListener() {
+        favoritePlacesLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UserFavoritePlaceFragment fragment = new UserFavoritePlaceFragment(TAG, user, UserFragment.this.userResponse);

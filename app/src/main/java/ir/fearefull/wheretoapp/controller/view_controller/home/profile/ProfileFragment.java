@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +48,9 @@ public class ProfileFragment extends MyFragment implements UserFavoritePlaceType
     private ImageButton logoutImageButton, favoritePlaceTypesImageButton, favoritePlacesImageButton,
             reviewsImageButton;
     private ImageView profileImageView;
-    private LinearLayout followersLayout, followingsLayout, placeTypesLayout;
+    private LinearLayout followersLayout, followingsLayout,
+            favoritePlaceTypesLayout, placeTypesLayout;
+    private RelativeLayout favoritePlacesLayout, reviewsLayout;
     private TextView editProfileTextView, userScoreTextView, firstNameTextView, lastNameTextView,
             followersCountTextView, followingsCountTextView, favoritePlaceTypesCountTextView,
             favoritePlacesCountTextView, scoresCountTextView, reviewsCountTextView,
@@ -97,6 +100,9 @@ public class ProfileFragment extends MyFragment implements UserFavoritePlaceType
         followersLayout = view.findViewById(R.id.followersLayout);
         followingsLayout = view.findViewById(R.id.followingsLayout);
         placeTypesLayout = view.findViewById(R.id.placeTypesLayout);
+        favoritePlacesLayout = view.findViewById(R.id.favoritePlacesLayout);
+        reviewsLayout = view.findViewById(R.id.reviewsLayout);
+        favoritePlaceTypesLayout = view.findViewById(R.id.favoritePlaceTypesLayout);
 
         followersLayout.setOnClickListener(onOpenFriendActivityFollowersSelected);
         followingsLayout.setOnClickListener(onOpenFriendActivityFollowingsSelected);
@@ -160,6 +166,7 @@ public class ProfileFragment extends MyFragment implements UserFavoritePlaceType
         else {
             favoritePlaceTypesCountTextView.setVisibility(View.GONE);
             placeTypesLayout.setVisibility(View.VISIBLE);
+            placeTypesLayout.removeAllViews();
             for (PlaceTypeEnum placeTypeEnum: userResponse.getFavoritePlaceTypes()) {
                 placeTypeTextView = (TextView) getLayoutInflater().inflate(R.layout.card_place_type, placeTypesLayout, false);
                 placeTypeTextView.setText(placeTypeEnum.getText());
@@ -167,7 +174,7 @@ public class ProfileFragment extends MyFragment implements UserFavoritePlaceType
             }
         }
 
-        favoritePlaceTypesImageButton.setOnClickListener(new View.OnClickListener() {
+        favoritePlaceTypesLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UserFavoritePlaceTypeFragment fragment = new UserFavoritePlaceTypeFragment(ProfileFragment.this,
@@ -176,7 +183,7 @@ public class ProfileFragment extends MyFragment implements UserFavoritePlaceType
             }
         });
 
-        reviewsImageButton.setOnClickListener(new View.OnClickListener() {
+        reviewsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UserReviewFragment fragment = new UserReviewFragment(TAG, user, ProfileFragment.this.userResponse);
@@ -184,7 +191,7 @@ public class ProfileFragment extends MyFragment implements UserFavoritePlaceType
             }
         });
 
-        favoritePlacesImageButton.setOnClickListener(new View.OnClickListener() {
+        favoritePlacesLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UserFavoritePlaceFragment fragment = new UserFavoritePlaceFragment(TAG, user, ProfileFragment.this.userResponse);

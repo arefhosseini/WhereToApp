@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
 import com.thoughtbot.expandablerecyclerview.viewholders.GroupViewHolder;
@@ -32,12 +33,20 @@ public class MenuViewHolder extends GroupViewHolder {
     @Override
     public void expand() {
         menuTextView.setTextColor(ContextCompat.getColor(context, R.color.colorPrimaryDark));
-        menuImageView.setImageResource(R.drawable.ic_keyboard_arrow_up_primary_dark_24dp);
+        menuImageView.setImageResource(R.drawable.ic_keyboard_arrow_up_black_24dp);
+        DrawableCompat.setTint(
+                DrawableCompat.wrap(menuImageView.getDrawable()),
+                ContextCompat.getColor(context, R.color.colorPrimaryDark)
+        );
     }
 
     @Override
     public void collapse() {
         menuTextView.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
-        menuImageView.setImageResource(R.drawable.ic_keyboard_arrow_down_primary_24dp);
+        menuImageView.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
+        DrawableCompat.setTint(
+                DrawableCompat.wrap(menuImageView.getDrawable()),
+                ContextCompat.getColor(context, R.color.colorPrimary)
+        );
     }
 }

@@ -85,7 +85,8 @@
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:scaleX="-1"
-                            android:src="@drawable/ic_call_primary_24dp"/>
+                            android:tint="@color/colorPrimary"
+                            android:src="@drawable/ic_call_black_24dp"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -125,7 +126,8 @@
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:scaleX="-1"
-                            android:src="@drawable/ic_attach_money_primary_24dp"/>
+                            android:tint="@color/colorPrimary"
+                            android:src="@drawable/ic_attach_money_black_24dp"/>
                     </LinearLayout>
                     <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:layout_width="match_parent"
@@ -167,7 +169,8 @@
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:scaleX="-1"
-                            android:src="@drawable/ic_access_time_primary_24dp"/>
+                            android:tint="@color/colorPrimary"
+                            android:src="@drawable/ic_access_time_black_24dp"/>
                     </LinearLayout>
                     <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:layout_width="match_parent"
@@ -209,7 +212,8 @@
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:scaleX="-1"
-                            android:src="@drawable/ic_comment_primary_24dp"/>
+                            android:tint="@color/colorPrimary"
+                            android:src="@drawable/ic_comment_black_24dp"/>
                     </LinearLayout>
                     <ir.fearefull.wheretoapp.view.base.MyTextView
                         android:layout_width="match_parent"
@@ -260,7 +264,8 @@
                         android:padding="12dp"
                         android:layout_centerVertical="true"
                         android:background="?actionBarItemBackground"
-                        android:src="@drawable/ic_add_a_photo_primary_24dp"
+                        android:src="@drawable/ic_add_a_photo_black_24dp"
+                        android:tint="@color/colorPrimary"
                         android:scaleX="-1"
                         tools:ignore="RtlHardcoded" />
                 </RelativeLayout>

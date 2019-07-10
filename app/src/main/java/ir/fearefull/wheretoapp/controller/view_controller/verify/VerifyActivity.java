@@ -13,14 +13,11 @@ import ir.fearefull.wheretoapp.model.api.user.control.VerifyUserResponse;
 public class VerifyActivity extends AppCompatActivity implements SendPhoneNumberFragment.OnClickListener {
 
     private Toolbar toolbar;
-    VerifyActivity verifyActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify);
-        verifyActivity = this;
-
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
