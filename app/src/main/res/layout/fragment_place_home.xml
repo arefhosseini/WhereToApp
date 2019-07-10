@@ -125,7 +125,6 @@
                         <ImageView
                             android:layout_width="18dp"
                             android:layout_height="18dp"
-                            android:scaleX="-1"
                             android:tint="@color/colorPrimary"
                             android:src="@drawable/ic_attach_money_black_24dp"/>
                     </LinearLayout>
